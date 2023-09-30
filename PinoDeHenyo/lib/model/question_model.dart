@@ -1,180 +1,44 @@
-import 'package:youtube_app/types/question_difficulty.dart';
-import 'package:youtube_app/types/question_type.dart';
-import 'answer_model.dart';
-
 class QuestionModel {
   final String id;
   final String text;
-  final QuestionType type;
-  final QuestionDifficulty difficulty;
-  final String answerId;
-  final List<AnswerModel>? choices;
+  final String image;
 
   const QuestionModel({
     required this.id,
     required this.text,
-    required this.type,
-    required this.difficulty,
-    required this.answerId,
-    required this.choices,
+    required this.image,
   });
-
-  Map toJson() => {
-        'id': id,
-        'text': text,
-        'type': type.toString(),
-        'difficulty': difficulty.toString(),
-        'answerId': answerId
-      };
-
-  factory QuestionModel.fromJson(Map<String, dynamic> json) {
-    return QuestionModel(
-        id: json['id'] as String,
-        text: json['text'] as String,
-        type: QuestionType.values[json['type']],
-        difficulty: QuestionDifficulty.values[json['difficulty']],
-        answerId: json['answerId'] as String,
-        choices: json['choices'] != null
-            ? (json['choices'] as List)
-                .map((e) => AnswerModel.fromJson(e))
-                .toList()
-            : null);
-  }
 }
 
-
-
-// class QuestionModel {
-//   final String id;
-//   final String text;
-//   final QuestionType type;
-//   final QuestionDifficulty difficulty;
-//   final String answerId;
-//   final List<AnswerModel> choices;
-//   const QuestionModel({
-//     required this.id,
-//     required this.text,
-//     required this.type,
-//     required this.difficulty,
-//     required this.answerId,
-//     required this.choices,
-//   });
-// }
-
-// List<QuestionModel> questions = <QuestionModel>[
-//   const QuestionModel(
-//       id: 'q1',
-//       text: 'Pray everyday, Everyday ok.',
-//       type: QuestionType.trueOfFalse,
-//       difficulty: QuestionDifficulty.easy,
-//       answerId: 'c1',
-//       choices: <AnswerModel>[
-//         AnswerModel(id: 'c1', value: 'true'),
-//         AnswerModel(id: 'c2', value: 'false')
-//       ]),
-//   const QuestionModel(
-//       id: 'q2',
-//       text: 'If you hate someone, Kill them.',
-//       type: QuestionType.trueOfFalse,
-//       difficulty: QuestionDifficulty.easy,
-//       answerId: 'c2',
-//       choices: <AnswerModel>[
-//         AnswerModel(id: 'c1', value: 'true'),
-//         AnswerModel(id: 'c2', value: 'false')
-//       ]),
-//   const QuestionModel(
-//       id: 'q3',
-//       text:
-//           'Making love to your neighbors even if you\'re not in a relationship.',
-//       type: QuestionType.trueOfFalse,
-//       difficulty: QuestionDifficulty.easy,
-//       answerId: 'c2',
-//       choices: <AnswerModel>[
-//         AnswerModel(id: 'c1', value: 'true'),
-//         AnswerModel(id: 'c2', value: 'false')
-//       ]),
-//   const QuestionModel(
-//       id: 'q4',
-//       text: 'If you wake up in the morning, what will you do first ?',
-//       type: QuestionType.multipleChoice,
-//       difficulty: QuestionDifficulty.easy,
-//       answerId: 'cm3',
-//       choices: <AnswerModel>[
-//         AnswerModel(id: 'cm1', value: 'magsilos'),
-//         AnswerModel(id: 'cm2', value: 'take a bath'),
-//         AnswerModel(id: 'cm3', value: 'pray'),
-//         AnswerModel(id: 'cm4', value: 'choke duck')
-//       ]),
-//   const QuestionModel(
-//       id: 'q5',
-//       text: 'If you wake up in the morning, what will you do first ?',
-//       type: QuestionType.multipleChoice,
-//       difficulty: QuestionDifficulty.easy,
-//       answerId: 'cm3',
-//       choices: <AnswerModel>[
-//         AnswerModel(id: 'cm1', value: 'magsilos'),
-//         AnswerModel(id: 'cm2', value: 'take a bath'),
-//         AnswerModel(id: 'cm3', value: 'pray'),
-//         AnswerModel(id: 'cm4', value: 'choke duck')
-//       ]),
-//   const QuestionModel(
-//       id: 'q6',
-//       text: 'If you wake up in the morning, what will you do first ?',
-//       type: QuestionType.multipleChoice,
-//       difficulty: QuestionDifficulty.easy,
-//       answerId: 'cm3',
-//       choices: <AnswerModel>[
-//         AnswerModel(id: 'cm1', value: 'magsilos'),
-//         AnswerModel(id: 'cm2', value: 'take a bath'),
-//         AnswerModel(id: 'cm3', value: 'pray'),
-//         AnswerModel(id: 'cm4', value: 'choke duck')
-//       ]),
-//   const QuestionModel(
-//       id: 'q7',
-//       text: 'If you wake up in the morning, what will you do first ?',
-//       type: QuestionType.multipleChoice,
-//       difficulty: QuestionDifficulty.easy,
-//       answerId: 'cm3',
-//       choices: <AnswerModel>[
-//         AnswerModel(id: 'cm1', value: 'magsilos'),
-//         AnswerModel(id: 'cm2', value: 'take a bath'),
-//         AnswerModel(id: 'cm3', value: 'pray'),
-//         AnswerModel(id: 'cm4', value: 'choke duck')
-//       ]),
-//   const QuestionModel(
-//       id: 'q8',
-//       text: 'If you wake up in the morning, what will you do first ?',
-//       type: QuestionType.multipleChoice,
-//       difficulty: QuestionDifficulty.easy,
-//       answerId: 'cm3',
-//       choices: <AnswerModel>[
-//         AnswerModel(id: 'cm1', value: 'magsilos'),
-//         AnswerModel(id: 'cm2', value: 'take a bath'),
-//         AnswerModel(id: 'cm3', value: 'pray'),
-//         AnswerModel(id: 'cm4', value: 'choke duck')
-//       ]),
-//   const QuestionModel(
-//       id: 'q9',
-//       text: 'If you wake up in the morning, what will you do first ?',
-//       type: QuestionType.multipleChoice,
-//       difficulty: QuestionDifficulty.easy,
-//       answerId: 'cm3',
-//       choices: <AnswerModel>[
-//         AnswerModel(id: 'cm1', value: 'magsilos'),
-//         AnswerModel(id: 'cm2', value: 'take a bath'),
-//         AnswerModel(id: 'cm3', value: 'pray'),
-//         AnswerModel(id: 'cm4', value: 'choke duck')
-//       ]),
-//   const QuestionModel(
-//       id: 'q10',
-//       text: 'If you wake up in the morning, what will you do first ?',
-//       type: QuestionType.multipleChoice,
-//       difficulty: QuestionDifficulty.easy,
-//       answerId: 'cm3',
-//       choices: <AnswerModel>[
-//         AnswerModel(id: 'cm1', value: 'magsilos'),
-//         AnswerModel(id: 'cm2', value: 'take a bath'),
-//         AnswerModel(id: 'cm3', value: 'pray'),
-//         AnswerModel(id: 'cm4', value: 'choke duck')
-//       ]),
-// ];
+List<QuestionModel> questions = <QuestionModel>[
+  const QuestionModel(
+    id: '1',
+    text: 'BAKA',
+    image:
+        'https://static.vecteezy.com/system/resources/previews/000/648/305/original/vector-cute-cow-cartoon.jpg',
+  ),
+  const QuestionModel(
+    id: '2',
+    text: 'BAHAY',
+    image:
+        'https://th.bing.com/th/id/R.3b2f7517f1ba23e595db4c290bce5abe?rik=IEOh5c5W8%2bFNJg&riu=http%3a%2f%2fshmector.com%2f_ph%2f7%2f113327418.png&ehk=fk%2b%2fmBupK%2bGsa%2bjx1g8BqeGMc0e3d1wqtG%2fDocc%2fH1M%3d&risl=&pid=ImgRaw&r=0',
+  ),
+  const QuestionModel(
+    id: '3',
+    text: 'BUKO',
+    image:
+        'https://th.bing.com/th/id/R.4e77caff92c31ce222db7f749b6b12d0?rik=DVM%2bDlWPtrJyLA&riu=http%3a%2f%2fimg.21food.com%2f20110609%2fdescript%2f1306414902979.jpg&ehk=ORTSEepWcf%2fTlUqaAbFzUliZaWUehV6CDkeTV907l68%3d&risl=&pid=ImgRaw&r=0',
+  ),
+  const QuestionModel(
+    id: '4',
+    text: 'ILAW',
+    image:
+        'https://th.bing.com/th/id/OIP.24mW5zDTQ-JxemuQwcxVAgHaHa?w=157&h=180&c=7&r=0&o=5&pid=1.7',
+  ),
+  const QuestionModel(
+    id: '5',
+    text: 'PUSA',
+    image:
+        'https://th.bing.com/th/id/OIP.2yhKZiqiUWZhG47Akxb6-AHaHa?w=205&h=205&c=7&r=0&o=5&pid=1.7',
+  ),
+];

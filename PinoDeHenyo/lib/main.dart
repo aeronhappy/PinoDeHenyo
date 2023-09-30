@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_app/helper/api_helper.dart' as api_helper;
-import 'package:youtube_app/repository/injection_container.dart' as di;
-import 'package:youtube_app/views/onboarding_page.dart';
+import 'package:pino_de_henyo/helper/api_helper.dart' as api_helper;
+import 'package:pino_de_henyo/repository/injection_container.dart' as di;
+import 'package:pino_de_henyo/views/dashboard_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const OnBoardingPage(),
+      home: const DashboardPage(),
     );
   }
 }

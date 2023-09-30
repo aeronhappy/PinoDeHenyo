@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:youtube_app/repository/contract/i_question_repository.dart';
-import 'package:youtube_app/services/contract/i_network_info_services.dart';
-import '../../../model/question_model.dart';
+import 'package:pino_de_henyo/model/question_model.dart';
+import 'package:pino_de_henyo/repository/contract/i_question_repository.dart';
+import 'package:pino_de_henyo/services/contract/i_network_info_services.dart';
 
 part 'question_event.dart';
 part 'question_state.dart';
