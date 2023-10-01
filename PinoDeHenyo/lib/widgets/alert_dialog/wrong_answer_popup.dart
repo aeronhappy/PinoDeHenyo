@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 
@@ -8,64 +9,85 @@ wrongAnswerDialog(BuildContext context) {
       barrierDismissible: false,
       builder: (_) => Center(
             child: Container(
-              margin: const EdgeInsets.all(40),
-              decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                borderRadius: const BorderRadius.all(Radius.circular(12)),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              color: Colors.transparent,
+              child: Stack(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 60),
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: lightSecondarybgColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
+                    ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'Your answer is wrong',
-                          style: Theme.of(context).textTheme.labelLarge,
+                        Column(
+                          children: [
+                            const SizedBox(height: 60),
+                            Text(
+                              'OOPS!',
+                              style: GoogleFonts.titanOne(
+                                  fontSize: 30,
+                                  decoration: TextDecoration.none,
+                                  color: Colors.black),
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              'That\'s not the right answer.\n Keep answering!',
+                              style: bodyMediumLight,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 40),
+                        Column(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () async {
+                                Navigator.pop(context);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: primaryColor,
+                                elevation: 2,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(20),
+                                  ),
+                                ),
+                              ),
+                              child: SizedBox(
+                                height: 40,
+                                child: Center(
+                                    child: Text('TRY AGAIN',
+                                        style: bodyMediumDark)),
+                              ),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  'Cancel',
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                )),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                  Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        alignment: Alignment.center,
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
-                            elevation: 2,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                            ),
-                          ),
-                          child: SizedBox(
-                            height: 40,
-                            child: Center(
-                                child:
-                                    Text('TRY AGAIN', style: bodyMediumDark)),
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                          },
-                          child: Text(
-                            'Cancel',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          )),
-                    ],
-                  ),
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    child: SizedBox(
+                        height: 120,
+                        child: Image.asset('assets/category/angry.png')),
+                  )
                 ],
               ),
             ),

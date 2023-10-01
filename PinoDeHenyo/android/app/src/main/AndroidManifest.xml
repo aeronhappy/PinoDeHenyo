@@ -1,7 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.youtube_app">
-   <application
-        android:label="youtube_app"
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <queries>
+        <intent>
+             <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+      <application
+        android:label="Pino De Henyo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

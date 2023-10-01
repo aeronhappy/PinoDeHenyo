@@ -107,7 +107,7 @@ class _WritingPageState extends State<WritingPage> {
                           } else {
                             context
                                 .read<QuestionControllerBloc>()
-                                .add(ClickSubmit(isCorrect: false));
+                                .add(ClickSubmit(isCorrect: true));
                           }
                         },
                         child: Container(

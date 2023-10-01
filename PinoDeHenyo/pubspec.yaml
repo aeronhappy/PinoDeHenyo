@@ -50,8 +50,13 @@ dependencies:
   learning_digital_ink_recognition: ^0.0.2
   provider: ^6.0.5
 
+
   # for reading
   flutter_tts: ^3.2.2
+
+  # for voice
+  speech_to_text: ^6.3.0
+  avatar_glow: ^2.0.2
 
 
 dev_dependencies:

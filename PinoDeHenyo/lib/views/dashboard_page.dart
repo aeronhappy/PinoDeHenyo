@@ -56,8 +56,22 @@ class _DashboardPageState extends State<DashboardPage> {
                             child: InkWell(
                               borderRadius: BorderRadius.circular(100),
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const ReadingPage()));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return MultiBlocProvider(
+                                        providers: [
+                                          BlocProvider(
+                                            create: (context) =>
+                                                QuestionControllerBloc(),
+                                          ),
+                                        ],
+                                        child: const ReadingPage(),
+                                      );
+                                    },
+                                  ),
+                                );
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(2),

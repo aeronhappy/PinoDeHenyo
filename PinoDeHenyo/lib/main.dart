@@ -5,6 +5,7 @@ import 'package:pino_de_henyo/views/dashboard_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   api_helper.initializeClient(token: '');
   await di.init();
   runApp(const MyApp());

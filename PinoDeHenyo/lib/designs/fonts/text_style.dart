@@ -3,156 +3,84 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../colors/app_colors.dart';
 
-TextStyle fontAuthenticationPrimTextStyle = GoogleFonts.montserrat(
-    fontSize: 30.0, color: primaryColor, fontWeight: FontWeight.bold);
+double letterSpacing = 0;
+double height = 1.5;
+double wordSpacing = 1;
 
-TextStyle selectedText = GoogleFonts.montserrat(
-    fontSize: 12.0, color: successColor, fontWeight: FontWeight.w400);
+TextStyle googleFonts(double fontSize, Color color, FontWeight fontWeight) {
+  return GoogleFonts.montserrat(
+      fontSize: fontSize,
+      color: color,
+      fontWeight: fontWeight,
+      decoration: TextDecoration.none);
+}
+
+TextStyle fontAuthenticationPrimTextStyle =
+    googleFonts(30, primaryColor, FontWeight.bold);
+TextStyle selectedText = googleFonts(12, successColor, FontWeight.w400);
 
 ///////// TEXTTHEME CLASS DARK
 // HEADLINE
-TextStyle headlineLargeDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 32.0,
-    color: darkPrimaryTextColor,
-    fontWeight: FontWeight.bold);
+TextStyle headlineLargeDark =
+    googleFonts(32, darkPrimaryTextColor, FontWeight.bold);
+TextStyle headlineMediumDark =
+    googleFonts(28, darkPrimaryTextColor, FontWeight.bold);
+TextStyle headlineSmallDark =
+    googleFonts(24, darkPrimaryTextColor, FontWeight.bold);
 
-TextStyle headlineMediumDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 28.0,
-    color: darkPrimaryTextColor,
-    fontWeight: FontWeight.bold);
-
-TextStyle headlineSmallDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 24.0,
-    color: darkPrimaryTextColor,
-    fontWeight: FontWeight.bold);
 // TITLE
-TextStyle titleLargeDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 18.0,
-    color: darkPrimaryTextColor,
-    fontWeight: FontWeight.w600);
+TextStyle titleLargeDark =
+    googleFonts(18, darkPrimaryTextColor, FontWeight.w600);
+TextStyle titleMediumDark =
+    googleFonts(16, darkPrimaryTextColor, FontWeight.w600);
+TextStyle titleSmallDark =
+    googleFonts(14, darkPrimaryTextColor, FontWeight.w600);
 
-TextStyle titleMediumDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 16.0,
-    color: darkPrimaryTextColor,
-    fontWeight: FontWeight.w600);
-
-TextStyle titleSmallDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 14.0,
-    color: darkPrimaryTextColor,
-    fontWeight: FontWeight.w600);
-//LABEL
-TextStyle labelLargeDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 14.0,
-    color: darkSecondaryTextColor,
-    fontWeight: FontWeight.w300);
-
-TextStyle labelMediumDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 12.0,
-    color: darkSecondaryTextColor,
-    fontWeight: FontWeight.w300);
-
-TextStyle labelSmallDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 11.0,
-    color: darkSecondaryTextColor,
-    fontWeight: FontWeight.w300);
 // BODY
-TextStyle bodyLargeDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 16.0,
-    color: darkPrimaryTextColor,
-    fontWeight: FontWeight.w400);
+TextStyle bodyLargeDark =
+    googleFonts(16, darkPrimaryTextColor, FontWeight.w400);
+TextStyle bodyMediumDark =
+    googleFonts(14, darkPrimaryTextColor, FontWeight.w400);
+TextStyle bodySmallDark =
+    googleFonts(12, darkPrimaryTextColor, FontWeight.w400);
 
-TextStyle bodyMediumDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 14.0,
-    color: darkPrimaryTextColor,
-    fontWeight: FontWeight.w400);
-
-TextStyle bodySmallDark = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 12.0,
-    color: darkPrimaryTextColor,
-    fontWeight: FontWeight.w400);
+//LABEL
+TextStyle labelLargeDark =
+    googleFonts(12, darkSecondaryTextColor, FontWeight.w300);
+TextStyle labelMediumDark =
+    googleFonts(10, darkSecondaryTextColor, FontWeight.w300);
+TextStyle labelSmallDark =
+    googleFonts(8, darkSecondaryTextColor, FontWeight.w300);
 
 ///////// TEXTTHEME CLASS LIGHT
 // HEADLINE
-TextStyle headlineLargeLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 32.0,
-    color: lightPrimaryTextColor,
-    fontWeight: FontWeight.bold);
+TextStyle headlineLargeLight =
+    googleFonts(32, lightPrimaryTextColor, FontWeight.bold);
+TextStyle headlineMediumLight =
+    googleFonts(28, lightPrimaryTextColor, FontWeight.bold);
+TextStyle headlineSmallLight =
+    googleFonts(24, lightPrimaryTextColor, FontWeight.bold);
 
-TextStyle headlineMediumLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 28.0,
-    color: lightPrimaryTextColor,
-    fontWeight: FontWeight.bold);
-
-TextStyle headlineSmallLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 24.0,
-    color: lightPrimaryTextColor,
-    fontWeight: FontWeight.bold);
 // TITLE
-TextStyle titleLargeLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 18.0,
-    color: lightPrimaryTextColor,
-    fontWeight: FontWeight.w600);
+TextStyle titleLargeLight =
+    googleFonts(18, lightPrimaryTextColor, FontWeight.w600);
+TextStyle titleMediumLight =
+    googleFonts(16, lightPrimaryTextColor, FontWeight.w600);
+TextStyle titleSmallLight =
+    googleFonts(14, lightPrimaryTextColor, FontWeight.w600);
 
-TextStyle titleMediumLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 16.0,
-    color: lightPrimaryTextColor,
-    fontWeight: FontWeight.w600);
-
-TextStyle titleSmallLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 14.0,
-    color: lightPrimaryTextColor,
-    fontWeight: FontWeight.w600);
-//LABEL
-TextStyle labelLargeLight = GoogleFonts.montserrat(
-    fontSize: 14.0,
-    decoration: TextDecoration.none,
-    color: lightSecondaryTextColor,
-    fontWeight: FontWeight.w300);
-
-TextStyle labelMediumLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 12.0,
-    color: lightSecondaryTextColor,
-    fontWeight: FontWeight.w300);
-
-TextStyle labelSmallLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 11.0,
-    color: lightSecondaryTextColor,
-    fontWeight: FontWeight.w300);
 // BODY
-TextStyle bodyLargeLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 16.0,
-    color: lightPrimaryTextColor,
-    fontWeight: FontWeight.w400);
+TextStyle bodyLargeLight =
+    googleFonts(16, lightPrimaryTextColor, FontWeight.w400);
+TextStyle bodyMediumLight =
+    googleFonts(14, lightPrimaryTextColor, FontWeight.w400);
+TextStyle bodySmallLight =
+    googleFonts(12, lightPrimaryTextColor, FontWeight.w400);
 
-TextStyle bodyMediumLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 14.0,
-    color: lightPrimaryTextColor,
-    fontWeight: FontWeight.w400);
-
-TextStyle bodySmallLight = GoogleFonts.montserrat(
-    decoration: TextDecoration.none,
-    fontSize: 12.0,
-    color: lightPrimaryTextColor,
-    fontWeight: FontWeight.w400);
+//LABEL
+TextStyle labelLargeLight =
+    googleFonts(12, lightSecondaryTextColor, FontWeight.w300);
+TextStyle labelMediumLight =
+    googleFonts(10, lightSecondaryTextColor, FontWeight.w300);
+TextStyle labelSmallLight =
+    googleFonts(8, lightSecondaryTextColor, FontWeight.w300);
