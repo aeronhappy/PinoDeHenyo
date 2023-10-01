@@ -66,6 +66,8 @@ class _WritingPageState extends State<WritingPage> {
                           height: 40,
                           alignment: Alignment.center,
                           child: ListView.builder(
+                            physics: const ClampingScrollPhysics(),
+                            shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemCount: questions[index].text.length,
                             itemBuilder: (context, stringIndex) {

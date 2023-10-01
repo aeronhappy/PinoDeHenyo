@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pino_de_henyo/helper/api_helper.dart' as api_helper;
 import 'package:pino_de_henyo/repository/injection_container.dart' as di;
-import 'package:pino_de_henyo/views/dashboard_page.dart';
+import 'package:pino_de_henyo/views/onboarding_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // await Future.delayed(Duration(seconds: 2));
+  // FlutterNativeSplash.
 
   api_helper.initializeClient(token: '');
   await di.init();
@@ -17,12 +19,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Pino De Henyo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.brown,
       ),
-      home: const DashboardPage(),
+      home: const OnboardingPage(),
     );
   }
 }
