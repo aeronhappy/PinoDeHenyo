@@ -36,7 +36,7 @@ correctAnswerDialog(BuildContext context) {
                           children: [
                             const SizedBox(height: 60),
                             Text(
-                              random == 1 ? 'AMAZING!' : 'GREAT!',
+                              random == 1 ? 'MAHUSAY!' : 'MAGALING!',
                               style: GoogleFonts.titanOne(
                                   fontSize: 30,
                                   decoration: TextDecoration.none,
@@ -44,7 +44,7 @@ correctAnswerDialog(BuildContext context) {
                             ),
                             const SizedBox(height: 20),
                             Text(
-                              'Your answer is correct.\nKeep it up!',
+                              'Tama ang iyong sagot.',
                               style: bodyMediumLight,
                               textAlign: TextAlign.center,
                             ),

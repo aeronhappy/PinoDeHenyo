@@ -11,12 +11,22 @@ List<OnBoardModel> onboardModel = <OnBoardModel>[
     desc: 'Magandang araw mga bata! Ako nga pala si Pino.',
   ),
   OnBoardModel(
-    desc: 'Mga bata alam niyo ba ang kahulugan ng Mother Tongue?',
+    desc:
+        'Narito ako upang ipaalam sa inyo ang kahulugan ng salitang \'Mother Tongue\'.',
   ),
   OnBoardModel(
-    desc: 'Siya ay mataba at mahaba.',
+    desc:
+        'Ang \'Mother Tongue\' ay salitang Ingles na tumutukoy sa unang wika o katutubong wika.',
   ),
   OnBoardModel(
-    desc: 'Mahal na mahal ko ito , pangalan niya ay Marjorie.',
+    desc: 'Wikang natutunan ng isang tao mula sa pagkabata.',
+  ),
+  OnBoardModel(
+    desc:
+        'Sa Tagalog, ito ay maaaring isalin bilang \'inang-wika\' o \'katutubong wika\'.',
+  ),
+  OnBoardModel(
+    desc:
+        'Halika\'t samahan mo ko at pag-aralan natin ang mga wikang Filipino.',
   ),
 ];

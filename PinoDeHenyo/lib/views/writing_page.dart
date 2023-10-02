@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_bloc.dart';
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
-import 'package:pino_de_henyo/model/question_model.dart';
+import 'package:pino_de_henyo/model/lesson_model.dart';
+import 'package:pino_de_henyo/repository/injection_container.dart';
+import 'package:pino_de_henyo/views/level_page.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/correct_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
+import 'package:pino_de_henyo/widgets/others/tts_voice_settings.dart';
 
 class WritingPage extends StatefulWidget {
   const WritingPage({super.key});
@@ -18,10 +21,35 @@ class _WritingPageState extends State<WritingPage> {
   TextEditingController textEditingController = TextEditingController();
   PageController pageController = PageController();
 
+  bool equalsIgnoreCase(String? string1, String? string2) {
+    return string1?.toLowerCase() == string2?.toLowerCase();
+  }
+
+  int level = 0;
+  List<LessonModel> newQuestion = [];
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<QuestionControllerBloc>().add(GetWritingLevel());
+    context.read<QuestionControllerBloc>().add(GetWritingShuffleQuestion());
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<QuestionControllerBloc, QuestionControllerState>(
       listener: (context, state) {
+        if (state is LoadedWritingQuestion) {
+          setState(() {
+            newQuestion = state.lessonList;
+          });
+        }
+        if (state is LoadedWritingLevel) {
+          setState(() {
+            level = state.myLevel;
+          });
+          pageController.jumpToPage(state.myLevel);
+        }
         if (state is CorrectAnswer) {
           correctAnswerDialog(context);
         }
@@ -36,29 +64,96 @@ class _WritingPageState extends State<WritingPage> {
       child: Scaffold(
           backgroundColor: lightPrimarybgColor,
           appBar: AppBar(
-            title: Text('Writing', style: titleMediumLight),
+            title: Text('MAGSULAT', style: titleMediumLight),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
+            actions: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return MultiBlocProvider(
+                              providers: [
+                                BlocProvider(
+                                  create: (context) => QuestionControllerBloc(
+                                      sharedPreferences: sl()),
+                                ),
+                              ],
+                              child: const LevelPage(
+                                fromPage: 'MAGSULAT',
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: Material(
+                      shape: StadiumBorder(),
+                      elevation: 3,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: ShapeDecoration(
+                            color: Colors.brown, shape: StadiumBorder()),
+                        child: Center(
+                          child: Text(
+                            'Level ${level + 1}',
+                            style: titleMediumDark,
+                          ),
+                        ),
+                      ),
+                    )),
+              )
+            ],
           ),
           body: PageView.builder(
               physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
-              itemCount: questions.length,
+              onPageChanged: (index) {
+                context
+                    .read<QuestionControllerBloc>()
+                    .add(SaveWritingLevel(level: index));
+              },
+              itemCount: newQuestion.length,
               itemBuilder: (context, index) {
                 return Container(
                   padding: const EdgeInsets.all(20),
                   child: Column(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        height: MediaQuery.of(context).size.width * .7,
-                        width: double.infinity,
-                        decoration: BoxDecoration(border: Border.all()),
-                        child: Image.network(
-                          questions[index].image,
-                          fit: BoxFit.fill,
-                        ),
+                      Stack(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            height: MediaQuery.of(context).size.width * .7,
+                            width: double.infinity,
+                            decoration: BoxDecoration(border: Border.all()),
+                            child: Image.asset(
+                              newQuestion[index].image,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Positioned(
+                              bottom: 10,
+                              right: 10,
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                padding: const EdgeInsets.all(5),
+                                child: FloatingActionButton(
+                                  onPressed: () {
+                                    textToSpeech(newQuestion[index].title);
+                                  },
+                                  elevation: 5,
+                                  backgroundColor: successColor,
+                                  splashColor: successColor,
+                                  child: const Icon(Icons.volume_up_rounded),
+                                ),
+                              ))
+                        ],
                       ),
                       const SizedBox(height: 10),
                       Center(
@@ -69,7 +164,7 @@ class _WritingPageState extends State<WritingPage> {
                             physics: const ClampingScrollPhysics(),
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            itemCount: questions[index].text.length,
+                            itemCount: newQuestion[index].title.length,
                             itemBuilder: (context, stringIndex) {
                               return Container(
                                 width: 40,
@@ -78,7 +173,9 @@ class _WritingPageState extends State<WritingPage> {
                                 decoration: BoxDecoration(border: Border.all()),
                                 child: Center(
                                     child: Text(
-                                  questions[index].text[stringIndex],
+                                  newQuestion[index]
+                                      .title[stringIndex]
+                                      .toUpperCase(),
                                   style: titleLargeLight,
                                 )),
                               );
@@ -101,24 +198,26 @@ class _WritingPageState extends State<WritingPage> {
                       ),
                       InkWell(
                         onTap: () {
-                          if (textEditingController.text ==
-                              questions[index].text) {
+                          if (equalsIgnoreCase(textEditingController.text,
+                              newQuestion[index].title)) {
                             context
                                 .read<QuestionControllerBloc>()
                                 .add(ClickSubmit(isCorrect: true));
                           } else {
                             context
                                 .read<QuestionControllerBloc>()
-                                .add(ClickSubmit(isCorrect: true));
+                                .add(ClickSubmit(isCorrect: false));
                           }
                         },
                         child: Container(
                           height: 50,
                           decoration: ShapeDecoration(
-                              shape: const StadiumBorder(), color: errorColor),
+                              shape: const StadiumBorder(), color: Colors.blue),
                           child: Center(
-                            child: Text('Submit', style: titleLargeDark),
-                          ),
+                              child: Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                          )),
                         ),
                       )
                     ],

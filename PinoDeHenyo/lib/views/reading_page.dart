@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_bloc.dart';
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
-import 'package:pino_de_henyo/model/question_model.dart';
+import 'package:pino_de_henyo/model/lesson_model.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/correct_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/others/tts_voice_settings.dart';
@@ -40,12 +40,15 @@ class _ReadingPageState extends State<ReadingPage> {
         if (state is NextQuestion) {
           pageController.nextPage(
               duration: const Duration(milliseconds: 300), curve: Curves.ease);
+          setState(() {
+            answerText = '--';
+          });
         }
       },
       child: Scaffold(
           backgroundColor: lightPrimarybgColor,
           appBar: AppBar(
-            title: Text('Reading', style: titleMediumLight),
+            title: Text('MAGBASA', style: titleMediumLight),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
@@ -53,7 +56,7 @@ class _ReadingPageState extends State<ReadingPage> {
           body: PageView.builder(
               physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
-              itemCount: questions.length,
+              itemCount: lessonList.length,
               itemBuilder: (context, index) {
                 return Container(
                   padding: const EdgeInsets.all(20),
@@ -69,8 +72,8 @@ class _ReadingPageState extends State<ReadingPage> {
                                 height: MediaQuery.of(context).size.width * .9,
                                 width: double.infinity,
                                 decoration: BoxDecoration(border: Border.all()),
-                                child: Image.network(
-                                  questions[index].image,
+                                child: Image.asset(
+                                  lessonList[index].image,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -83,7 +86,7 @@ class _ReadingPageState extends State<ReadingPage> {
                                     padding: const EdgeInsets.all(5),
                                     child: FloatingActionButton(
                                       onPressed: () {
-                                        textToSpeech(questions[index].text);
+                                        textToSpeech(lessonList[index].title);
                                       },
                                       elevation: 5,
                                       backgroundColor: successColor,
@@ -103,7 +106,7 @@ class _ReadingPageState extends State<ReadingPage> {
                                 physics: const ClampingScrollPhysics(),
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
-                                itemCount: questions[index].text.length,
+                                itemCount: lessonList[index].title.length,
                                 itemBuilder: (context, stringIndex) {
                                   return Container(
                                     width: 40,
@@ -113,7 +116,9 @@ class _ReadingPageState extends State<ReadingPage> {
                                         BoxDecoration(border: Border.all()),
                                     child: Center(
                                         child: Text(
-                                      questions[index].text[stringIndex],
+                                      lessonList[index]
+                                          .title[stringIndex]
+                                          .toUpperCase(),
                                       style: titleLargeLight,
                                     )),
                                   );
@@ -146,7 +151,7 @@ class _ReadingPageState extends State<ReadingPage> {
                               InkWell(
                                 onTap: () {
                                   if (equalsIgnoreCase(
-                                      answerText, questions[index].text)) {
+                                      answerText, lessonList[index].title)) {
                                     context
                                         .read<QuestionControllerBloc>()
                                         .add(ClickSubmit(isCorrect: true));
