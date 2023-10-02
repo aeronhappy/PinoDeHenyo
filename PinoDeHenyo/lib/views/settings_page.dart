@@ -46,7 +46,6 @@ class _SettingsPageState extends State<SettingsPage> {
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
@@ -127,66 +126,64 @@ class _SettingsPageState extends State<SettingsPage> {
               SizedBox(height: 10),
               SizedBox(
                 height: 200,
-                child: Expanded(
-                  child: ListView.builder(
-                    itemCount: bgList.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 40),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(100),
-                          onTap: () async {
-                            setState(() {
-                              bgIndex = index;
-                            });
-                            playMusic(index, musicValue);
-                            var sharedPref =
-                                await SharedPreferences.getInstance();
-                            await sharedPref.setInt('Music', index);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: Material(
-                              shape: StadiumBorder(),
-                              elevation: 5,
-                              child: Container(
-                                height: 50,
-                                decoration: ShapeDecoration(
-                                    shape: StadiumBorder(
-                                        side: BorderSide(
-                                            width: 2, color: Colors.brown))),
-                                child: Stack(
-                                  children: [
-                                    Center(
-                                        child: Text(
-                                      'Option ${index + 1}',
-                                      style: titleSmallLight,
-                                    )),
-                                    index == bgIndex
-                                        ? Positioned(
-                                            right: 10,
-                                            bottom: 0,
-                                            top: 0,
-                                            child: CircleAvatar(
-                                              radius: 15,
-                                              backgroundColor: Colors.red,
-                                              child: Icon(
-                                                Icons.music_note,
-                                                color: Colors.white,
-                                                size: 15,
-                                              ),
-                                            ))
-                                        : Container()
-                                  ],
-                                ),
+                child: ListView.builder(
+                  itemCount: bgList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 5, horizontal: 40),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(100),
+                        onTap: () async {
+                          setState(() {
+                            bgIndex = index;
+                          });
+                          playMusic(index, musicValue);
+                          var sharedPref =
+                              await SharedPreferences.getInstance();
+                          await sharedPref.setInt('Music', index);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Material(
+                            shape: StadiumBorder(),
+                            elevation: 5,
+                            child: Container(
+                              height: 50,
+                              decoration: ShapeDecoration(
+                                  shape: StadiumBorder(
+                                      side: BorderSide(
+                                          width: 2, color: Colors.brown))),
+                              child: Stack(
+                                children: [
+                                  Center(
+                                      child: Text(
+                                    'Option ${index + 1}',
+                                    style: titleSmallLight,
+                                  )),
+                                  index == bgIndex
+                                      ? Positioned(
+                                          right: 10,
+                                          bottom: 0,
+                                          top: 0,
+                                          child: CircleAvatar(
+                                            radius: 15,
+                                            backgroundColor: Colors.red,
+                                            child: Icon(
+                                              Icons.music_note,
+                                              color: Colors.white,
+                                              size: 15,
+                                            ),
+                                          ))
+                                      : Container()
+                                ],
                               ),
                             ),
                           ),
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

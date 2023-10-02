@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_bloc.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
-import 'package:pino_de_henyo/views/lesson_page.dart';
+import 'package:pino_de_henyo/views/category_page.dart';
 import 'package:pino_de_henyo/views/reading_page.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
 import 'package:pino_de_henyo/views/writing_page.dart';
@@ -97,7 +97,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                         sharedPreferences: sl()),
                                   ),
                                 ],
-                                child: const LessonPage(),
+                                child: const CategoryPage(),
                               );
                             },
                           ),

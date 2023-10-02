@@ -4,9 +4,8 @@ import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/model/lesson_model.dart';
-import 'package:pino_de_henyo/repository/injection_container.dart';
-import 'package:pino_de_henyo/views/level_page.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/correct_answer_popup.dart';
+import 'package:pino_de_henyo/widgets/alert_dialog/level_pop_up.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/others/tts_voice_settings.dart';
 
@@ -25,6 +24,7 @@ class _WritingPageState extends State<WritingPage> {
     return string1?.toLowerCase() == string2?.toLowerCase();
   }
 
+  int mylevel = 0;
   int level = 0;
   List<LessonModel> newQuestion = [];
 
@@ -46,9 +46,16 @@ class _WritingPageState extends State<WritingPage> {
         }
         if (state is LoadedWritingLevel) {
           setState(() {
+            mylevel = state.myLevel;
             level = state.myLevel;
           });
           pageController.jumpToPage(state.myLevel);
+        }
+        if (state is LoadedWritingSelected) {
+          setState(() {
+            level = state.level;
+          });
+          pageController.jumpToPage(state.level);
         }
         if (state is CorrectAnswer) {
           correctAnswerDialog(context);
@@ -73,24 +80,7 @@ class _WritingPageState extends State<WritingPage> {
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: InkWell(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return MultiBlocProvider(
-                              providers: [
-                                BlocProvider(
-                                  create: (context) => QuestionControllerBloc(
-                                      sharedPreferences: sl()),
-                                ),
-                              ],
-                              child: const LevelPage(
-                                fromPage: 'MAGSULAT',
-                              ),
-                            );
-                          },
-                        ),
-                      );
+                      levelDialog(context, mylevel, 'MAGSULAT');
                     },
                     child: Material(
                       shape: StadiumBorder(),
@@ -114,9 +104,11 @@ class _WritingPageState extends State<WritingPage> {
               physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
               onPageChanged: (index) {
-                context
-                    .read<QuestionControllerBloc>()
-                    .add(SaveWritingLevel(level: index));
+                if (mylevel < index) {
+                  context
+                      .read<QuestionControllerBloc>()
+                      .add(SaveWritingLevel(level: index));
+                }
               },
               itemCount: newQuestion.length,
               itemBuilder: (context, index) {

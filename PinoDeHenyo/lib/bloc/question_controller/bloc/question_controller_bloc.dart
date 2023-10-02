@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
+import 'package:pino_de_henyo/model/lesson_category_model.dart';
 import 'package:pino_de_henyo/model/lesson_model.dart';
 import 'package:pino_de_henyo/widgets/others/bg_music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,7 +11,6 @@ class QuestionControllerBloc
   final SharedPreferences sharedPreferences;
   QuestionControllerBloc({required this.sharedPreferences})
       : super(QuestionControllerInitial()) {
-    Random random = new Random();
     on<ClickSubmit>((event, emit) async {
       double effects = sharedPreferences.getDouble('EffectsVolume') ?? 1;
 
@@ -27,6 +25,26 @@ class QuestionControllerBloc
 
     on<ClickNext>((event, emit) {
       emit(NextQuestion());
+    });
+
+    on<GetListCategory>((event, emit) {
+      Set<String> category = Set();
+      for (var item in lessonCategoryList) {
+        category.add(item.id);
+      }
+
+      emit(LoadedCategory(category: category.toList()));
+    });
+
+    on<GetLessonByCategory>((event, emit) {
+      List<LessonCategoryModel> newList = [];
+      for (var item in lessonCategoryList) {
+        if (item.id == event.category) {
+          newList.add(item);
+        }
+      }
+      print(newList.length);
+      emit(LoadedLessonByCategory(categoryLessonList: newList));
     });
 
 // WRITING
@@ -71,10 +89,39 @@ class QuestionControllerBloc
     });
 
     on<ChangeWritingLevel>((event, emit) async {
-      emit(LoadedWritingLevel(myLevel: event.levelSelected));
+      emit(LoadedWritingSelected(level: event.levelSelected));
     });
 
 // READING
+    on<GetReadingShuffleQuestion>((event, emit) async {
+      List<String> savedStrList =
+          sharedPreferences.getStringList('readingList') ?? [];
+      List<LessonModel> newList = [];
+
+      if (savedStrList.isEmpty) {
+        var list = new List<int>.generate(
+            lessonList.length, (int index) => index); // [0, 1, 4]
+        list.shuffle();
+        List<String> strList = list.map((i) => i.toString()).toList();
+        sharedPreferences.setStringList("readingList", strList);
+
+        List<String> savedStrList =
+            sharedPreferences.getStringList('readingList') ?? [];
+        List<int> intProductList =
+            savedStrList.map((i) => int.parse(i)).toList();
+        for (var item in intProductList) {
+          newList.add(lessonList[item]);
+        }
+        emit(LoadedReadingQuestion(lessonList: newList));
+        return;
+      }
+
+      List<int> intProductList = savedStrList.map((i) => int.parse(i)).toList();
+      for (var item in intProductList) {
+        newList.add(lessonList[item]);
+      }
+      emit(LoadedReadingQuestion(lessonList: newList));
+    });
     on<GetReadingLevel>((event, emit) async {
       int myLevel = await sharedPreferences.getInt('ReadingLevel') ?? 0;
       emit(LoadedReadingLevel(myLevel: myLevel));
@@ -86,7 +133,7 @@ class QuestionControllerBloc
     });
 
     on<ChangeReadingLevel>((event, emit) async {
-      emit(LoadedWritingLevel(myLevel: event.levelSelected));
+      emit(LoadedReadingSelected(level: event.levelSelected));
       ;
     });
   }

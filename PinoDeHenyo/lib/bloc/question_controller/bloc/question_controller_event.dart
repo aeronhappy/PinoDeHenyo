@@ -9,6 +9,13 @@ class ClickSubmit extends QuestionControllerEvent {
 
 class ClickNext extends QuestionControllerEvent {}
 
+class GetListCategory extends QuestionControllerEvent {}
+
+class GetLessonByCategory extends QuestionControllerEvent {
+  final String category;
+  GetLessonByCategory({required this.category});
+}
+
 // WRITING
 class GetWritingShuffleQuestion extends QuestionControllerEvent {}
 

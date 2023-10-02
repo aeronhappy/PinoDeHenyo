@@ -5,6 +5,7 @@ import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/model/lesson_model.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/correct_answer_popup.dart';
+import 'package:pino_de_henyo/widgets/alert_dialog/level_pop_up.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/others/tts_voice_settings.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -22,15 +23,43 @@ class _ReadingPageState extends State<ReadingPage> {
 
   bool isListening = false;
   String answerText = '--';
+  int mylevel = 0;
+  int level = 0;
+  List<LessonModel> newQuestion = [];
 
   bool equalsIgnoreCase(String? string1, String? string2) {
     return string1?.toLowerCase() == string2?.toLowerCase();
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<QuestionControllerBloc>().add(GetReadingLevel());
+    context.read<QuestionControllerBloc>().add(GetReadingShuffleQuestion());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocListener<QuestionControllerBloc, QuestionControllerState>(
       listener: (context, state) {
+        if (state is LoadedReadingQuestion) {
+          setState(() {
+            newQuestion = state.lessonList;
+          });
+        }
+        if (state is LoadedReadingLevel) {
+          setState(() {
+            mylevel = state.myLevel;
+            level = state.myLevel;
+          });
+          pageController.jumpToPage(state.myLevel);
+        }
+        if (state is LoadedReadingSelected) {
+          setState(() {
+            level = state.level;
+          });
+          pageController.jumpToPage(state.level);
+        }
         if (state is CorrectAnswer) {
           correctAnswerDialog(context);
         }
@@ -52,11 +81,35 @@ class _ReadingPageState extends State<ReadingPage> {
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
+            actions: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: InkWell(
+                    onTap: () {
+                      levelDialog(context, mylevel, 'MAGBASA');
+                    },
+                    child: Material(
+                      shape: StadiumBorder(),
+                      elevation: 3,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        decoration: ShapeDecoration(
+                            color: Colors.brown, shape: StadiumBorder()),
+                        child: Center(
+                          child: Text(
+                            'Level ${level + 1}',
+                            style: titleMediumDark,
+                          ),
+                        ),
+                      ),
+                    )),
+              )
+            ],
           ),
           body: PageView.builder(
               physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
-              itemCount: lessonList.length,
+              itemCount: newQuestion.length,
               itemBuilder: (context, index) {
                 return Container(
                   padding: const EdgeInsets.all(20),
@@ -73,7 +126,7 @@ class _ReadingPageState extends State<ReadingPage> {
                                 width: double.infinity,
                                 decoration: BoxDecoration(border: Border.all()),
                                 child: Image.asset(
-                                  lessonList[index].image,
+                                  newQuestion[index].image,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -86,7 +139,7 @@ class _ReadingPageState extends State<ReadingPage> {
                                     padding: const EdgeInsets.all(5),
                                     child: FloatingActionButton(
                                       onPressed: () {
-                                        textToSpeech(lessonList[index].title);
+                                        textToSpeech(newQuestion[index].title);
                                       },
                                       elevation: 5,
                                       backgroundColor: successColor,
@@ -106,7 +159,7 @@ class _ReadingPageState extends State<ReadingPage> {
                                 physics: const ClampingScrollPhysics(),
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
-                                itemCount: lessonList[index].title.length,
+                                itemCount: newQuestion[index].title.length,
                                 itemBuilder: (context, stringIndex) {
                                   return Container(
                                     width: 40,
@@ -116,7 +169,7 @@ class _ReadingPageState extends State<ReadingPage> {
                                         BoxDecoration(border: Border.all()),
                                     child: Center(
                                         child: Text(
-                                      lessonList[index]
+                                      newQuestion[index]
                                           .title[stringIndex]
                                           .toUpperCase(),
                                       style: titleLargeLight,
@@ -151,7 +204,7 @@ class _ReadingPageState extends State<ReadingPage> {
                               InkWell(
                                 onTap: () {
                                   if (equalsIgnoreCase(
-                                      answerText, lessonList[index].title)) {
+                                      answerText, newQuestion[index].title)) {
                                     context
                                         .read<QuestionControllerBloc>()
                                         .add(ClickSubmit(isCorrect: true));

@@ -7,6 +7,14 @@ double letterSpacing = 0;
 double height = 1.5;
 double wordSpacing = 1;
 
+TextStyle myFonts(Color color, double fontSize) {
+  return GoogleFonts.titanOne(
+    fontSize: fontSize,
+    decoration: TextDecoration.none,
+    color: color,
+  );
+}
+
 TextStyle googleFonts(double fontSize, Color color, FontWeight fontWeight) {
   return GoogleFonts.montserrat(
       fontSize: fontSize,

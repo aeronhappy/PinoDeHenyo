@@ -61,7 +61,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               bottom: 0,
               top: 0,
               child: Image.asset(
-                'assets/pino/bg_splash.jpg',
+                'assets/pino/bg_onboard.png',
                 fit: BoxFit.fill,
               ),
             ),
@@ -69,7 +69,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 ? Column(children: [
                     Expanded(
                       child: PageView.builder(
-                          // physics: const NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           controller: pageController,
                           itemCount: onboardModel.length,
                           onPageChanged: (index) {
@@ -133,7 +133,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         height: MediaQuery.of(context).size.height * .2,
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             SmoothPageIndicator(
                                 controller: pageController,
@@ -146,7 +146,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                 count: onboardModel.length),
                             currentIndex == onboardModel.length - 1
                                 ? Padding(
-                                    padding: const EdgeInsets.all(40),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 50),
                                     child: InkWell(
                                       borderRadius: BorderRadius.circular(50),
                                       onTap: () {
@@ -170,22 +171,24 @@ class _OnboardingPageState extends State<OnboardingPage> {
                                           ),
                                         );
                                       },
-                                      child: Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 30),
-                                        padding: EdgeInsets.all(20),
-                                        decoration: ShapeDecoration(
-                                            color: successColor,
-                                            shape: StadiumBorder()),
-                                        child: Center(
-                                            child: Text(
-                                          'Play',
-                                          style: GoogleFonts.titanOne(
-                                            fontSize: 22.5,
-                                            decoration: TextDecoration.none,
-                                            color: Colors.white,
-                                          ),
-                                        )),
+                                      child: Material(
+                                        shape: StadiumBorder(),
+                                        elevation: 10,
+                                        child: Container(
+                                          padding: EdgeInsets.all(20),
+                                          decoration: ShapeDecoration(
+                                              color: successColor,
+                                              shape: StadiumBorder()),
+                                          child: Center(
+                                              child: Text(
+                                            'Play',
+                                            style: GoogleFonts.titanOne(
+                                              fontSize: 22.5,
+                                              decoration: TextDecoration.none,
+                                              color: Colors.white,
+                                            ),
+                                          )),
+                                        ),
                                       ),
                                     ),
                                   )
@@ -249,48 +252,60 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         ),
                       ),
                       SizedBox(height: 50),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            isStart = true;
-                          });
-                          textToSpeechOnboarding(onboardModel[0].desc);
-                        },
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 40),
-                          padding: EdgeInsets.all(20),
-                          decoration: ShapeDecoration(
-                              color: successColor, shape: StadiumBorder()),
-                          child: Center(
-                              child: Text(
-                            'Play',
-                            style: GoogleFonts.titanOne(
-                              fontSize: 22.5,
-                              decoration: TextDecoration.none,
-                              color: Colors.white,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              isStart = true;
+                            });
+                            textToSpeechOnboarding(onboardModel[0].desc);
+                          },
+                          child: Material(
+                            shape: StadiumBorder(),
+                            elevation: 10,
+                            child: Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: ShapeDecoration(
+                                  color: successColor, shape: StadiumBorder()),
+                              child: Center(
+                                  child: Text(
+                                'Play',
+                                style: GoogleFonts.titanOne(
+                                  fontSize: 22.5,
+                                  decoration: TextDecoration.none,
+                                  color: Colors.white,
+                                ),
+                              )),
                             ),
-                          )),
+                          ),
                         ),
                       ),
                       SizedBox(height: 10),
-                      InkWell(
-                        onTap: () {
-                          exit(0);
-                        },
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 40),
-                          padding: EdgeInsets.all(20),
-                          decoration: ShapeDecoration(
-                              color: Colors.red, shape: StadiumBorder()),
-                          child: Center(
-                              child: Text(
-                            'Quit',
-                            style: GoogleFonts.titanOne(
-                              fontSize: 22.5,
-                              decoration: TextDecoration.none,
-                              color: Colors.white,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        child: InkWell(
+                          onTap: () {
+                            exit(0);
+                          },
+                          child: Material(
+                            shape: StadiumBorder(),
+                            elevation: 10,
+                            child: Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: ShapeDecoration(
+                                  color: Colors.red, shape: StadiumBorder()),
+                              child: Center(
+                                  child: Text(
+                                'Quit',
+                                style: GoogleFonts.titanOne(
+                                  fontSize: 22.5,
+                                  decoration: TextDecoration.none,
+                                  color: Colors.white,
+                                ),
+                              )),
                             ),
-                          )),
+                          ),
                         ),
                       )
                     ],
