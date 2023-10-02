@@ -37,7 +37,7 @@ wrongAnswerDialog(BuildContext context) {
                             ),
                             const SizedBox(height: 20),
                             Text(
-                              'That\'s not the right answer.\n Keep answering!',
+                              'Mali ang iyong sagot.\nSubukan muli.',
                               style: bodyMediumLight,
                               textAlign: TextAlign.center,
                             ),

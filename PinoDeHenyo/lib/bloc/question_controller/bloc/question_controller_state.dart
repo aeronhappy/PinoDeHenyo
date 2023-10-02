@@ -32,7 +32,7 @@ class LoadedWritingSelected extends QuestionControllerState {
 }
 
 class LoadedWritingQuestion extends QuestionControllerState {
-  final List<LessonModel> lessonList;
+  final List<LessonCategoryModel> lessonList;
   LoadedWritingQuestion({required this.lessonList});
 }
 
@@ -48,6 +48,6 @@ class LoadedReadingSelected extends QuestionControllerState {
 }
 
 class LoadedReadingQuestion extends QuestionControllerState {
-  final List<LessonModel> lessonList;
+  final List<LessonCategoryModel> lessonList;
   LoadedReadingQuestion({required this.lessonList});
 }

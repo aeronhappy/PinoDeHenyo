@@ -13,3 +13,7 @@ List<String> bgList = <String>[
 playMusic(int bgIndex, double volume) {
   bgAudioPlayer.loop(bgList[bgIndex], volume: volume);
 }
+
+stopMusic() {
+  audioP.stop();
+}

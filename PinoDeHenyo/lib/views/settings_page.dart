@@ -13,18 +13,18 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  double musicValue = 1;
-  double effectsValue = 1;
-  double pinoValue = 1;
+  double musicValue = .5;
+  double effectsValue = .5;
+  double pinoValue = .5;
   int bgIndex = 0;
 
   getSounds() async {
     var share = await SharedPreferences.getInstance();
     setState(() {
       bgIndex = share.getInt('Music') ?? 0;
-      musicValue = share.getDouble('MusicVolume') ?? 1;
-      effectsValue = share.getDouble('EffectsVolume') ?? 1;
-      pinoValue = share.getDouble('PinoVolume') ?? 1;
+      musicValue = share.getDouble('MusicVolume') ?? .5;
+      effectsValue = share.getDouble('EffectsVolume') ?? .5;
+      pinoValue = share.getDouble('PinoVolume') ?? .5;
     });
   }
 

@@ -19,12 +19,12 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int bgIndex = 0;
-  double musicVolume = 0;
+  double musicVolume = 0.5;
   getSounds() async {
     var share = await SharedPreferences.getInstance();
     setState(() {
       bgIndex = share.getInt('Music') ?? 0;
-      musicVolume = share.getDouble('MusicVolume') ?? 1;
+      musicVolume = share.getDouble('MusicVolume') ?? .5;
     });
     playMusic(bgIndex, musicVolume);
   }

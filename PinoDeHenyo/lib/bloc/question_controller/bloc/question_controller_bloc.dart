@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:pino_de_henyo/model/lesson_category_model.dart';
-import 'package:pino_de_henyo/model/lesson_model.dart';
 import 'package:pino_de_henyo/widgets/others/bg_music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'question_controller_event.dart';
@@ -51,11 +50,11 @@ class QuestionControllerBloc
     on<GetWritingShuffleQuestion>((event, emit) async {
       List<String> savedStrList =
           sharedPreferences.getStringList('writingList') ?? [];
-      List<LessonModel> newList = [];
+      List<LessonCategoryModel> newList = [];
 
       if (savedStrList.isEmpty) {
         var list = new List<int>.generate(
-            lessonList.length, (int index) => index); // [0, 1, 4]
+            lessonCategoryList.length, (int index) => index); // [0, 1, 4]
         list.shuffle();
         List<String> strList = list.map((i) => i.toString()).toList();
         sharedPreferences.setStringList("writingList", strList);
@@ -65,7 +64,7 @@ class QuestionControllerBloc
         List<int> intProductList =
             savedStrList.map((i) => int.parse(i)).toList();
         for (var item in intProductList) {
-          newList.add(lessonList[item]);
+          newList.add(lessonCategoryList[item]);
         }
         emit(LoadedWritingQuestion(lessonList: newList));
         return;
@@ -73,7 +72,7 @@ class QuestionControllerBloc
 
       List<int> intProductList = savedStrList.map((i) => int.parse(i)).toList();
       for (var item in intProductList) {
-        newList.add(lessonList[item]);
+        newList.add(lessonCategoryList[item]);
       }
       emit(LoadedWritingQuestion(lessonList: newList));
     });
@@ -96,11 +95,11 @@ class QuestionControllerBloc
     on<GetReadingShuffleQuestion>((event, emit) async {
       List<String> savedStrList =
           sharedPreferences.getStringList('readingList') ?? [];
-      List<LessonModel> newList = [];
+      List<LessonCategoryModel> newList = [];
 
       if (savedStrList.isEmpty) {
         var list = new List<int>.generate(
-            lessonList.length, (int index) => index); // [0, 1, 4]
+            lessonCategoryList.length, (int index) => index); // [0, 1, 4]
         list.shuffle();
         List<String> strList = list.map((i) => i.toString()).toList();
         sharedPreferences.setStringList("readingList", strList);
@@ -110,7 +109,7 @@ class QuestionControllerBloc
         List<int> intProductList =
             savedStrList.map((i) => int.parse(i)).toList();
         for (var item in intProductList) {
-          newList.add(lessonList[item]);
+          newList.add(lessonCategoryList[item]);
         }
         emit(LoadedReadingQuestion(lessonList: newList));
         return;
@@ -118,7 +117,7 @@ class QuestionControllerBloc
 
       List<int> intProductList = savedStrList.map((i) => int.parse(i)).toList();
       for (var item in intProductList) {
-        newList.add(lessonList[item]);
+        newList.add(lessonCategoryList[item]);
       }
       emit(LoadedReadingQuestion(lessonList: newList));
     });

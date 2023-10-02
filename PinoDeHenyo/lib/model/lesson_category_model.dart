@@ -17,51 +17,50 @@ class LessonCategoryModel {
 List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
   ////////////////////////
   const LessonCategoryModel(
-    id: 'PUNO',
-    title: 'Puno ng Niyog',
+    id: 'GULAY',
+    title: 'Kamatis',
     description:
-        'Ang puno ng niyog ay isang ekspresyon sa Filipino na nagpapahiwatig ng pagiging masuwerte o maginhawa.',
-    example:
-        'Tuwing umaga, ako\'y nagigising na puno ng niyog sa buhay dahil sa masarap na almusal na handa ni Nanay.',
-    image: 'assets/lesson/puno_niyog.png',
-  ),
-  const LessonCategoryModel(
-    id: 'PUNO',
-    title: 'Puno ng Mangga',
-    description:
-        'Ang puno ng manga ay maaaring magkaiba ng kahulugan depende sa konteksto. Maaring ito ay tumukoy sa isang puno o halaman na nagbubunga ng manga, o ito ay maaring gamitin na idyomatikong kahulugan.',
-    example:
-        'Ang puno ng manga sa likod ng bahay namin ay puno ng masarap na bunga ngayon.',
-    image: 'assets/lesson/puno_mangga.png',
-  ),
-  const LessonCategoryModel(
-    id: 'PUNO',
-    title: 'Puno ng Saging',
-    description:
-        'Ang puno ng saging ay isang sa mga mabilis dumaminat tumubo at halos lahat ng parte ng puno ng saging ay nagagamit.',
-    example:
-        'Sa kanyang paglalakad may nakita siyang maraming bunga ng puno ng saging.',
-    image: 'assets/lesson/puno_saging.png',
-  ),
-  const LessonCategoryModel(
-    id: 'PUNO',
-    title: 'Puno ng Papaya',
-    description:
-        'Ang puno ng papaya ay isang ekspresyon sa Filipino na nagpapahiwatig ng maraming obligasyon o gawain. Ito ay maaaring maging negatibo dahil nagpapahiwatig ito ng sobrang trabaho o pagka-abala.',
-    example:
-        'Sa kanyang trabaho, parang puno ng papaya ang kanyang araw-araw na schedule, walang oras para sa pahinga.',
-    image: 'assets/lesson/puno_papaya.png',
-  ),
-  const LessonCategoryModel(
-    id: 'PUNO',
-    title: 'Puno ng Bayabas',
-    description:
-        'Ang puno ng bayabas ay simbolo ng suwerte, pagkamayabong, at kasaganaan. Nanaginip ng bayabas puno nangangahulugan na ikaw ay umaasa sa magagandang bagay na darating sa iyo.',
-    example:
-        'Ang kanilang tahanan ay puno ng bayabas, dahil masuwerte at masagana ang kanilang pamilya.',
-    image: 'assets/lesson/puno_bayabas.png',
+        'Ang kamatis ay ang tawag sa isang uri ng halaman o bunga nito na kulay lunti kulang hilaw , subalit nagiging dilaw hanggang pula kung hinog na. Nagtataglay din ito ng bitamina A at C.',
+    example: 'Hinog na ang mga tanim  na kamatis ni Denise.',
+    image: 'assets/lesson/kamatis.png',
   ),
 
+  const LessonCategoryModel(
+    id: 'GULAY',
+    title: 'Talong',
+    description:
+        'Ang talong ay isang maliit na puno na may magaspang at matinik na mga sanga. Lumalaki ito ng mga kalahati hanggang isang metro ang taas.',
+    example:
+        'Bumili ng isang kilong talong si Christoff sa naglalako ng mga gulay sa kalsada.',
+    image: 'assets/lesson/talong.png',
+  ),
+
+  const LessonCategoryModel(
+    id: 'GULAY',
+    title: 'Petsay',
+    description:
+        'Ang petsay o pechay ay ang tinatawag na Chinese cabbage sa Ingles na nangangahulugan "repolyong intsik", na may madidilim na luntiang dahon at mga malalapad na mapuputing tangkay.',
+    example: 'Madaming tanim na pechay sina Mary sa kanilang likod bahay.',
+    image: 'assets/lesson/petsay.png',
+  ),
+
+  const LessonCategoryModel(
+    id: 'GULAY',
+    title: 'Okra',
+    description:
+        'Ang okra ay isang uri ng halamang gulay na malawakang itinatanim sa tropiko at may katamtamang lamig na mga Rehiyon.',
+    example: 'Paboritong gulay ni Jade ang okra.',
+    image: 'assets/lesson/okra.png',
+  ),
+
+  const LessonCategoryModel(
+    id: 'GULAY',
+    title: 'Sayote',
+    description:
+        'Ang sayote ay isang uri ng halamang gulay na kahugis ng prutas na peras.',
+    example: 'Namitis si Ara ng sayote sa kanilang taniman.',
+    image: 'assets/lesson/sayote.png',
+  ),
   ///////
 
   const LessonCategoryModel(
