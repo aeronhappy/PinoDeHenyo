@@ -15,6 +15,49 @@ class LessonCategoryModel {
 }
 
 List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
+  const LessonCategoryModel(
+    id: 'PRUTAS',
+    title: 'Mangga',
+    description:
+        'Ang mangga ay isang uri ng prutas na karaniwang makikita sa mga lugar na may mainit na klima, tulad ng Pilipinas. Ito ay may matamis na lasa at maraming uri.',
+    example: 'Bumili si Ana ng isang kilong mangga sa palengke.',
+    image: 'assets/lesson/mangga.png',
+  ),
+  const LessonCategoryModel(
+    id: 'PRUTAS',
+    title: 'Mansanas',
+    description:
+        'Ang mansanas ay karaniwang kulay pula o berde ito ay may matamis na lasa. Ito ay kilala sa kanyang mabuting epekto sa kalusugan dahil sa mataas na nilalaman ng bitamina C.',
+    example: 'Ang paboritong prutas ni Sam ay mansanas.',
+    image: 'assets/lesson/mansanas.png',
+  ),
+  const LessonCategoryModel(
+    id: 'PRUTAS',
+    title: 'Saging',
+    description:
+        'Ang saging ay may malambot na laman at matamis na lasa kapag hinog na, kilala din ito pagiging isang magandang mapagkukunan ng potassium.',
+    example:
+        'May tanim na saging sila Andrei at Andrea sa kanilang likod bahay.',
+    image: 'assets/lesson/saging.png',
+  ),
+
+  const LessonCategoryModel(
+    id: 'PRUTAS',
+    title: 'Ubas',
+    description:
+        'Ang ubas ay isang uri ng prutas na nagmula sa isang gumagapang na halaman. Nagagawang alak ang prutas mulan sa halamang ito.',
+    example:
+        'Kilala ang bayan nina Claire dahil mayaman sila sa mga tanim na ubas.',
+    image: 'assets/lesson/ubas.png',
+  ),
+  const LessonCategoryModel(
+    id: 'PRUTAS',
+    title: 'Pakwan',
+    description:
+        'Ang pakwan ay kilalang prutas sa Pilipinas na paborito ng marami. Ang halaman ay gumagapang, may malapad na dahon at may madilaw na bulaklak.',
+    example: 'Malaki at matamis ang pakwan na nabili ni Mark sa palengke.',
+    image: 'assets/lesson/pakwan.png',
+  ),
   ////////////////////////
   const LessonCategoryModel(
     id: 'GULAY',

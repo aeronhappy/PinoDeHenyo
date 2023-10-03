@@ -45,3 +45,24 @@ class ChangeReadingLevel extends QuestionControllerEvent {
   final int levelSelected;
   ChangeReadingLevel({required this.levelSelected});
 }
+
+///QUIZ
+
+class GetQuizQuestion extends QuestionControllerEvent {}
+
+class GetQuizLevel extends QuestionControllerEvent {}
+
+class SaveQuizLevel extends QuestionControllerEvent {
+  final int level;
+  SaveQuizLevel({required this.level});
+}
+
+class ChangeQuizLevel extends QuestionControllerEvent {
+  final int levelSelected;
+  ChangeQuizLevel({required this.levelSelected});
+}
+
+class GetQuizChoices extends QuestionControllerEvent {
+  final String answer;
+  GetQuizChoices({required this.answer});
+}

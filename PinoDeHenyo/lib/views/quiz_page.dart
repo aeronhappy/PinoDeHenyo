@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hand_signature/signature.dart';
 import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_bloc.dart';
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
@@ -10,55 +9,65 @@ import 'package:pino_de_henyo/widgets/alert_dialog/level_pop_up.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/others/tts_voice_settings.dart';
 
-class WritingPage extends StatefulWidget {
-  const WritingPage({super.key});
+class QuizPage extends StatefulWidget {
+  const QuizPage({super.key});
 
   @override
-  State<WritingPage> createState() => _WritingPageState();
+  State<QuizPage> createState() => _QuizPageState();
 }
 
-class _WritingPageState extends State<WritingPage> {
-  TextEditingController textEditingController = TextEditingController();
+class _QuizPageState extends State<QuizPage> {
   PageController pageController = PageController();
 
   bool equalsIgnoreCase(String? string1, String? string2) {
     return string1?.toLowerCase() == string2?.toLowerCase();
   }
 
-  final control = HandSignatureControl(
-    threshold: 3.0,
-    smoothRatio: 0.65,
-    velocityRange: 2.0,
-  );
+  String changeString(String original, String needToChange) {
+    String newString = original.replaceAll(needToChange, '_______');
+    return newString;
+  }
 
-  int mylevel = 0;
-  int level = 0;
-  List<LessonCategoryModel> newQuestion = [];
+  String changeStringforPino(String original, String needToChange) {
+    String newString = original.replaceAll(needToChange, 'blangko.');
+    return newString;
+  }
 
   @override
   void initState() {
     super.initState();
-    context.read<QuestionControllerBloc>().add(GetWritingLevel());
-    context.read<QuestionControllerBloc>().add(GetWritingShuffleQuestion());
+
+    context.read<QuestionControllerBloc>().add(GetQuizLevel());
+    context.read<QuestionControllerBloc>().add(GetQuizQuestion());
   }
 
+  int mylevel = 0;
+  int level = 0;
+  String myAnswer = '';
+  List<LessonCategoryModel> newQuestion = [];
+  List<String> choices = [];
   @override
   Widget build(BuildContext context) {
     return BlocListener<QuestionControllerBloc, QuestionControllerState>(
       listener: (context, state) {
-        if (state is LoadedWritingQuestion) {
+        if (state is LoadedQuizQuestion) {
           setState(() {
             newQuestion = state.lessonList;
           });
         }
-        if (state is LoadedWritingLevel) {
+        if (state is LoadedQuizChoices) {
+          setState(() {
+            choices = state.choices;
+          });
+        }
+        if (state is LoadedQuizLevel) {
           setState(() {
             mylevel = state.myLevel;
             level = state.myLevel;
           });
           pageController.jumpToPage(state.myLevel);
         }
-        if (state is LoadedWritingSelected) {
+        if (state is LoadedQuizSelected) {
           setState(() {
             level = state.level;
           });
@@ -78,7 +87,7 @@ class _WritingPageState extends State<WritingPage> {
       child: Scaffold(
           backgroundColor: lightPrimarybgColor,
           appBar: AppBar(
-            title: Text('MAGSULAT', style: titleMediumLight),
+            title: Text('MAGSAGOT', style: titleMediumLight),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
@@ -87,7 +96,7 @@ class _WritingPageState extends State<WritingPage> {
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: InkWell(
                     onTap: () {
-                      levelDialog(context, mylevel, 'MAGSULAT');
+                      levelDialog(context, mylevel, 'MAGSAGOT');
                     },
                     child: Material(
                       shape: StadiumBorder(),
@@ -114,8 +123,11 @@ class _WritingPageState extends State<WritingPage> {
                 if (mylevel < index) {
                   context
                       .read<QuestionControllerBloc>()
-                      .add(SaveWritingLevel(level: index));
+                      .add(SaveQuizLevel(level: index));
                 }
+                context
+                    .read<QuestionControllerBloc>()
+                    .add(GetQuizChoices(answer: newQuestion[index].title));
               },
               itemCount: newQuestion.length,
               itemBuilder: (context, index) {
@@ -144,7 +156,11 @@ class _WritingPageState extends State<WritingPage> {
                                 padding: const EdgeInsets.all(5),
                                 child: FloatingActionButton(
                                   onPressed: () {
-                                    textToSpeech(newQuestion[index].title);
+                                    textToSpeech(changeStringforPino(
+                                        newQuestion[index].description,
+                                        newQuestion[index]
+                                            .title
+                                            .toLowerCase()));
                                   },
                                   elevation: 5,
                                   backgroundColor: successColor,
@@ -155,51 +171,35 @@ class _WritingPageState extends State<WritingPage> {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      Center(
-                        child: Container(
-                          height: 40,
-                          alignment: Alignment.center,
-                          child: ListView.builder(
-                            physics: const ClampingScrollPhysics(),
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: newQuestion[index].title.length,
-                            itemBuilder: (context, stringIndex) {
-                              return Container(
-                                width: 40,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 2.5),
-                                decoration: BoxDecoration(border: Border.all()),
-                                child: Center(
-                                    child: Text(
-                                  newQuestion[index]
-                                      .title[stringIndex]
-                                      .toUpperCase(),
-                                  style: titleLargeLight,
-                                )),
-                              );
-                            },
-                          ),
+                      Text(
+                        changeString(newQuestion[index].description,
+                            newQuestion[index].title.toLowerCase()),
+                        style: bodyMediumLight,
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: choices.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    myAnswer = choices[index];
+                                  });
+                                },
+                                child: Container(
+                                    padding: EdgeInsets.all(5),
+                                    margin: EdgeInsets.all(5),
+                                    color: secondaryColor,
+                                    child:
+                                        Center(child: Text(choices[index]))));
+                          },
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Container(
-                        height: MediaQuery.of(context).size.height * .2,
-                        color: Colors.white30,
-                        child: HandSignature(
-                          control: control,
-                          type: SignatureDrawType.arc,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        controller: textEditingController,
-                        textCapitalization: TextCapitalization.characters,
-                      ),
                       InkWell(
                         onTap: () {
-                          if (equalsIgnoreCase(textEditingController.text,
-                              newQuestion[index].title)) {
+                          if (equalsIgnoreCase(
+                              myAnswer, newQuestion[index].title)) {
                             context
                                 .read<QuestionControllerBloc>()
                                 .add(ClickSubmit(isCorrect: true));

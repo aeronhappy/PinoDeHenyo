@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_bloc.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/category_page.dart';
+import 'package:pino_de_henyo/views/quiz_page.dart';
 import 'package:pino_de_henyo/views/reading_page.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
 import 'package:pino_de_henyo/views/writing_page.dart';
@@ -209,6 +210,52 @@ class _DashboardPageState extends State<DashboardPage> {
                           child: Center(
                               child: Text(
                             'MAGBASA',
+                            style: GoogleFonts.titanOne(
+                              fontSize: 22.5,
+                              decoration: TextDecoration.none,
+                              color: Colors.brown,
+                            ),
+                          )),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    InkWell(
+                      borderRadius: BorderRadius.circular(50),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            maintainState: false,
+                            builder: (context) {
+                              return MultiBlocProvider(
+                                providers: [
+                                  BlocProvider(
+                                    create: (context) => QuestionControllerBloc(
+                                        sharedPreferences: sl()),
+                                  ),
+                                ],
+                                child: const QuizPage(),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: Material(
+                        shape: const StadiumBorder(),
+                        elevation: 10,
+                        child: Container(
+                          margin: const EdgeInsets.all(3),
+                          width: double.infinity,
+                          height: 50,
+                          decoration: const ShapeDecoration(
+                              color: Colors.white,
+                              shape: StadiumBorder(
+                                  side: BorderSide(
+                                      width: 5, color: Colors.brown))),
+                          child: Center(
+                              child: Text(
+                            'MAGSAGOT',
                             style: GoogleFonts.titanOne(
                               fontSize: 22.5,
                               decoration: TextDecoration.none,

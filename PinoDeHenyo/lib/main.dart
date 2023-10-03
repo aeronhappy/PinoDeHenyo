@@ -5,6 +5,7 @@ import 'package:pino_de_henyo/helper/api_helper.dart' as api_helper;
 import 'package:pino_de_henyo/repository/injection_container.dart' as di;
 import 'package:pino_de_henyo/views/dashboard_page.dart';
 import 'package:pino_de_henyo/views/onboarding_page.dart';
+import 'package:pino_de_henyo/views/signature.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -42,9 +43,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.brown,
       ),
       home: isStarted ? DashboardPage() : OnboardingPage(),
-      // home: HomePage(
-      //   title: "SCRIBLE",
-      // ),
+      // home: Signature(),
     );
   }
 }

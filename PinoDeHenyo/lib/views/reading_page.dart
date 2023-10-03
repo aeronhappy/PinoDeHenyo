@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hand_signature/signature.dart';
 import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_bloc.dart';
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
@@ -109,6 +110,13 @@ class _ReadingPageState extends State<ReadingPage> {
           body: PageView.builder(
               physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
+              onPageChanged: (index) {
+                if (mylevel < index) {
+                  context
+                      .read<QuestionControllerBloc>()
+                      .add(SaveReadingLevel(level: index));
+                }
+              },
               itemCount: newQuestion.length,
               itemBuilder: (context, index) {
                 return Container(

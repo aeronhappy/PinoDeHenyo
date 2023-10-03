@@ -51,3 +51,24 @@ class LoadedReadingQuestion extends QuestionControllerState {
   final List<LessonCategoryModel> lessonList;
   LoadedReadingQuestion({required this.lessonList});
 }
+
+// QUIZ
+class LoadedQuizLevel extends QuestionControllerState {
+  final int myLevel;
+  LoadedQuizLevel({required this.myLevel});
+}
+
+class LoadedQuizSelected extends QuestionControllerState {
+  final int level;
+  LoadedQuizSelected({required this.level});
+}
+
+class LoadedQuizQuestion extends QuestionControllerState {
+  final List<LessonCategoryModel> lessonList;
+  LoadedQuizQuestion({required this.lessonList});
+}
+
+class LoadedQuizChoices extends QuestionControllerState {
+  final List<String> choices;
+  LoadedQuizChoices({required this.choices});
+}

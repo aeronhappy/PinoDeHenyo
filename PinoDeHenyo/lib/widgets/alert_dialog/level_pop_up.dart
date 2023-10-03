@@ -50,6 +50,12 @@ levelDialog(BuildContext context, int levelDone, String fromPage) {
                                             .add(ChangeReadingLevel(
                                                 levelSelected: index));
                                       }
+                                      if (fromPage == 'MAGSAGOT') {
+                                        context
+                                            .read<QuestionControllerBloc>()
+                                            .add(ChangeQuizLevel(
+                                                levelSelected: index));
+                                      }
 
                                       Navigator.pop(context);
                                     }

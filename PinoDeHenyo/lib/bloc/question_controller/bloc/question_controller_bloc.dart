@@ -121,19 +121,79 @@ class QuestionControllerBloc
       }
       emit(LoadedReadingQuestion(lessonList: newList));
     });
+
     on<GetReadingLevel>((event, emit) async {
       int myLevel = await sharedPreferences.getInt('ReadingLevel') ?? 0;
       emit(LoadedReadingLevel(myLevel: myLevel));
     });
 
     on<SaveReadingLevel>((event, emit) async {
-      await sharedPreferences.setInt('WritingLevel', event.level);
+      await sharedPreferences.setInt('ReadingLevel', event.level);
       emit(LoadedReadingLevel(myLevel: event.level));
     });
 
     on<ChangeReadingLevel>((event, emit) async {
       emit(LoadedReadingSelected(level: event.levelSelected));
       ;
+    });
+
+// QUIZ
+    on<GetQuizQuestion>((event, emit) async {
+      List<String> savedStrList =
+          sharedPreferences.getStringList('quizList') ?? [];
+      List<LessonCategoryModel> newList = [];
+
+      if (savedStrList.isEmpty) {
+        var list = new List<int>.generate(
+            lessonCategoryList.length, (int index) => index); // [0, 1, 4]
+        list.shuffle();
+        List<String> strList = list.map((i) => i.toString()).toList();
+        sharedPreferences.setStringList("quizList", strList);
+
+        List<String> savedStrList =
+            sharedPreferences.getStringList('quizList') ?? [];
+        List<int> intProductList =
+            savedStrList.map((i) => int.parse(i)).toList();
+        for (var item in intProductList) {
+          newList.add(lessonCategoryList[item]);
+        }
+        emit(LoadedReadingQuestion(lessonList: newList));
+        add(GetQuizChoices(answer: newList[0].title));
+        return;
+      }
+
+      List<int> intProductList = savedStrList.map((i) => int.parse(i)).toList();
+      for (var item in intProductList) {
+        newList.add(lessonCategoryList[item]);
+      }
+      emit(LoadedQuizQuestion(lessonList: newList));
+      add(GetQuizChoices(answer: newList[0].title));
+    });
+
+    on<GetQuizLevel>((event, emit) async {
+      int myLevel = await sharedPreferences.getInt('QuizLevel') ?? 0;
+      emit(LoadedQuizLevel(myLevel: myLevel));
+    });
+
+    on<SaveQuizLevel>((event, emit) async {
+      await sharedPreferences.setInt('QuizLevel', event.level);
+      emit(LoadedQuizLevel(myLevel: event.level));
+    });
+
+    on<ChangeQuizLevel>((event, emit) async {
+      emit(LoadedQuizSelected(level: event.levelSelected));
+      ;
+    });
+
+    on<GetQuizChoices>((event, emit) {
+      List<String> choices = [];
+      choices.add(event.answer);
+      List<LessonCategoryModel> newList = lessonCategoryList;
+      for (var i = 0; i < 3; i++) {
+        choices.add(newList[i].title);
+      }
+      choices.shuffle();
+      emit(LoadedQuizChoices(choices: choices));
     });
   }
 }

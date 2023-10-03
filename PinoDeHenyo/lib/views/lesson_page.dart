@@ -72,6 +72,7 @@ class _LessonPageState extends State<LessonPage> {
                                         width: 50,
                                         padding: const EdgeInsets.all(5),
                                         child: FloatingActionButton(
+                                          heroTag: index,
                                           onPressed: () {
                                             textToSpeech(
                                                 '${state.categoryLessonList[index].title}. ${state.categoryLessonList[index].description}. ');
