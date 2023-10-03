@@ -5,7 +5,7 @@ import 'package:pino_de_henyo/helper/api_helper.dart' as api_helper;
 import 'package:pino_de_henyo/repository/injection_container.dart' as di;
 import 'package:pino_de_henyo/views/dashboard_page.dart';
 import 'package:pino_de_henyo/views/onboarding_page.dart';
-import 'package:pino_de_henyo/views/signature.dart';
+import 'package:pino_de_henyo/widgets/others/bg_music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -20,7 +20,6 @@ void main() async {
 
   bool isStarted = await sharedPref.getBool('doneOnboarding') ?? false;
   double pinoVolume = sharedPref.getDouble('PinoVolume') ?? 1;
-
   FlutterTts flutterTts = FlutterTts();
   await flutterTts.setVoice({"name": "fil-ph-x-fic-local", "locale": "fil-PH"});
   await flutterTts.setSpeechRate(0.5);
@@ -30,9 +29,39 @@ void main() async {
   runApp(MyApp(isStarted: isStarted));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   final bool isStarted;
   const MyApp({super.key, required this.isStarted});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  late AppLifecycleState appLifecycle;
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    var share = await SharedPreferences.getInstance();
+    if (state == AppLifecycleState.paused) {
+      audioP.stop();
+    }
+
+    if (state == AppLifecycleState.resumed) {
+      final int index = await share.getInt('Music') ?? 0;
+      final double volume = await share.getDouble('MusicVolume') ?? .5;
+      playMusic(index, volume);
+    } else {}
+  }
+
+  initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +71,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: isStarted ? DashboardPage() : OnboardingPage(),
+      home: widget.isStarted ? DashboardPage() : OnboardingPage(),
       // home: Signature(),
     );
   }

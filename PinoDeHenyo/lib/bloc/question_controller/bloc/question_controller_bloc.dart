@@ -142,6 +142,7 @@ class QuestionControllerBloc
       List<String> savedStrList =
           sharedPreferences.getStringList('quizList') ?? [];
       List<LessonCategoryModel> newList = [];
+      int myLevel = await sharedPreferences.getInt('QuizLevel') ?? 0;
 
       if (savedStrList.isEmpty) {
         var list = new List<int>.generate(
@@ -158,7 +159,8 @@ class QuestionControllerBloc
           newList.add(lessonCategoryList[item]);
         }
         emit(LoadedReadingQuestion(lessonList: newList));
-        add(GetQuizChoices(answer: newList[0].title));
+
+        add(GetQuizChoices(answer: newList[myLevel].title));
         return;
       }
 
@@ -167,7 +169,7 @@ class QuestionControllerBloc
         newList.add(lessonCategoryList[item]);
       }
       emit(LoadedQuizQuestion(lessonList: newList));
-      add(GetQuizChoices(answer: newList[0].title));
+      add(GetQuizChoices(answer: newList[myLevel].title));
     });
 
     on<GetQuizLevel>((event, emit) async {
@@ -185,10 +187,19 @@ class QuestionControllerBloc
       ;
     });
 
-    on<GetQuizChoices>((event, emit) {
+    on<GetQuizChoices>((event, emit) async {
+      int myLevel = await sharedPreferences.getInt('QuizLevel') ?? 0;
       List<String> choices = [];
       choices.add(event.answer);
-      List<LessonCategoryModel> newList = lessonCategoryList;
+      List<LessonCategoryModel> newList = [];
+      var list = new List<int>.generate(
+          lessonCategoryList.length, (int index) => index);
+      list.shuffle();
+      for (var item in list) {
+        newList.add(lessonCategoryList[item]);
+      }
+      list.remove(myLevel);
+
       for (var i = 0; i < 3; i++) {
         choices.add(newList[i].title);
       }

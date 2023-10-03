@@ -29,9 +29,11 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   String changeStringforPino(String original, String needToChange) {
-    String newString = original.replaceAll(needToChange, 'blangko.');
+    String newString = original.replaceAll(needToChange, 'blank.');
     return newString;
   }
+
+  int selectedAnswer = 5;
 
   @override
   void initState() {
@@ -80,6 +82,9 @@ class _QuizPageState extends State<QuizPage> {
           wrongAnswerDialog(context);
         }
         if (state is NextQuestion) {
+          setState(() {
+            selectedAnswer = 5;
+          });
           pageController.nextPage(
               duration: const Duration(milliseconds: 300), curve: Curves.ease);
         }
@@ -170,54 +175,81 @@ class _QuizPageState extends State<QuizPage> {
                               ))
                         ],
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       Text(
                         changeString(newQuestion[index].description,
                             newQuestion[index].title.toLowerCase()),
                         style: bodyMediumLight,
                       ),
+                      SizedBox(height: 20),
                       Expanded(
-                        child: ListView.builder(
-                          itemCount: choices.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    myAnswer = choices[index];
-                                  });
-                                },
-                                child: Container(
-                                    padding: EdgeInsets.all(5),
-                                    margin: EdgeInsets.all(5),
-                                    color: secondaryColor,
-                                    child:
-                                        Center(child: Text(choices[index]))));
-                          },
-                        ),
-                      ),
+                          child: GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithMaxCrossAxisExtent(
+                                      maxCrossAxisExtent: 180,
+                                      childAspectRatio: 2.5,
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 10),
+                              itemCount: choices.length,
+                              itemBuilder: (BuildContext ctx, index) {
+                                return InkWell(
+                                    borderRadius: BorderRadius.circular(100),
+                                    onTap: () {
+                                      setState(() {
+                                        myAnswer = choices[index];
+                                        selectedAnswer = index;
+                                      });
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Material(
+                                        elevation: 10,
+                                        shape: StadiumBorder(),
+                                        child: Container(
+                                            decoration: ShapeDecoration(
+                                                color: selectedAnswer == index
+                                                    ? Colors.amber.shade900
+                                                    : lightSecondarybgColor,
+                                                shape: StadiumBorder()),
+                                            child: Center(
+                                                child: Text(
+                                              choices[index],
+                                              style: selectedAnswer == index
+                                                  ? titleSmallDark
+                                                  : titleSmallLight,
+                                            ))),
+                                      ),
+                                    ));
+                              })),
                       const SizedBox(height: 10),
                       InkWell(
-                        onTap: () {
-                          if (equalsIgnoreCase(
-                              myAnswer, newQuestion[index].title)) {
-                            context
-                                .read<QuestionControllerBloc>()
-                                .add(ClickSubmit(isCorrect: true));
-                          } else {
-                            context
-                                .read<QuestionControllerBloc>()
-                                .add(ClickSubmit(isCorrect: false));
-                          }
-                        },
-                        child: Container(
-                          height: 50,
-                          decoration: ShapeDecoration(
-                              shape: const StadiumBorder(), color: Colors.blue),
-                          child: Center(
-                              child: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          )),
+                        onTap: selectedAnswer == 5
+                            ? null
+                            : () {
+                                if (equalsIgnoreCase(
+                                    myAnswer, newQuestion[index].title)) {
+                                  context
+                                      .read<QuestionControllerBloc>()
+                                      .add(ClickSubmit(isCorrect: true));
+                                } else {
+                                  context
+                                      .read<QuestionControllerBloc>()
+                                      .add(ClickSubmit(isCorrect: false));
+                                }
+                              },
+                        child: Opacity(
+                          opacity: selectedAnswer == 5 ? .4 : 1,
+                          child: Container(
+                            height: 50,
+                            decoration: ShapeDecoration(
+                                shape: const StadiumBorder(),
+                                color: Colors.blue),
+                            child: Center(
+                                child: Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                            )),
+                          ),
                         ),
                       )
                     ],
