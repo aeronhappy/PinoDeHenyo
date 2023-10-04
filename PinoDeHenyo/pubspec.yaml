@@ -38,6 +38,7 @@ dependencies:
   dio:
   get_it:
   internet_connection_checker:
+  path_provider: ^2.1.1
 
 
 
@@ -52,9 +53,9 @@ dependencies:
   provider: ^6.0.5
   speech_balloon: ^0.0.4
   hand_signature: ^3.0.1
-  google_mlkit_digital_ink_recognition: ^0.9.0
-  flutter_svg: ^2.0.7
-  google_mlkit_text_recognition: ^0.10.0
+  camera: ^0.10.0
+  google_mlkit_text_recognition: ^0.5.0
+  permission_handler: ^10.2.0
 
   # for reading
   flutter_tts: ^3.8.3
