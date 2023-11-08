@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hand_signature/signature.dart';
 import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_bloc.dart';
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
@@ -25,11 +24,11 @@ class _WritingPageState extends State<WritingPage> {
     return string1?.toLowerCase() == string2?.toLowerCase();
   }
 
-  final control = HandSignatureControl(
-    threshold: 3.0,
-    smoothRatio: 0.65,
-    velocityRange: 2.0,
-  );
+  // final control = HandSignatureControl(
+  //   threshold: 3.0,
+  //   smoothRatio: 0.65,
+  //   velocityRange: 2.0,
+  // );
 
   int mylevel = 0;
   int level = 0;
@@ -183,14 +182,14 @@ class _WritingPageState extends State<WritingPage> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Container(
-                        height: MediaQuery.of(context).size.height * .2,
-                        color: Colors.white30,
-                        child: HandSignature(
-                          control: control,
-                          type: SignatureDrawType.arc,
-                        ),
-                      ),
+                      // Container(
+                      //   height: MediaQuery.of(context).size.height * .2,
+                      //   color: Colors.white30,
+                      //   child: HandSignature(
+                      //     control: control,
+                      //     type: SignatureDrawType.arc,
+                      //   ),
+                      // ),
                       const SizedBox(height: 10),
                       TextField(
                         controller: textEditingController,

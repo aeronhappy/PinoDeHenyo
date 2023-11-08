@@ -38,7 +38,10 @@ class _CategoryPageState extends State<CategoryPage> {
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-              title: Text('KATEGORYA', style: myFonts(Colors.white, 22)),
+              title: Hero(
+                  transitionOnUserGestures: true,
+                  tag: 'magaral-tag',
+                  child: Text('MAG-ARAL', style: myFonts(Colors.white, 22))),
               backgroundColor: transparentBlackColor,
               elevation: 0),
           body: Container(

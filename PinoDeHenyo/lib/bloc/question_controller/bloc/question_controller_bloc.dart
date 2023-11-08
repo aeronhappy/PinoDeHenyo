@@ -14,7 +14,8 @@ class QuestionControllerBloc
       double effects = sharedPreferences.getDouble('EffectsVolume') ?? 1;
 
       if (event.isCorrect) {
-        await effectsAudioPlayer.play('bg_music/correct_bg.mp3', volume: .2);
+        await effectsAudioPlayer.play('bg_music/correct_bg.mp3',
+            volume: effects);
         emit(CorrectAnswer());
         return;
       }

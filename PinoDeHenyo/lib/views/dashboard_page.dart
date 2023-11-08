@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_bloc.dart';
+import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/category_page.dart';
+import 'package:pino_de_henyo/views/example_page.dart';
 import 'package:pino_de_henyo/views/quiz_page.dart';
 import 'package:pino_de_henyo/views/reading_page.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
 import 'package:pino_de_henyo/views/writing_page.dart';
+import 'package:pino_de_henyo/widgets/3d_button.dart';
 import 'package:pino_de_henyo/widgets/others/bg_music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -40,35 +42,35 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.black,
         body: Stack(
           children: [
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              top: 0,
-              child: Image.asset(
-                'assets/pino/background.png',
-                fit: BoxFit.fill,
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .5,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(
-                'assets/pino/pino_title.png',
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(
-                'assets/pino/pino_whole.png',
-                fit: BoxFit.fitWidth,
-              ),
-            ),
+            // Positioned(
+            //   left: 0,
+            //   right: 0,
+            //   bottom: 0,
+            //   top: 0,
+            //   child: Image.asset(
+            //     'assets/pino/background.png',
+            //     fit: BoxFit.fill,
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height * .5,
+            //   width: MediaQuery.of(context).size.width,
+            //   child: Image.asset(
+            //     'assets/pino/pino_title.png',
+            //     fit: BoxFit.fitWidth,
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height,
+            //   width: MediaQuery.of(context).size.width,
+            //   child: Image.asset(
+            //     'assets/pino/pino_whole.png',
+            //     fit: BoxFit.fitWidth,
+            //   ),
+            // ),
 
             //BUTTON
 
@@ -79,59 +81,43 @@ class _DashboardPageState extends State<DashboardPage> {
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
-                height: MediaQuery.of(context).size.height * .45,
+                height: MediaQuery.of(context).size.height * .5,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    InkWell(
-                      borderRadius: BorderRadius.circular(50),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return MultiBlocProvider(
-                                providers: [
-                                  BlocProvider(
-                                    create: (context) => QuestionControllerBloc(
-                                        sharedPreferences: sl()),
-                                  ),
-                                ],
-                                child: const CategoryPage(),
-                              );
-                            },
-                          ),
-                        );
-                      },
-                      child: Material(
-                        shape: const StadiumBorder(),
-                        elevation: 10,
-                        child: Container(
-                          margin: const EdgeInsets.all(3),
-                          width: double.infinity,
-                          height: 50,
-                          decoration: const ShapeDecoration(
-                              color: Colors.white,
-                              shape: StadiumBorder(
-                                  side: BorderSide(
-                                      width: 5, color: Colors.brown))),
-                          child: Center(
-                              child: Text(
-                            'MAG-ARAL',
-                            style: GoogleFonts.titanOne(
-                              fontSize: 22.5,
-                              decoration: TextDecoration.none,
-                              color: Colors.brown,
+                    ThreeDButton(
+                        text: 'MAG-ARAL',
+                        icon: Icons.play_arrow,
+                        color: lightSecondaryTextColor,
+                        tag: 'magaral-tag',
+                        onPressed: () {
+                          Feedback.forTap(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider(
+                                      create: (context) =>
+                                          QuestionControllerBloc(
+                                              sharedPreferences: sl()),
+                                    ),
+                                  ],
+                                  child: ItemList(),
+                                );
+                              },
                             ),
-                          )),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    InkWell(
-                      borderRadius: BorderRadius.circular(50),
-                      onTap: () {
+                          );
+                        }),
+                    SizedBox(height: 10),
+                    ThreeDButton(
+                      text: 'MAGSULAT',
+                      icon: Icons.play_arrow,
+                      color: Colors.green,
+                      tag: 'magsulat-tag',
+                      onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -149,34 +135,14 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         );
                       },
-                      child: Material(
-                        shape: const StadiumBorder(),
-                        elevation: 10,
-                        child: Container(
-                          margin: const EdgeInsets.all(3),
-                          width: double.infinity,
-                          height: 50,
-                          decoration: const ShapeDecoration(
-                              color: Colors.white,
-                              shape: StadiumBorder(
-                                  side: BorderSide(
-                                      width: 5, color: Colors.brown))),
-                          child: Center(
-                              child: Text(
-                            'MAGSULAT',
-                            style: GoogleFonts.titanOne(
-                              fontSize: 22.5,
-                              decoration: TextDecoration.none,
-                              color: Colors.brown,
-                            ),
-                          )),
-                        ),
-                      ),
                     ),
-                    const SizedBox(height: 10),
-                    InkWell(
-                      borderRadius: BorderRadius.circular(50),
-                      onTap: () {
+                    SizedBox(height: 10),
+                    ThreeDButton(
+                      text: 'MAGBASA',
+                      icon: Icons.play_arrow,
+                      color: Colors.blue,
+                      tag: 'magbasa-tag',
+                      onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -195,34 +161,14 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         );
                       },
-                      child: Material(
-                        shape: const StadiumBorder(),
-                        elevation: 10,
-                        child: Container(
-                          margin: const EdgeInsets.all(3),
-                          width: double.infinity,
-                          height: 50,
-                          decoration: const ShapeDecoration(
-                              color: Colors.white,
-                              shape: StadiumBorder(
-                                  side: BorderSide(
-                                      width: 5, color: Colors.brown))),
-                          child: Center(
-                              child: Text(
-                            'MAGBASA',
-                            style: GoogleFonts.titanOne(
-                              fontSize: 22.5,
-                              decoration: TextDecoration.none,
-                              color: Colors.brown,
-                            ),
-                          )),
-                        ),
-                      ),
                     ),
-                    const SizedBox(height: 10),
-                    InkWell(
-                      borderRadius: BorderRadius.circular(50),
-                      onTap: () {
+                    SizedBox(height: 10),
+                    ThreeDButton(
+                      text: 'MAGSAGOT',
+                      icon: Icons.play_arrow,
+                      color: Colors.pink,
+                      tag: 'magsagot-tag',
+                      onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -241,29 +187,6 @@ class _DashboardPageState extends State<DashboardPage> {
                           ),
                         );
                       },
-                      child: Material(
-                        shape: const StadiumBorder(),
-                        elevation: 10,
-                        child: Container(
-                          margin: const EdgeInsets.all(3),
-                          width: double.infinity,
-                          height: 50,
-                          decoration: const ShapeDecoration(
-                              color: Colors.white,
-                              shape: StadiumBorder(
-                                  side: BorderSide(
-                                      width: 5, color: Colors.brown))),
-                          child: Center(
-                              child: Text(
-                            'MAGSAGOT',
-                            style: GoogleFonts.titanOne(
-                              fontSize: 22.5,
-                              decoration: TextDecoration.none,
-                              color: Colors.brown,
-                            ),
-                          )),
-                        ),
-                      ),
                     ),
                   ],
                 ),
