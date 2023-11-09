@@ -4,7 +4,6 @@ import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/category_page.dart';
-import 'package:pino_de_henyo/views/example_page.dart';
 import 'package:pino_de_henyo/views/quiz_page.dart';
 import 'package:pino_de_henyo/views/reading_page.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
@@ -105,7 +104,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                               sharedPreferences: sl()),
                                     ),
                                   ],
-                                  child: ItemList(),
+                                  child: CategoryPage(),
                                 );
                               },
                             ),
