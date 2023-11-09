@@ -92,7 +92,7 @@ class _QuizPageState extends State<QuizPage> {
       child: Scaffold(
           backgroundColor: lightPrimarybgColor,
           appBar: AppBar(
-            title: Text('MAGSAGOT', style: titleMediumLight),
+            title: Text('MAGSAGOT', style: myFonts(Colors.black, 22)),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
@@ -113,7 +113,7 @@ class _QuizPageState extends State<QuizPage> {
                         child: Center(
                           child: Text(
                             'Level ${level + 1}',
-                            style: titleMediumDark,
+                            style: myFonts(Colors.white, 22),
                           ),
                         ),
                       ),
@@ -179,7 +179,7 @@ class _QuizPageState extends State<QuizPage> {
                       Text(
                         changeString(newQuestion[index].description,
                             newQuestion[index].title.toLowerCase()),
-                        style: bodyMediumLight,
+                        style: googleFonts(16, Colors.black54),
                       ),
                       SizedBox(height: 20),
                       Expanded(
@@ -212,12 +212,12 @@ class _QuizPageState extends State<QuizPage> {
                                                     : lightSecondarybgColor,
                                                 shape: StadiumBorder()),
                                             child: Center(
-                                                child: Text(
-                                              choices[index],
-                                              style: selectedAnswer == index
-                                                  ? titleSmallDark
-                                                  : titleSmallLight,
-                                            ))),
+                                                child: Text(choices[index],
+                                                    style: googleFonts(
+                                                        selectedAnswer == index
+                                                            ? 22
+                                                            : 18,
+                                                        Colors.black)))),
                                       ),
                                     ));
                               })),

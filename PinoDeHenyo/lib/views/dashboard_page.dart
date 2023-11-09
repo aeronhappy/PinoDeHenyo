@@ -89,6 +89,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         text: 'MAG-ARAL',
                         icon: Icons.play_arrow,
                         color: lightSecondaryTextColor,
+                        height: 50,
                         tag: 'magaral-tag',
                         onPressed: () {
                           Feedback.forTap(context);
@@ -115,6 +116,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       text: 'MAGSULAT',
                       icon: Icons.play_arrow,
                       color: Colors.green,
+                      height: 50,
                       tag: 'magsulat-tag',
                       onPressed: () {
                         Navigator.push(
@@ -140,6 +142,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       text: 'MAGBASA',
                       icon: Icons.play_arrow,
                       color: Colors.blue,
+                      height: 50,
                       tag: 'magbasa-tag',
                       onPressed: () {
                         Navigator.push(
@@ -166,6 +169,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       text: 'MAGSAGOT',
                       icon: Icons.play_arrow,
                       color: Colors.pink,
+                      height: 50,
                       tag: 'magsagot-tag',
                       onPressed: () {
                         Navigator.push(

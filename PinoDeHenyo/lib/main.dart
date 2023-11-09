@@ -4,7 +4,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:pino_de_henyo/helper/api_helper.dart' as api_helper;
 import 'package:pino_de_henyo/repository/injection_container.dart' as di;
 import 'package:pino_de_henyo/views/dashboard_page.dart';
-import 'package:pino_de_henyo/views/onboarding_page.dart';
+import 'package:pino_de_henyo/views/menu_page.dart';
 import 'package:pino_de_henyo/widgets/others/bg_music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: widget.isStarted ? DashboardPage() : OnboardingPage(),
+      home: widget.isStarted ? DashboardPage() : MenuPage(),
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:palette_generator/palette_generator.dart';
 import 'package:pino_de_henyo/model/lesson_category_model.dart';
 import 'package:pino_de_henyo/widgets/others/bg_music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,11 +38,21 @@ class QuestionControllerBloc
       emit(LoadedCategory(category: category.toList()));
     });
 
-    on<GetLessonByCategory>((event, emit) {
+    on<GetLessonByCategory>((event, emit) async {
       List<LessonCategoryModel> newList = [];
       for (var item in lessonCategoryList) {
+        PaletteGenerator paletteGenerator =
+            await PaletteGenerator.fromImageProvider(
+                Image.asset(item.image).image);
         if (item.id == event.category) {
-          newList.add(item);
+          var newItem = LessonCategoryModel(
+              id: item.id,
+              title: item.title,
+              description: item.description,
+              example: item.example,
+              image: item.image,
+              color: paletteGenerator.dominantColor!.color);
+          newList.add(newItem);
         }
       }
       print(newList.length);

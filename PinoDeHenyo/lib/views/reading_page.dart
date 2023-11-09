@@ -77,7 +77,7 @@ class _ReadingPageState extends State<ReadingPage> {
       child: Scaffold(
           backgroundColor: lightPrimarybgColor,
           appBar: AppBar(
-            title: Text('MAGBASA', style: titleMediumLight),
+            title: Text('MAGBASA', style: appBarBlack),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
@@ -98,7 +98,7 @@ class _ReadingPageState extends State<ReadingPage> {
                         child: Center(
                           child: Text(
                             'Level ${level + 1}',
-                            style: titleMediumDark,
+                            style: titleWhite,
                           ),
                         ),
                       ),
@@ -179,7 +179,7 @@ class _ReadingPageState extends State<ReadingPage> {
                                       newQuestion[index]
                                           .title[stringIndex]
                                           .toUpperCase(),
-                                      style: titleLargeLight,
+                                      style: titleWhite,
                                     )),
                                   );
                                 },
@@ -202,7 +202,7 @@ class _ReadingPageState extends State<ReadingPage> {
                                   child: Center(
                                     child: Text(
                                       answerText,
-                                      style: bodyLargeLight,
+                                      style: titleBlack,
                                     ),
                                   ),
                                 ),

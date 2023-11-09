@@ -45,7 +45,7 @@ correctAnswerDialog(BuildContext context) {
                             const SizedBox(height: 20),
                             Text(
                               'Tama ang iyong sagot.',
-                              style: bodyMediumLight,
+                              style: titleBlack,
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -72,7 +72,7 @@ correctAnswerDialog(BuildContext context) {
                               child: SizedBox(
                                 height: 40,
                                 child: Center(
-                                    child: Text('NEXT', style: bodyMediumDark)),
+                                    child: Text('NEXT', style: bodyBlack)),
                               ),
                             ),
                             TextButton(

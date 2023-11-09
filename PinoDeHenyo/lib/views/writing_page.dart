@@ -77,7 +77,7 @@ class _WritingPageState extends State<WritingPage> {
       child: Scaffold(
           backgroundColor: lightPrimarybgColor,
           appBar: AppBar(
-            title: Text('MAGSULAT', style: titleMediumLight),
+            title: Text('MAGSULAT', style: appBarBlack),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
@@ -98,7 +98,7 @@ class _WritingPageState extends State<WritingPage> {
                         child: Center(
                           child: Text(
                             'Level ${level + 1}',
-                            style: titleMediumDark,
+                            style: titleBlack,
                           ),
                         ),
                       ),
@@ -174,7 +174,7 @@ class _WritingPageState extends State<WritingPage> {
                                   newQuestion[index]
                                       .title[stringIndex]
                                       .toUpperCase(),
-                                  style: titleLargeLight,
+                                  style: titleBlack,
                                 )),
                               );
                             },

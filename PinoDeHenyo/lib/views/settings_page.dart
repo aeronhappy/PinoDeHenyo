@@ -39,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
         backgroundColor: lightPrimarybgColor,
         appBar: AppBar(
-            title: Text('SETTINGS', style: titleMediumLight),
+            title: Text('SETTINGS', style: appBarBlack),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0),
@@ -51,7 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Background', style: titleMediumLight),
+                  Text('Background', style: titleBlack),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * .55,
                     child: Slider(
@@ -74,7 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Effects', style: titleMediumLight),
+                  Text('Effects', style: titleBlack),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * .55,
                     child: Slider(
@@ -98,7 +98,7 @@ class _SettingsPageState extends State<SettingsPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Pino Volume', style: titleMediumLight),
+                  Text('Pino Volume', style: titleBlack),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * .55,
                     child: Slider(
@@ -121,7 +121,7 @@ class _SettingsPageState extends State<SettingsPage> {
               SizedBox(height: 30),
               Text(
                 'Background Music',
-                style: titleMediumLight,
+                style: titleBlack,
               ),
               SizedBox(height: 10),
               SizedBox(
@@ -159,7 +159,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   Center(
                                       child: Text(
                                     'Option ${index + 1}',
-                                    style: titleSmallLight,
+                                    style: titleBlack,
                                   )),
                                   index == bgIndex
                                       ? Positioned(

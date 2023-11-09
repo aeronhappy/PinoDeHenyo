@@ -21,7 +21,7 @@ levelDialog(BuildContext context, int levelDone, String fromPage) {
                   children: [
                     Text(
                       'Choose Level',
-                      style: titleLargeLight,
+                      style: titleBlack,
                     ),
                     SizedBox(height: 20),
                     Expanded(
@@ -70,7 +70,7 @@ levelDialog(BuildContext context, int levelDone, String fromPage) {
                                     child: levelDone >= index
                                         ? Text(
                                             '${index + 1}',
-                                            style: titleMediumDark,
+                                            style: titleBlack,
                                           )
                                         : Icon(
                                             Icons.lock,

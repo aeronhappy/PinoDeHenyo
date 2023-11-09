@@ -27,7 +27,7 @@ class _LessonPageState extends State<LessonPage> {
     return Scaffold(
         backgroundColor: lightPrimarybgColor,
         appBar: AppBar(
-          title: Text('MAG-ARAL', style: titleMediumLight),
+          title: Text('MAG-ARAL', style: myFonts(Colors.black, 22)),
           backgroundColor: lightPrimarybgColor,
           iconTheme: Theme.of(context).iconTheme,
           elevation: 0,
@@ -41,63 +41,73 @@ class _LessonPageState extends State<LessonPage> {
                   var item = state.categoryLessonList[index];
                   return Container(
                       height: 180,
-                      margin: EdgeInsets.symmetric(horizontal: 5),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding: EdgeInsets.fromLTRB(10, 10, 20, 10),
                       child: Stack(
                         children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return LessonInfoPage(item: item);
-                                  },
-                                ),
-                              );
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(left: 40),
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  color: primaryColor,
-                                  borderRadius: BorderRadius.circular(20)),
-                              height: double.infinity,
-                              child: Row(
-                                children: [
-                                  SizedBox(width: 60),
-                                  Expanded(
-                                    child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Text(
-                                            item.title,
-                                            style: myFonts(Colors.white, 22),
-                                          ),
-                                          SizedBox(height: 10),
-                                          Text(
-                                            item.description,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: googleFonts(16, Colors.white,
-                                                FontWeight.normal),
-                                          ),
-                                          SizedBox(height: 20),
-                                        ]),
+                          Padding(
+                            padding: EdgeInsets.only(left: 50),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(20),
+                              highlightColor: item.color,
+                              splashColor: item.color,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return LessonInfoPage(item: item);
+                                    },
                                   ),
-                                ],
+                                );
+                                Feedback.forTap(context);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.all(2),
+                                child: Material(
+                                  elevation: 5,
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        color: item.color!.withOpacity(.75),
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    height: double.infinity,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(width: 55),
+                                        Expanded(
+                                          child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(item.title,
+                                                    style: titleWhite),
+                                                SizedBox(height: 10),
+                                                Text(item.description,
+                                                    maxLines: 2,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: bodyWhite),
+                                                SizedBox(height: 20),
+                                              ]),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                           Positioned(
-                            top: 25,
-                            bottom: 25,
+                            top: 20,
+                            bottom: 20,
                             left: 0,
                             child: Hero(
                               tag: '${item.image}-tags',

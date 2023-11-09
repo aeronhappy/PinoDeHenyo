@@ -44,7 +44,7 @@ class _LevelPageState extends State<LevelPage> {
       child: Scaffold(
           backgroundColor: lightPrimarybgColor,
           appBar: AppBar(
-            title: Text('Choose level', style: titleMediumLight),
+            title: Text('Choose level', style: myFonts(Colors.black, 22)),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
@@ -86,7 +86,7 @@ class _LevelPageState extends State<LevelPage> {
                         child: levelDone >= index
                             ? Text(
                                 'Level ${index + 1}',
-                                style: titleMediumDark,
+                                style: myFonts(Colors.white, 22),
                               )
                             : Icon(
                                 Icons.lock,
