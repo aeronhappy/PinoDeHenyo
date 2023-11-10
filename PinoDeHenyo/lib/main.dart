@@ -72,6 +72,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         primarySwatch: Colors.brown,
       ),
       home: widget.isStarted ? DashboardPage() : MenuPage(),
+      // home: MenuPage(),
     );
   }
 }

@@ -7,7 +7,8 @@ import 'package:pino_de_henyo/model/lesson_category_model.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/correct_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/level_pop_up.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
-import 'package:pino_de_henyo/widgets/others/tts_voice_settings.dart';
+import 'package:pino_de_henyo/widgets/music.dart';
+
 import 'package:speech_to_text/speech_to_text.dart';
 
 class ReadingPage extends StatefulWidget {
@@ -146,7 +147,8 @@ class _ReadingPageState extends State<ReadingPage> {
                                     padding: const EdgeInsets.all(5),
                                     child: FloatingActionButton(
                                       onPressed: () {
-                                        textToSpeech(newQuestion[index].title);
+                                        textToSpeech(
+                                            newQuestion[index].title, null);
                                       },
                                       elevation: 5,
                                       backgroundColor: successColor,

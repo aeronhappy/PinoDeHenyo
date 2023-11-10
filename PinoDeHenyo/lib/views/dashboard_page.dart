@@ -216,10 +216,13 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: CircleAvatar(
                       radius: 20,
                       backgroundColor: Colors.white,
-                      child: Icon(
-                        Icons.settings,
-                        color: Colors.brown,
-                        size: 30,
+                      child: Hero(
+                        tag: 'settings-tag',
+                        child: Icon(
+                          Icons.settings,
+                          color: Colors.brown,
+                          size: 30,
+                        ),
                       ),
                     ),
                   ),

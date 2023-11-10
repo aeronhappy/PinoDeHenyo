@@ -7,7 +7,7 @@ import 'package:pino_de_henyo/model/lesson_category_model.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/correct_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/level_pop_up.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
-import 'package:pino_de_henyo/widgets/others/tts_voice_settings.dart';
+import 'package:pino_de_henyo/widgets/music.dart';
 
 class WritingPage extends StatefulWidget {
   const WritingPage({super.key});
@@ -143,7 +143,8 @@ class _WritingPageState extends State<WritingPage> {
                                 padding: const EdgeInsets.all(5),
                                 child: FloatingActionButton(
                                   onPressed: () {
-                                    textToSpeech(newQuestion[index].title);
+                                    textToSpeech(
+                                        newQuestion[index].title, null);
                                   },
                                   elevation: 5,
                                   backgroundColor: successColor,

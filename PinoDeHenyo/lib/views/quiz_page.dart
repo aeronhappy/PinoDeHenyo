@@ -7,7 +7,7 @@ import 'package:pino_de_henyo/model/lesson_category_model.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/correct_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/level_pop_up.dart';
 import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
-import 'package:pino_de_henyo/widgets/others/tts_voice_settings.dart';
+import 'package:pino_de_henyo/widgets/music.dart';
 
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
@@ -161,11 +161,13 @@ class _QuizPageState extends State<QuizPage> {
                                 padding: const EdgeInsets.all(5),
                                 child: FloatingActionButton(
                                   onPressed: () {
-                                    textToSpeech(changeStringforPino(
-                                        newQuestion[index].description,
-                                        newQuestion[index]
-                                            .title
-                                            .toLowerCase()));
+                                    textToSpeech(
+                                        changeStringforPino(
+                                            newQuestion[index].description,
+                                            newQuestion[index]
+                                                .title
+                                                .toLowerCase()),
+                                        null);
                                   },
                                   elevation: 5,
                                   backgroundColor: successColor,
