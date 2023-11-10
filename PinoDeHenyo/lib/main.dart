@@ -5,7 +5,7 @@ import 'package:pino_de_henyo/helper/api_helper.dart' as api_helper;
 import 'package:pino_de_henyo/repository/injection_container.dart' as di;
 import 'package:pino_de_henyo/views/dashboard_page.dart';
 import 'package:pino_de_henyo/views/menu_page.dart';
-import 'package:pino_de_henyo/widgets/others/bg_music.dart';
+import 'package:pino_de_henyo/widgets/music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -40,21 +40,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   late AppLifecycleState appLifecycle;
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) async {
-    var share = await SharedPreferences.getInstance();
+  void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
       audioP.stop();
     }
-
     if (state == AppLifecycleState.resumed) {
-      final int index = await share.getInt('Music') ?? 0;
-      final double volume = await share.getDouble('MusicVolume') ?? .5;
-      playMusic(index, volume);
-    } else {}
+      playMusic();
+    }
   }
 
   initState() {
     super.initState();
+    playMusic();
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -69,7 +66,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       title: 'Pino De Henyo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.brown,
+        primarySwatch: Colors.blue,
       ),
       home: widget.isStarted ? DashboardPage() : MenuPage(),
       // home: MenuPage(),

@@ -22,7 +22,7 @@ class _InputPageState extends State<InputPage> {
 
   var text = [
     'Magandang araw! Ako nga pala si Pino.\nMaari ko bang malaman ang iyong pangalan?',
-    'Narito ako upang ipaalam sa iyo ang kahulugan ng salitang \'Mother Tongue\', ito ay salitang Ingles na tumutukoy sa unang wika o katutubong wika. Wikang natutunan ng isang tao mula sa pagkabata.',
+    'Narito ako upang ipaalam sa iyo ang kahulugan ng salitang \'Mother Tongue\'. Ito ay salitang Ingles na tumutukoy sa unang wika o katutubong wika. Wikang natutunan ng isang tao mula sa pagkabata.',
     'Sa Tagalog, ito ay maaaring isalin bilang \'inang-wika\' o \'katutubong wika\'.Halika\'t samahan mo ko at pag-aralan natin ang mga wikang Filipino.'
   ];
   String userName = '';
@@ -32,7 +32,7 @@ class _InputPageState extends State<InputPage> {
   @override
   void initState() {
     super.initState();
-    textToSpeech(text[0], null);
+    textToSpeech(text[0]);
   }
 
   getStarted() async {
@@ -102,15 +102,14 @@ class _InputPageState extends State<InputPage> {
                             setState(() {
                               currentIndex = index;
                             });
-                            textToSpeech(
-                                'Kamusta $userName ? ${text[index]}', null);
+                            textToSpeech('Kamusta $userName ? ${text[index]}');
                           }
 
                           if (index == 2) {
                             setState(() {
                               currentIndex = index;
                             });
-                            textToSpeech(text[index], null);
+                            textToSpeech(text[index]);
                           }
                         },
                         children: [

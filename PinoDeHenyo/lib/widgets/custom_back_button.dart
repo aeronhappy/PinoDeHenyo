@@ -24,9 +24,8 @@ class CustomBackButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(1),
             child: Material(
-              elevation: 5,
+              elevation: 0,
               color: Colors.transparent,
-              shadowColor: Colors.transparent,
               shape: StadiumBorder(),
               child: Container(
                 height: 60,
@@ -36,8 +35,15 @@ class CustomBackButton extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.arrow_back_rounded,
-                      size: 30,
+                      size: 35,
                       color: Colors.white,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black,
+                          blurRadius: 5,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
                     ),
                     SizedBox(width: 20),
                     Hero(
@@ -45,7 +51,15 @@ class CustomBackButton extends StatelessWidget {
                       transitionOnUserGestures: true,
                       child: Text(
                         text,
-                        style: titleWhite,
+                        style: titleWhite.copyWith(
+                          shadows: [
+                            Shadow(
+                              color: Colors.black,
+                              blurRadius: 5,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

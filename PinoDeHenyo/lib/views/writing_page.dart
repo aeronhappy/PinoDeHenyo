@@ -143,12 +143,11 @@ class _WritingPageState extends State<WritingPage> {
                                 padding: const EdgeInsets.all(5),
                                 child: FloatingActionButton(
                                   onPressed: () {
-                                    textToSpeech(
-                                        newQuestion[index].title, null);
+                                    textToSpeech(newQuestion[index].title);
                                   },
                                   elevation: 5,
-                                  backgroundColor: successColor,
-                                  splashColor: successColor,
+                                  backgroundColor: green,
+                                  splashColor: green,
                                   child: const Icon(Icons.volume_up_rounded),
                                 ),
                               ))

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
 /// App Color
-Color primaryColor = const Color(0xff4E37BA);
-Color primaryColor1 = const Color.fromARGB(255, 129, 112, 204);
-Color secondaryColor = const Color(0xffFFD710);
-Color heartColor = const Color(0xffFA456C);
-Color commentColor = const Color(0xff45E1FA);
+Color violet = const Color(0xff4E37BA);
+Color yellow = const Color(0xffFFD710);
+Color pink = const Color(0xffFA456C);
 Color selectedColor = const Color(0xff515b7b);
 
-Color errorColor = const Color(0xffc62828);
-Color successColor = const Color(0xff32cd32);
+Color red = const Color(0xffc62828);
+Color green = const Color(0xff32cd32);
 
 ///TransparentColor
 // ignore: use_full_hex_values_for_flutter_colors
@@ -18,14 +16,14 @@ Color transparentBlackColor = const Color(0xff7e000000);
 Color transparentWhiteColor = const Color(0xff7effffff);
 
 ///Profile Color
-Color highlightsColor = const Color(0xff45E1FA);
-Color myjournalColor = const Color(0xff45FAA0);
-Color devotionColor = const Color(0xffFA456C);
-Color shareColor = const Color(0xff7155f5);
-Color settingColor = const Color(0xfff4724a);
-Color aboutColor = const Color(0xfff560cd);
-Color helpColor = const Color(0xff4bacff);
-Color logoutColor = const Color(0xfffef73e);
+Color pastelSkyBlue = const Color(0xff45E1FA);
+Color pastelGreen = const Color(0xff45FAA0);
+Color pasterRed = const Color(0xffFA456C);
+Color pastelViolet = const Color(0xff7155f5);
+Color pastelOrange = const Color(0xfff4724a);
+Color pastelPink = const Color(0xfff560cd);
+Color pastelBlue = const Color(0xff4bacff);
+Color pastelYellow = const Color(0xfffef73e);
 
 Color lightPrimarybgColor = const Color(0xffF2F1F6);
 Color lightSecondarybgColor = const Color(0xffffffff);

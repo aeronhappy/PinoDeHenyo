@@ -61,7 +61,7 @@ correctAnswerDialog(BuildContext context) {
                                 Navigator.pop(context);
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: primaryColor,
+                                backgroundColor: violet,
                                 elevation: 2,
                                 shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(

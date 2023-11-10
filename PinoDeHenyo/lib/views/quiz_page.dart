@@ -161,17 +161,15 @@ class _QuizPageState extends State<QuizPage> {
                                 padding: const EdgeInsets.all(5),
                                 child: FloatingActionButton(
                                   onPressed: () {
-                                    textToSpeech(
-                                        changeStringforPino(
-                                            newQuestion[index].description,
-                                            newQuestion[index]
-                                                .title
-                                                .toLowerCase()),
-                                        null);
+                                    textToSpeech(changeStringforPino(
+                                        newQuestion[index].description,
+                                        newQuestion[index]
+                                            .title
+                                            .toLowerCase()));
                                   },
                                   elevation: 5,
-                                  backgroundColor: successColor,
-                                  splashColor: successColor,
+                                  backgroundColor: green,
+                                  splashColor: green,
                                   child: const Icon(Icons.volume_up_rounded),
                                 ),
                               ))

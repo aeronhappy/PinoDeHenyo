@@ -147,12 +147,11 @@ class _ReadingPageState extends State<ReadingPage> {
                                     padding: const EdgeInsets.all(5),
                                     child: FloatingActionButton(
                                       onPressed: () {
-                                        textToSpeech(
-                                            newQuestion[index].title, null);
+                                        textToSpeech(newQuestion[index].title);
                                       },
                                       elevation: 5,
-                                      backgroundColor: successColor,
-                                      splashColor: successColor,
+                                      backgroundColor: green,
+                                      splashColor: green,
                                       child:
                                           const Icon(Icons.volume_up_rounded),
                                     ),
@@ -242,7 +241,7 @@ class _ReadingPageState extends State<ReadingPage> {
                           ),
                           const SizedBox(height: 5),
                           InkWell(
-                            splashColor: errorColor.withOpacity(.6),
+                            splashColor: red.withOpacity(.6),
                             borderRadius: BorderRadius.circular(100),
                             onTapDown: (details) async {
                               if (!isListening) {
@@ -268,7 +267,7 @@ class _ReadingPageState extends State<ReadingPage> {
                             child: Padding(
                               padding: const EdgeInsets.all(20),
                               child: CircleAvatar(
-                                backgroundColor: errorColor,
+                                backgroundColor: red,
                                 radius: 35,
                                 child: Icon(
                                   isListening ? Icons.mic : Icons.mic_none,

@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:pino_de_henyo/model/lesson_category_model.dart';
-import 'package:pino_de_henyo/widgets/others/bg_music.dart';
+import 'package:pino_de_henyo/widgets/music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'question_controller_event.dart';
 part 'question_controller_state.dart';
