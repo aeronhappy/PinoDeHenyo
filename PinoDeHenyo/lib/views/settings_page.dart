@@ -59,16 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 Column(
                   children: [
-                    Text('Music Volume',
-                        style: smallTitleWhite.copyWith(
-                          shadows: <Shadow>[
-                            Shadow(
-                              offset: Offset(0, 2),
-                              blurRadius: 5.0,
-                              color: Colors.black,
-                            ),
-                          ],
-                        )),
+                    Text('Music Volume', style: largeTitleWhite(true)),
                     SizedBox(height: 5),
                     SliderTheme(
                       data: SliderTheme.of(context).copyWith(
@@ -83,7 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           trackShape: RoundedRectSliderTrackShape()),
                       child: Slider(
                         value: musicValue,
-                        max: .5,
+                        max: 1,
                         onChangeEnd: (value) {
                           playMusic();
                         },
@@ -102,16 +93,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 SizedBox(height: 50),
                 Column(
                   children: [
-                    Text('Sound Effects',
-                        style: smallTitleWhite.copyWith(
-                          shadows: <Shadow>[
-                            Shadow(
-                              offset: Offset(0, 2),
-                              blurRadius: 5.0,
-                              color: Colors.black,
-                            ),
-                          ],
-                        )),
+                    Text('Sound Effects', style: largeTitleWhite(true)),
                     SizedBox(height: 5),
                     SliderTheme(
                       data: SliderTheme.of(context).copyWith(
@@ -126,7 +108,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           trackShape: RoundedRectSliderTrackShape()),
                       child: Slider(
                         value: effectsValue,
-                        max: .5,
+                        max: 1,
                         onChangeEnd: (value) async {
                           effectsAudioPlayer.play('bg_music/testing_bg.mp3',
                               volume: value);
@@ -143,20 +125,10 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ],
                 ),
-
                 SizedBox(height: 50),
                 Column(
                   children: [
-                    Text('Pino Volume',
-                        style: smallTitleWhite.copyWith(
-                          shadows: <Shadow>[
-                            Shadow(
-                              offset: Offset(0, 2),
-                              blurRadius: 5.0,
-                              color: Colors.black,
-                            ),
-                          ],
-                        )),
+                    Text('Pino Volume', style: largeTitleWhite(true)),
                     SizedBox(height: 5),
                     SliderTheme(
                       data: SliderTheme.of(context).copyWith(
@@ -187,20 +159,10 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ],
                 ),
-
                 SizedBox(height: 50),
                 Column(
                   children: [
-                    Text('Background Music',
-                        style: smallTitleWhite.copyWith(
-                          shadows: <Shadow>[
-                            Shadow(
-                              offset: Offset(0, 2),
-                              blurRadius: 5.0,
-                              color: Colors.black,
-                            ),
-                          ],
-                        )),
+                    Text('Background Music', style: largeTitleWhite(true)),
                     SizedBox(height: 10),
                     Center(
                       child: Container(
@@ -235,15 +197,20 @@ class _SettingsPageState extends State<SettingsPage> {
                                         MediaQuery.of(context).size.width * .28,
                                     padding: EdgeInsets.all(10),
                                     decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        border: Border.all(
-                                            width: index == bgIndex ? 2 : 0),
+                                        color: index == bgIndex
+                                            ? Colors.red
+                                            : lightPrimarybgColor,
+                                        border: Border.all(width: 2),
                                         borderRadius:
                                             BorderRadius.circular(100)),
                                     child: Center(
                                         child: Text(
                                       "Music ${index + 1}",
-                                      style: bodyWhite,
+                                      style: index == bgIndex
+                                          ? bodyWhite.copyWith(
+                                              color: Colors.white)
+                                          : bodyBlack.copyWith(
+                                              color: Colors.black),
                                     )),
                                   ),
                                 ),
@@ -255,77 +222,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     )
                   ],
                 ),
-
-                // ListView.builder(
-                //   physics: const ClampingScrollPhysics(),
-                //   shrinkWrap: true,
-                //   itemCount: bgList.length,
-                //   itemBuilder: (context, index) {
-                //     return Padding(
-                //       padding:
-                //           EdgeInsets.symmetric(vertical: 5, horizontal: 40),
-                //       child: InkWell(
-                //         borderRadius: BorderRadius.circular(100),
-                //         onTap: () async {
-                //           setState(() {
-                //             bgIndex = index;
-                //           });
-
-                //           var sharedPref =
-                //               await SharedPreferences.getInstance();
-                //           await sharedPref.setInt('Music', index);
-                //           playMusic();
-                //         },
-                //         child: Padding(
-                //           padding: const EdgeInsets.all(3.0),
-                //           child: Material(
-                //             shape: StadiumBorder(),
-                //             elevation: 5,
-                //             child: Container(
-                //               height: 50,
-                //               decoration: ShapeDecoration(
-                //                   shape: StadiumBorder(
-                //                       side: BorderSide(
-                //                           width: 2, color: Colors.brown))),
-                //               child: Stack(
-                //                 children: [
-                //                   Center(
-                //                       child: Text(
-                //                     'Option ${index + 1}',
-                //                     style: titleBlack,
-                //                   )),
-                //                   index == bgIndex
-                //                       ? Positioned(
-                //                           right: 10,
-                //                           bottom: 0,
-                //                           top: 0,
-                //                           child: CircleAvatar(
-                //                             radius: 15,
-                //                             backgroundColor: Colors.red,
-                //                             child: Icon(
-                //                               Icons.music_note,
-                //                               color: Colors.white,
-                //                               size: 15,
-                //                             ),
-                //                           ))
-                //                       : Container()
-                //                 ],
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //     );
-                //   },
-                // ),
               ],
             ),
           ),
         ),
-        CustomBackButton(
-          text: 'Settings',
-          tag: 'settings-tag',
-        ),
+        CustomBackButton(text: 'Settings'),
       ],
     );
   }

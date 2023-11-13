@@ -208,6 +208,7 @@ class _InputPageState extends State<InputPage> {
                         });
                       }
                       if (currentIndex == 2) {
+                        getStarted();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

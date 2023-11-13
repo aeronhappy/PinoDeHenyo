@@ -10,7 +10,8 @@ import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/music.dart';
 
 class QuizPage extends StatefulWidget {
-  const QuizPage({super.key});
+  final String title;
+  const QuizPage({super.key, required this.title});
 
   @override
   State<QuizPage> createState() => _QuizPageState();
@@ -92,7 +93,7 @@ class _QuizPageState extends State<QuizPage> {
       child: Scaffold(
           backgroundColor: lightPrimarybgColor,
           appBar: AppBar(
-            title: Text('MAGSAGOT', style: myFonts(Colors.black, 22)),
+            title: Text('MAGSAGOT'),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
@@ -113,7 +114,6 @@ class _QuizPageState extends State<QuizPage> {
                         child: Center(
                           child: Text(
                             'Level ${level + 1}',
-                            style: myFonts(Colors.white, 22),
                           ),
                         ),
                       ),

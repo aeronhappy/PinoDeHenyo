@@ -17,8 +17,8 @@ Color transparentWhiteColor = const Color(0xff7effffff);
 
 ///Profile Color
 Color pastelSkyBlue = const Color(0xff45E1FA);
-Color pastelGreen = const Color(0xff45FAA0);
-Color pasterRed = const Color(0xffFA456C);
+Color pastelGreen = const Color(0xff77dd77);
+Color pastelRed = const Color(0xffff817b);
 Color pastelViolet = const Color(0xff7155f5);
 Color pastelOrange = const Color(0xfff4724a);
 Color pastelPink = const Color(0xfff560cd);

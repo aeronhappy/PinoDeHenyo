@@ -38,7 +38,7 @@ class _LessonPageState extends State<LessonPage> {
         Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
-              title: Text('MAG-ARAL', style: myFonts(Colors.black, 22)),
+              title: Text('MAG-ARAL'),
               backgroundColor: Colors.transparent,
               iconTheme: Theme.of(context).iconTheme,
               elevation: 0,
@@ -87,7 +87,7 @@ class _LessonPageState extends State<LessonPage> {
                                           width: double.infinity,
                                           decoration: BoxDecoration(
                                               color:
-                                                  item.color!.withOpacity(.75),
+                                                  item.color!.withOpacity(.9),
                                               borderRadius:
                                                   BorderRadius.circular(20)),
                                           height: double.infinity,
@@ -106,7 +106,9 @@ class _LessonPageState extends State<LessonPage> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(item.title,
-                                                          style: titleWhite),
+                                                          style:
+                                                              largeTitleWhite(
+                                                                  true)),
                                                       SizedBox(height: 10),
                                                       Text(item.description,
                                                           maxLines: 2,

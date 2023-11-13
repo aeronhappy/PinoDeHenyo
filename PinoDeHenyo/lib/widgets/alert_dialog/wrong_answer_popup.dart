@@ -38,7 +38,7 @@ wrongAnswerDialog(BuildContext context) {
                             const SizedBox(height: 20),
                             Text(
                               'Mali ang iyong sagot.\nSubukan muli.',
-                              style: titleBlack,
+                              style: largeTitleBlack(true),
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -62,8 +62,8 @@ wrongAnswerDialog(BuildContext context) {
                               child: SizedBox(
                                 height: 40,
                                 child: Center(
-                                    child:
-                                        Text('TRY AGAIN', style: titleBlack)),
+                                    child: Text('TRY AGAIN',
+                                        style: largeTitleBlack(true))),
                               ),
                             ),
                             TextButton(

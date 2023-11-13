@@ -5,35 +5,48 @@ double letterSpacing = 0;
 double height = 1.5;
 double wordSpacing = 1;
 
-TextStyle myFonts(Color color, double fontSize) {
-  return GoogleFonts.sigmarOne(
+TextStyle myFonts(Color color, double fontSize, bool hasShadow) {
+  return GoogleFonts.cherryCreamSoda(
     fontSize: fontSize,
     decoration: TextDecoration.none,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1,
     color: color,
+    shadows: hasShadow
+        ? <Shadow>[
+            Shadow(
+              offset: Offset(0, 2),
+              blurRadius: 5.0,
+              color: Colors.black,
+            ),
+          ]
+        : null,
   );
 }
 
 TextStyle googleFonts(double fontSize, Color color) {
-  return GoogleFonts.bubblegumSans(
+  return GoogleFonts.baloo2(
       fontSize: fontSize,
+      letterSpacing: -.5,
       color: color,
       fontWeight: FontWeight.w500,
       decoration: TextDecoration.none);
 }
 
-TextStyle appBarWhite = myFonts(Colors.white, 22);
-TextStyle appBarBlack = myFonts(Colors.black, 22);
+TextStyle appBarWhite(bool hasShadow) => myFonts(Colors.white, 22, hasShadow);
+TextStyle appBarBlack(bool hasShadow) => myFonts(Colors.black, 22, hasShadow);
 
 // TITLE
-TextStyle largeTitleWhite = myFonts(Colors.white, 30);
-TextStyle largeTitleBlack = myFonts(Colors.black, 30);
+TextStyle largeTitleWhite(bool hasShadow) =>
+    myFonts(Colors.white, 30, hasShadow);
+TextStyle largeTitleBlack(bool hasShadow) =>
+    myFonts(Colors.black, 30, hasShadow);
 
-TextStyle smallTitleWhite = myFonts(Colors.white, 20);
-TextStyle smallTitleBlack = myFonts(Colors.black, 20);
-
-TextStyle titleWhite = myFonts(Colors.white, 26);
-TextStyle titleBlack = myFonts(Colors.black, 26);
+TextStyle smallTitleWhite(bool hasShadow) =>
+    myFonts(Colors.white, 18, hasShadow);
+TextStyle smallTitleBlack(bool hasShadow) =>
+    myFonts(Colors.black, 18, hasShadow);
 
 //BODY
-TextStyle bodyWhite = googleFonts(18, Colors.white);
-TextStyle bodyBlack = googleFonts(18, Colors.black87);
+TextStyle bodyWhite = googleFonts(16, Colors.white54);
+TextStyle bodyBlack = googleFonts(16, Colors.black54);

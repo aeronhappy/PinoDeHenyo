@@ -51,7 +51,7 @@ class QuestionControllerBloc
               description: item.description,
               example: item.example,
               image: item.image,
-              color: paletteGenerator.dominantColor!.color);
+              color: paletteGenerator.dominantColor!.color.withOpacity(.9));
           newList.add(newItem);
         }
       }

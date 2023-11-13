@@ -38,7 +38,7 @@ class LessonInfoPage extends StatelessWidget {
                           height: 350,
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                              color: item.color!.withOpacity(.7),
+                              color: item.color,
                               borderRadius: BorderRadius.vertical(
                                   bottom: Radius.circular(20))),
                           child: Center(
@@ -74,22 +74,14 @@ class LessonInfoPage extends StatelessWidget {
                       children: [
                         Center(
                           child: Text(item.title,
-                              style: largeTitleBlack.copyWith(
-                                color: item.color,
-                                shadows: <Shadow>[
-                                  Shadow(
-                                    offset: Offset(2.0, 2.0),
-                                    blurRadius: 2.0,
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                  ),
-                                ],
-                              )),
+                              style: largeTitleBlack(true)
+                                  .copyWith(color: item.color)),
                         ),
                         SizedBox(height: 10),
-                        Text('Description', style: smallTitleBlack),
+                        Text('Description', style: smallTitleBlack(true)),
                         Text(item.description, style: bodyBlack),
                         SizedBox(height: 20),
-                        Text('Example', style: smallTitleBlack),
+                        Text('Example', style: smallTitleBlack(true)),
                         Text(item.example, style: bodyBlack),
                       ],
                     ),

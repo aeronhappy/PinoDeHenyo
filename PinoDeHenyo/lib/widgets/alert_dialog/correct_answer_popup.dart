@@ -45,7 +45,7 @@ correctAnswerDialog(BuildContext context) {
                             const SizedBox(height: 20),
                             Text(
                               'Tama ang iyong sagot.',
-                              style: titleBlack,
+                              style: largeTitleBlack(true),
                               textAlign: TextAlign.center,
                             ),
                           ],

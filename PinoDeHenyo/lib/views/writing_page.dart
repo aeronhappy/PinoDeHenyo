@@ -10,7 +10,8 @@ import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/music.dart';
 
 class WritingPage extends StatefulWidget {
-  const WritingPage({super.key});
+  final String title;
+  const WritingPage({super.key, required this.title});
 
   @override
   State<WritingPage> createState() => _WritingPageState();
@@ -77,7 +78,7 @@ class _WritingPageState extends State<WritingPage> {
       child: Scaffold(
           backgroundColor: lightPrimarybgColor,
           appBar: AppBar(
-            title: Text('MAGSULAT', style: appBarBlack),
+            title: Text('MAGSULAT', style: appBarBlack(true)),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
@@ -98,7 +99,7 @@ class _WritingPageState extends State<WritingPage> {
                         child: Center(
                           child: Text(
                             'Level ${level + 1}',
-                            style: titleBlack,
+                            style: largeTitleBlack(true),
                           ),
                         ),
                       ),
@@ -174,7 +175,7 @@ class _WritingPageState extends State<WritingPage> {
                                   newQuestion[index]
                                       .title[stringIndex]
                                       .toUpperCase(),
-                                  style: titleBlack,
+                                  style: largeTitleBlack(true),
                                 )),
                               );
                             },

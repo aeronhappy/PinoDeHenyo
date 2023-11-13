@@ -12,7 +12,8 @@ import 'package:pino_de_henyo/widgets/music.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 class ReadingPage extends StatefulWidget {
-  const ReadingPage({super.key});
+  final String title;
+  const ReadingPage({super.key, required this.title});
 
   @override
   State<ReadingPage> createState() => _ReadingPageState();
@@ -78,7 +79,7 @@ class _ReadingPageState extends State<ReadingPage> {
       child: Scaffold(
           backgroundColor: lightPrimarybgColor,
           appBar: AppBar(
-            title: Text('MAGBASA', style: appBarBlack),
+            title: Text('MAGBASA', style: appBarBlack(true)),
             backgroundColor: lightPrimarybgColor,
             iconTheme: Theme.of(context).iconTheme,
             elevation: 0,
@@ -99,7 +100,7 @@ class _ReadingPageState extends State<ReadingPage> {
                         child: Center(
                           child: Text(
                             'Level ${level + 1}',
-                            style: titleWhite,
+                            style: largeTitleWhite(true),
                           ),
                         ),
                       ),
@@ -180,7 +181,7 @@ class _ReadingPageState extends State<ReadingPage> {
                                       newQuestion[index]
                                           .title[stringIndex]
                                           .toUpperCase(),
-                                      style: titleWhite,
+                                      style: largeTitleWhite(true),
                                     )),
                                   );
                                 },
@@ -203,7 +204,7 @@ class _ReadingPageState extends State<ReadingPage> {
                                   child: Center(
                                     child: Text(
                                       answerText,
-                                      style: titleBlack,
+                                      style: largeTitleBlack(true),
                                     ),
                                   ),
                                 ),
