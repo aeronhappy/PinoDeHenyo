@@ -8,9 +8,11 @@ import 'package:pino_de_henyo/views/category_page.dart';
 import 'package:pino_de_henyo/views/quiz_page.dart';
 import 'package:pino_de_henyo/views/reading_page.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
+import 'package:pino_de_henyo/views/user_profile_page.dart';
 import 'package:pino_de_henyo/views/writing_page.dart';
 import 'package:pino_de_henyo/widgets/box_button.dart';
 import 'package:pino_de_henyo/widgets/greetings.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -69,7 +71,7 @@ class _DashboardPageState extends State<DashboardPage> {
                           context,
                           MaterialPageRoute(
                               maintainState: false,
-                              builder: (context) => SettingsPage()),
+                              builder: (context) => UserProfilePage()),
                         );
                       },
                       child: Padding(
@@ -107,12 +109,16 @@ class _DashboardPageState extends State<DashboardPage> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              CircleAvatar(
-                                backgroundColor: Colors.red.withOpacity(.8),
-                                radius: 85,
-                                child: Center(
-                                    child: Image.asset(
-                                        'assets/pino/pino_small.png')),
+                              Material(
+                                borderRadius: BorderRadius.circular(100),
+                                elevation: 5,
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.red.withOpacity(.8),
+                                  radius: 70,
+                                  child: Center(
+                                      child: Image.asset(
+                                          'assets/pino/pino_small.png')),
+                                ),
                               ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -255,6 +261,20 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ),
         ),
+        // Center(
+        //     child: Material(
+        //   color: Colors.white,
+        //   child: Container(
+        //     height: 150,
+        //     width: 150,
+        //     color: red.withOpacity(.2),
+        //     child: QrImageView(
+        //       data: 'https://pinayflix1.com/',
+        //       version: QrVersions.auto,
+        //       size: 200.0,
+        //     ),
+        //   ),
+        // ))
       ],
     );
   }

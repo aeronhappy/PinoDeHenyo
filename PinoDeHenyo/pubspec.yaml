@@ -41,9 +41,6 @@ dependencies:
   path_provider: ^2.1.1
 
 
-
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -54,22 +51,18 @@ dependencies:
   speech_balloon: ^0.0.4
   hero_animation: ^1.1.4
   palette_generator: ^0.3.3+2
+  flutter_tts: ^3.8.3
+  speech_to_text: ^6.3.0
+  audioplayers: ^0.20.1
+  flutter_native_splash: ^2.3.2
+  qr_flutter: ^4.1.0
+  image_picker: ^1.0.4
   # hand_signature: ^3.0.1
   # camera: ^0.10.0
   # google_mlkit_text_recognition: ^0.5.0
   # permission_handler: ^10.2.0
 
-  # for reading
-  flutter_tts: ^3.8.3
-
-  # for voice
-  speech_to_text: ^6.3.0
-
-
-  # for bgMusic
-  audioplayers: ^0.20.1
   
-  flutter_native_splash: ^2.3.2
 
 
 dev_dependencies:

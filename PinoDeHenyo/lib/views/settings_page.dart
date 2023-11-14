@@ -51,7 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
         SafeArea(
           child: Scaffold(
             backgroundColor: Colors.transparent,
-            body: Container(
+            body: Padding(
               padding: EdgeInsets.all(20),
               child: Column(
                 mainAxisSize: MainAxisSize.max,

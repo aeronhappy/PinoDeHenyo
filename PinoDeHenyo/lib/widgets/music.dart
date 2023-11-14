@@ -19,7 +19,7 @@ playMusic() async {
   var musicValue = sharedPref.getDouble('MusicVolume') ?? .25;
   await bgAudioPlayer.loop(bgList[bgIndex], volume: musicValue);
 
-  var effectsValue = sharedPref.getDouble('EffectsVolume') ?? .25;
+  // var effectsValue = sharedPref.getDouble('EffectsVolume') ?? .25;
 }
 
 stopMusic() {
