@@ -35,7 +35,9 @@ class _DashboardPageState extends State<DashboardPage> {
 
   getUserName() async {
     var sharedPref = await SharedPreferences.getInstance();
-    userName = await sharedPref.getString('userName') ?? '';
+    setState(() {
+      userName = sharedPref.getString('userName') ?? '';
+    });
   }
 
   @override
