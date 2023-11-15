@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_bloc.dart';
+import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/category_page.dart';
@@ -63,38 +64,35 @@ class _DashboardPageState extends State<DashboardPage> {
                   Container(
                     width: double.infinity,
                     alignment: Alignment.centerRight,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(50),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              maintainState: false,
-                              builder: (context) => UserProfilePage(
-                                    title: 'My Profile',
-                                  )),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: Material(
-                          borderRadius: BorderRadius.circular(50),
-                          elevation: 5,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade600,
-                                border:
-                                    Border.all(color: Colors.black, width: 2),
-                                borderRadius: BorderRadius.circular(50)),
-                            child: Hero(
-                              tag: 'My Profile-tag',
-                              child: Text(
-                                'My Profile',
-                                style: largeTitleWhite(false)
-                                    .copyWith(fontSize: 16),
-                              ),
+                    child: Material(
+                      shape: StadiumBorder(),
+                      elevation: 3,
+                      color: Colors.grey.shade600,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(100),
+                        highlightColor: red,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                maintainState: false,
+                                builder: (context) => UserProfilePage(
+                                      title: 'My Profile',
+                                    )),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 2),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Hero(
+                            tag: 'My Profile-tag',
+                            child: Text(
+                              'My Profile',
+                              style:
+                                  largeTitleWhite(false).copyWith(fontSize: 16),
                             ),
                           ),
                         ),

@@ -130,10 +130,14 @@ class _CategoryPageState extends State<CategoryPage> {
                                               color: Colors.primaries[index]
                                                   .withOpacity(.8)),
                                           child: Center(
-                                            child: Text(
-                                              state.category[index],
-                                              textAlign: TextAlign.center,
-                                              style: smallTitleWhite(true),
+                                            child: Hero(
+                                              tag:
+                                                  "${state.category[index]}-tag",
+                                              child: Text(
+                                                state.category[index],
+                                                textAlign: TextAlign.center,
+                                                style: smallTitleWhite(true),
+                                              ),
                                             ),
                                           ),
                                         ),

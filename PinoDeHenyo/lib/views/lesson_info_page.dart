@@ -72,16 +72,19 @@ class LessonInfoPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(height: 10),
                         Center(
                           child: Text(item.title,
                               style: largeTitleBlack(true)
                                   .copyWith(color: item.color)),
                         ),
+                        SizedBox(height: 30),
+                        Text('Description', style: smallTitleBlack(false)),
                         SizedBox(height: 10),
-                        Text('Description', style: smallTitleBlack(true)),
                         Text(item.description, style: bodyBlack),
-                        SizedBox(height: 20),
-                        Text('Example', style: smallTitleBlack(true)),
+                        SizedBox(height: 30),
+                        Text('Example', style: smallTitleBlack(false)),
+                        SizedBox(height: 10),
                         Text(item.example, style: bodyBlack),
                       ],
                     ),

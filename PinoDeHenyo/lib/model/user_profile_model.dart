@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 class UserModel {
   final String userName;
   // final Uint8List? myBytes;
