@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pino_de_henyo/bloc/question_controller/bloc/question_controller_bloc.dart';
-import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/category_page.dart';
 import 'package:pino_de_henyo/views/quiz_page.dart';
 import 'package:pino_de_henyo/views/reading_page.dart';
-import 'package:pino_de_henyo/views/settings_page.dart';
 import 'package:pino_de_henyo/views/user_profile_page.dart';
 import 'package:pino_de_henyo/views/writing_page.dart';
 import 'package:pino_de_henyo/widgets/box_button.dart';
 import 'package:pino_de_henyo/widgets/greetings.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -73,7 +70,9 @@ class _DashboardPageState extends State<DashboardPage> {
                           context,
                           MaterialPageRoute(
                               maintainState: false,
-                              builder: (context) => UserProfilePage()),
+                              builder: (context) => UserProfilePage(
+                                    title: 'My Profile',
+                                  )),
                         );
                       },
                       child: Padding(
@@ -90,9 +89,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                     Border.all(color: Colors.black, width: 2),
                                 borderRadius: BorderRadius.circular(50)),
                             child: Hero(
-                              tag: 'Settings-tag',
+                              tag: 'My Profile-tag',
                               child: Text(
-                                'Settings',
+                                'My Profile',
                                 style: largeTitleWhite(false)
                                     .copyWith(fontSize: 16),
                               ),

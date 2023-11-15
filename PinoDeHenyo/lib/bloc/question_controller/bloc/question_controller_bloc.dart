@@ -55,7 +55,6 @@ class QuestionControllerBloc
           newList.add(newItem);
         }
       }
-      print(newList.length);
       emit(LoadedLessonByCategory(categoryLessonList: newList));
     });
 

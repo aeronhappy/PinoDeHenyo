@@ -59,14 +59,20 @@ class _SettingsPageState extends State<SettingsPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CustomBackButton(text: 'Settings'),
-                  Expanded(
+                  SizedBox(height: 30),
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(.7),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(width: 2)),
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
+                      mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Column(
                           children: [
-                            Text('Music Volume', style: largeTitleWhite(true)),
+                            Text('Music Volume', style: smallTitleBlack(false)),
                             SizedBox(height: 5),
                             SliderTheme(
                               data: SliderTheme.of(context).copyWith(
@@ -101,7 +107,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         SizedBox(height: 50),
                         Column(
                           children: [
-                            Text('Sound Effects', style: largeTitleWhite(true)),
+                            Text('Sound Effects',
+                                style: smallTitleBlack(false)),
                             SizedBox(height: 5),
                             SliderTheme(
                               data: SliderTheme.of(context).copyWith(
@@ -138,7 +145,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         SizedBox(height: 50),
                         Column(
                           children: [
-                            Text('Pino Volume', style: largeTitleWhite(true)),
+                            Text('Pino Volume', style: smallTitleBlack(false)),
                             SizedBox(height: 5),
                             SliderTheme(
                               data: SliderTheme.of(context).copyWith(
@@ -174,7 +181,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         Column(
                           children: [
                             Text('Background Music',
-                                style: largeTitleWhite(true)),
+                                style: smallTitleBlack(false)),
                             SizedBox(height: 10),
                             Center(
                               child: Container(
@@ -209,7 +216,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                .28,
+                                                .23,
                                             padding: EdgeInsets.all(10),
                                             decoration: BoxDecoration(
                                                 color: index == bgIndex
