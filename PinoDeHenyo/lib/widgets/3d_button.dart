@@ -68,7 +68,7 @@ class ThreeDButton extends StatelessWidget {
                     transitionOnUserGestures: true,
                     child: Text(
                       text,
-                      style: largeTitleWhite(true),
+                      style: largeTitleWhite(true).copyWith(fontSize: 24),
                     ),
                   ),
                 ],

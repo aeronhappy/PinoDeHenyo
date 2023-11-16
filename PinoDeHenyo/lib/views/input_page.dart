@@ -96,6 +96,7 @@ class _InputPageState extends State<InputPage> {
                     children: [
                       Expanded(
                           child: PageView(
+                        physics: NeverScrollableScrollPhysics(),
                         controller: pageController,
                         onPageChanged: (index) async {
                           if (index == 1) {
@@ -120,7 +121,7 @@ class _InputPageState extends State<InputPage> {
                               Text(
                                 text[0],
                                 style: bodyWhite.copyWith(
-                                    fontSize: 30, color: Colors.white),
+                                    fontSize: 24, color: Colors.white),
                               ),
                               SizedBox(height: 20),
                               Material(
@@ -133,7 +134,7 @@ class _InputPageState extends State<InputPage> {
                                           color: Colors.black54, width: 2)),
                                   child: TextField(
                                       cursorColor: Colors.black,
-                                      style: bodyBlack.copyWith(fontSize: 20),
+                                      style: bodyBlack,
                                       textAlign: TextAlign.center,
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
@@ -155,15 +156,23 @@ class _InputPageState extends State<InputPage> {
                               ),
                             ],
                           ),
-                          Text(
-                            'Kamusta ${userName.toUpperCase()} ?\n${text[1]}',
-                            style: bodyWhite.copyWith(
-                                fontSize: 26, color: Colors.white),
+                          Center(
+                            child: Text(
+                              'Kamusta ${userName.toUpperCase()} ?\n${text[1]}',
+                              style: bodyWhite.copyWith(
+                                  fontSize: 23,
+                                  color: Colors.white,
+                                  height: 1.2),
+                            ),
                           ),
-                          Text(
-                            text[2],
-                            style: bodyWhite.copyWith(
-                                fontSize: 26, color: Colors.white),
+                          Center(
+                            child: Text(
+                              text[2],
+                              style: bodyWhite.copyWith(
+                                  fontSize: 23,
+                                  color: Colors.white,
+                                  height: 1.5),
+                            ),
                           ),
                         ],
                       )),

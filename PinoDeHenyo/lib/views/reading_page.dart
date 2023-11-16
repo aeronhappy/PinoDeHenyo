@@ -27,7 +27,7 @@ class _ReadingPageState extends State<ReadingPage> {
   PageController pageController = PageController();
 
   bool isListening = false;
-  String answerText = '--';
+  String answerText = '';
   int mylevel = 0;
   int level = 0;
   List<LessonCategoryModel> newQuestion = [];
@@ -95,36 +95,6 @@ class _ReadingPageState extends State<ReadingPage> {
           child: SafeArea(
             child: Scaffold(
                 backgroundColor: Colors.transparent,
-                // appBar: AppBar(
-                //   title: Text('MAGBASA', style: appBarBlack(true)),
-                //   backgroundColor: lightPrimarybgColor,
-                //   iconTheme: Theme.of(context).iconTheme,
-                //   elevation: 0,
-                //   actions: [
-                //     Padding(
-                //       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                //       child: InkWell(
-                //           onTap: () {
-                //             levelDialog(context, mylevel, 'MAGBASA');
-                //           },
-                //           child: Material(
-                //             shape: StadiumBorder(),
-                //             elevation: 3,
-                //             child: Container(
-                //               padding: EdgeInsets.symmetric(horizontal: 15),
-                //               decoration: ShapeDecoration(
-                //                   color: Colors.brown, shape: StadiumBorder()),
-                //               child: Center(
-                //                 child: Text(
-                //                   'Level ${level + 1}',
-                //                   style: largeTitleWhite(true),
-                //                 ),
-                //               ),
-                //             ),
-                //           )),
-                //     )
-                //   ],
-                // ),
                 body: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
@@ -249,7 +219,10 @@ class _ReadingPageState extends State<ReadingPage> {
                                                       .symmetric(
                                                       horizontal: 2.5),
                                                   decoration: BoxDecoration(
-                                                      border: Border.all()),
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8)),
                                                   child: Center(
                                                       child: Text(
                                                     newQuestion[index]
@@ -274,64 +247,74 @@ class _ReadingPageState extends State<ReadingPage> {
                                     Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.all(15),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                    border: Border.all()),
-                                                child: Center(
-                                                  child: Text(
-                                                    answerText,
-                                                    style:
-                                                        largeTitleBlack(true),
-                                                  ),
+                                        Container(
+                                          height: 55,
+                                          padding: EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              color:
+                                                  Colors.white.withOpacity(.6)),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const SizedBox(width: 45),
+                                              Center(
+                                                child: Text(
+                                                  answerText.isEmpty
+                                                      ? "talk and your answer will appear here!"
+                                                      : answerText,
+                                                  style: answerText.isEmpty
+                                                      ? bodyBlack.copyWith(
+                                                          fontSize: 14)
+                                                      : bodyBlack.copyWith(
+                                                          color: Colors.black,
+                                                          fontSize: 20),
                                                 ),
                                               ),
-                                            ),
-                                            const SizedBox(width: 10),
-                                            InkWell(
-                                              onTap: () {
-                                                if (equalsIgnoreCase(answerText,
-                                                    newQuestion[index].title)) {
-                                                  context
-                                                      .read<
-                                                          QuestionControllerBloc>()
-                                                      .add(ClickSubmit(
-                                                          isCorrect: true));
-                                                } else {
-                                                  context
-                                                      .read<
-                                                          QuestionControllerBloc>()
-                                                      .add(ClickSubmit(
-                                                          isCorrect: false));
-                                                }
-                                              },
-                                              child: Material(
-                                                elevation: 5,
+                                              Material(
+                                                color:
+                                                    Colors.blue.withOpacity(.8),
                                                 borderRadius:
                                                     BorderRadius.circular(12),
-                                                child: Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            13),
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12),
-                                                        color: Colors.blue),
+                                                elevation: 0,
+                                                child: InkWell(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  splashColor: Colors.blue,
+                                                  onTap: () {
+                                                    if (equalsIgnoreCase(
+                                                        answerText,
+                                                        newQuestion[index]
+                                                            .title)) {
+                                                      context
+                                                          .read<
+                                                              QuestionControllerBloc>()
+                                                          .add(ClickSubmit(
+                                                              isCorrect: true));
+                                                    } else {
+                                                      context
+                                                          .read<
+                                                              QuestionControllerBloc>()
+                                                          .add(ClickSubmit(
+                                                              isCorrect:
+                                                                  false));
+                                                    }
+                                                  },
+                                                  child: SizedBox(
+                                                    height: 45,
+                                                    width: 45,
                                                     child: const Icon(
                                                       Icons.arrow_forward,
                                                       color: Colors.white,
-                                                    )),
-                                              ),
-                                            )
-                                          ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                         const SizedBox(height: 5),
                                         InkWell(

@@ -114,6 +114,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                   Material(
                                     elevation: 4,
                                     borderRadius: BorderRadius.circular(12),
+                                    color: Colors.grey.shade600,
                                     child: Container(
                                       height: 100,
                                       width: 100,
