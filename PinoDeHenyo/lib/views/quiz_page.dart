@@ -127,7 +127,7 @@ class _QuizPageState extends State<QuizPage> {
                                       highlightColor: red,
                                       onTap: () {
                                         levelDialog(
-                                            context, mylevel, 'MAGSASGOT');
+                                            context, mylevel, 'MAGSAGOT');
                                       },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(
@@ -170,17 +170,21 @@ class _QuizPageState extends State<QuizPage> {
                                         Stack(
                                           children: [
                                             Container(
-                                              padding: const EdgeInsets.all(10),
+                                              padding: const EdgeInsets.all(15),
                                               height: MediaQuery.of(context)
                                                       .size
                                                       .width *
                                                   .7,
                                               width: double.infinity,
                                               decoration: BoxDecoration(
-                                                  border: Border.all()),
+                                                  color: Colors.white
+                                                      .withOpacity(.5),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          40)),
                                               child: Image.asset(
                                                 newQuestion[index].image,
-                                                fit: BoxFit.fill,
+                                                fit: BoxFit.fitHeight,
                                               ),
                                             ),
                                             Positioned(
@@ -194,12 +198,8 @@ class _QuizPageState extends State<QuizPage> {
                                                   child: FloatingActionButton(
                                                     onPressed: () {
                                                       textToSpeech(
-                                                          changeStringforPino(
-                                                              newQuestion[index]
-                                                                  .description,
-                                                              newQuestion[index]
-                                                                  .title
-                                                                  .toLowerCase()));
+                                                          newQuestion[index]
+                                                              .title);
                                                     },
                                                     elevation: 5,
                                                     backgroundColor: green,

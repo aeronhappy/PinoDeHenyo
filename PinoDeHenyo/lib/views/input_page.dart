@@ -125,11 +125,11 @@ class _InputPageState extends State<InputPage> {
                               ),
                               SizedBox(height: 20),
                               Material(
-                                borderRadius: BorderRadius.circular(100),
+                                borderRadius: BorderRadius.circular(20),
                                 child: Container(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
+                                      borderRadius: BorderRadius.circular(20),
                                       border: Border.all(
                                           color: Colors.black54, width: 2)),
                                   child: TextField(

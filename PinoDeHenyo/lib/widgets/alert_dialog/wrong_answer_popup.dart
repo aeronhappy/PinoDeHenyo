@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
+import 'package:pino_de_henyo/widgets/3d_button.dart';
 
 wrongAnswerDialog(BuildContext context) {
   showDialog(
@@ -28,17 +28,13 @@ wrongAnswerDialog(BuildContext context) {
                         Column(
                           children: [
                             const SizedBox(height: 60),
-                            Text(
-                              'OOPS!',
-                              style: GoogleFonts.titanOne(
-                                  fontSize: 30,
-                                  decoration: TextDecoration.none,
-                                  color: Colors.black),
-                            ),
+                            Text('OOPS!',
+                                style: largeTitleBlack(true)
+                                    .copyWith(color: Colors.red)),
                             const SizedBox(height: 20),
                             Text(
                               'Mali ang iyong sagot.\nSubukan muli.',
-                              style: largeTitleBlack(true),
+                              style: bodyBlack.copyWith(fontSize: 20),
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -46,35 +42,26 @@ wrongAnswerDialog(BuildContext context) {
                         const SizedBox(height: 40),
                         Column(
                           children: [
-                            ElevatedButton(
-                              onPressed: () async {
-                                Navigator.pop(context);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: violet,
-                                elevation: 2,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(20),
-                                  ),
-                                ),
-                              ),
-                              child: SizedBox(
-                                height: 40,
-                                child: Center(
-                                    child: Text('TRY AGAIN',
-                                        style: largeTitleBlack(true))),
-                              ),
-                            ),
-                            TextButton(
+                            ThreeDButton(
+                                text: "Try Again",
+                                icon: null,
+                                color: Colors.blue,
+                                height: 50,
+                                tag: "",
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),
+                            SizedBox(height: 10),
+                            ThreeDButton(
+                                text: "Cancel",
+                                icon: null,
+                                color: Colors.red,
+                                height: 50,
+                                tag: "",
                                 onPressed: () {
                                   Navigator.pop(context);
                                   Navigator.pop(context);
-                                },
-                                child: Text(
-                                  'Cancel',
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                )),
+                                }),
                           ],
                         ),
                       ],

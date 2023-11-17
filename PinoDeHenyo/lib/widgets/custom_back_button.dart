@@ -12,7 +12,7 @@ class CustomBackButton extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Feedback.forTap(context);
-          Navigator.pop(context);
+          Navigator.pop(context, true);
         },
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,

@@ -71,15 +71,18 @@ class _DashboardPageState extends State<DashboardPage> {
                       child: InkWell(
                         borderRadius: BorderRadius.circular(100),
                         highlightColor: red,
-                        onTap: () {
-                          Navigator.push(
+                        onTap: () async {
+                          bool isRefresh = await Navigator.push(
                             context,
                             MaterialPageRoute(
-                                maintainState: false,
                                 builder: (context) => UserProfilePage(
                                       title: 'My Profile',
                                     )),
                           );
+
+                          if (isRefresh) {
+                            getUserName();
+                          }
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(
@@ -260,20 +263,6 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ),
         ),
-        // Center(
-        //     child: Material(
-        //   color: Colors.white,
-        //   child: Container(
-        //     height: 150,
-        //     width: 150,
-        //     color: red.withOpacity(.2),
-        //     child: QrImageView(
-        //       data: 'https://pinayflix1.com/',
-        //       version: QrVersions.auto,
-        //       size: 200.0,
-        //     ),
-        //   ),
-        // ))
       ],
     );
   }

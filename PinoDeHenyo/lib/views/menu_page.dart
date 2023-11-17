@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:pino_de_henyo/views/input_page.dart';
+import 'package:pino_de_henyo/views/teacher_input_page.dart';
 import 'package:pino_de_henyo/widgets/3d_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -99,7 +100,7 @@ class _MenuPageState extends State<MenuPage> {
                             height: 60,
                             tag: 'teacher',
                             onPressed: () async {
-                              String position = 'Teacher';
+                              String position = 'teacher';
                               var sharedPref =
                                   await SharedPreferences.getInstance();
                               sharedPref.setString('position', position);
@@ -108,7 +109,7 @@ class _MenuPageState extends State<MenuPage> {
                                 MaterialPageRoute(
                                   maintainState: false,
                                   builder: (context) {
-                                    return InputPage(position: position);
+                                    return TeacherInputPage();
                                   },
                                 ),
                               );
@@ -123,7 +124,7 @@ class _MenuPageState extends State<MenuPage> {
                               height: 60,
                               tag: 'student',
                               onPressed: () async {
-                                String position = 'Student';
+                                String position = 'student';
                                 var sharedPref =
                                     await SharedPreferences.getInstance();
                                 sharedPref.setString('position', position);
