@@ -1,7 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
+import 'package:pino_de_henyo/repository/injection_container.dart';
+import 'package:pino_de_henyo/views/leaderboard_page.dart';
+import 'package:pino_de_henyo/views/qr_scanner_page.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
 import 'package:pino_de_henyo/widgets/greetings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -232,8 +237,20 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      maintainState: false,
-                                      builder: (context) => SettingsPage()),
+                                    builder: (context) {
+                                      return MultiBlocProvider(
+                                        providers: [
+                                          BlocProvider(
+                                            create: (context) => UserBloc(
+                                                sharedPreferences: sl()),
+                                          ),
+                                        ],
+                                        child: LeaderboardPage(
+                                          title: 'Leaderboard',
+                                        ),
+                                      );
+                                    },
+                                  ),
                                 );
 
                                 Feedback.forTap(context);
@@ -270,7 +287,18 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white.withOpacity(.7),
                           child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      maintainState: false,
+                                      builder: (context) => QRScannerPage(
+                                            title: 'QR Scanner',
+                                          )),
+                                );
+
+                                Feedback.forTap(context);
+                              },
                               child: Container(
                                 width: double.infinity,
                                 padding: EdgeInsets.all(20),
@@ -281,15 +309,15 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                   children: [
                                     Row(children: [
                                       Icon(
-                                        Icons.qr_code,
+                                        Icons.qr_code_scanner,
                                         color: Colors.black,
                                         size: 30,
                                       ),
                                       SizedBox(width: 15),
                                       Hero(
-                                        tag: "Generate QR code-tag",
+                                        tag: "QR Scanner-tag",
                                         child: Text(
-                                          'Generate QR code',
+                                          'QR Scanner',
                                           style: smallTitleBlack(false),
                                         ),
                                       )

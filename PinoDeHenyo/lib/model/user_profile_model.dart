@@ -1,13 +1,11 @@
 class UserModel {
   final String userName;
-  // final Uint8List? myBytes;
   final int writingLevel;
   final int readingLevel;
   final int quizLevel;
 
   UserModel(
       {required this.userName,
-      // required this.myBytes,
       required this.writingLevel,
       required this.readingLevel,
       required this.quizLevel});
@@ -15,7 +13,6 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       userName: json['userName'],
-      // myBytes: json['myBytes'],
       writingLevel: json['writingLevel'],
       readingLevel: json['readingLevel'],
       quizLevel: json['quizLevel'],
@@ -25,10 +22,34 @@ class UserModel {
   Map<String, dynamic> toJson() {
     return {
       'userName': this.userName,
-      // 'myBytes': this.myBytes,
       'writingLevel': this.writingLevel,
       'readingLevel': this.readingLevel,
       'quizLevel': this.quizLevel,
     };
   }
 }
+
+List<UserModel> allUsers = <UserModel>[
+  UserModel(
+      userName: "Aeron Darelle Maligaya",
+      writingLevel: 2,
+      readingLevel: 3,
+      quizLevel: 5),
+  UserModel(
+      userName: "Hanna Cuelo", writingLevel: 12, readingLevel: 2, quizLevel: 5),
+  UserModel(
+      userName: "Marjorie Malijan",
+      writingLevel: 3,
+      readingLevel: 5,
+      quizLevel: 1),
+  UserModel(
+      userName: "Arjay Maligaya",
+      writingLevel: 11,
+      readingLevel: 1,
+      quizLevel: 2),
+  UserModel(
+      userName: "Dianne Dingcol",
+      writingLevel: 4,
+      readingLevel: 3,
+      quizLevel: 5),
+];
