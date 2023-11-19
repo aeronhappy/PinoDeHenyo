@@ -9,3 +9,5 @@ class LoadedAllUserNameByRanking extends UserState {
   final List<UserModel> users;
   LoadedAllUserNameByRanking({required this.users});
 }
+
+class SavedUser extends UserState {}

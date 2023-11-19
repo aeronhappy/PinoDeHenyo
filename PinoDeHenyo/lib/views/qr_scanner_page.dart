@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
+import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/qr_result_page.dart';
 import 'package:pino_de_henyo/widgets/custom_back_button.dart';
 
@@ -90,12 +93,23 @@ class _QRScannerPageState extends State<QRScannerPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                maintainState: false,
-                                builder: (context) => QRResultPage(
-                                      title: 'QR Result',
-                                      qrData: "hey",
-                                    )),
+                              builder: (context) {
+                                return MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider(
+                                      create: (context) =>
+                                          UserBloc(sharedPreferences: sl()),
+                                    ),
+                                  ],
+                                  child: QRResultPage(
+                                    title: 'QR Result',
+                                    qrData: "hey",
+                                  ),
+                                );
+                              },
+                            ),
                           );
+                          Feedback.forTap(context);
                         },
                         child:
                             Container(padding: EdgeInsets.all(30), color: red),

@@ -10,8 +10,7 @@ class GetAllUserRankingByGame extends UserEvent {
 
 class GetMyUserName extends UserEvent {}
 
-// class GetUserNameByReading extends UserNameEvent {}
-
-// class GetUserNameByWritting extends UserNameEvent {}
-
-// class GetUserNameByQuiz extends UserNameEvent {}
+class AddUserInList extends UserEvent {
+  final String userJsonString;
+  AddUserInList({required this.userJsonString});
+}

@@ -6,11 +6,11 @@ import 'package:pino_de_henyo/bloc/question_controller/question_controller_bloc.
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/model/lesson_category_model.dart';
-import 'package:pino_de_henyo/widgets/alert_dialog/correct_answer_popup.dart';
-import 'package:pino_de_henyo/widgets/alert_dialog/level_pop_up.dart';
-import 'package:pino_de_henyo/widgets/alert_dialog/wrong_answer_popup.dart';
+import 'package:pino_de_henyo/widgets/correct_answer_popup.dart';
+import 'package:pino_de_henyo/widgets/level_pop_up.dart';
 import 'package:pino_de_henyo/widgets/custom_back_button.dart';
 import 'package:pino_de_henyo/widgets/music.dart';
+import 'package:pino_de_henyo/widgets/wrong_answer_popup.dart';
 
 class WritingPage extends StatefulWidget {
   final String title;

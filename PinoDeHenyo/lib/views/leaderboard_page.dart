@@ -161,77 +161,83 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                       ),
                                       SizedBox(height: 10),
                                       Expanded(
-                                        child: ListView.builder(
-                                            itemCount: state.users.length,
-                                            itemBuilder: (context, userIndex) {
-                                              var user = state.users[userIndex];
-                                              int gameLevel() {
-                                                int level = 0;
-                                                if (gameIndex == 0) {
-                                                  level = user.writingLevel;
-                                                }
-                                                if (gameIndex == 1) {
-                                                  level = user.readingLevel;
-                                                }
-                                                if (gameIndex == 2) {
-                                                  level = user.quizLevel;
-                                                }
-                                                return level;
-                                              }
+                                        child: state.users.length == 0
+                                            ? Center(
+                                                child: Text(
+                                                "To add a student, you must first scan and save student data.",
+                                                textAlign: TextAlign.center,
+                                                style: bodyBlack,
+                                              ))
+                                            : ListView.builder(
+                                                itemCount: state.users.length,
+                                                itemBuilder:
+                                                    (context, userIndex) {
+                                                  var user =
+                                                      state.users[userIndex];
+                                                  int gameLevel() {
+                                                    int level = 0;
+                                                    if (gameIndex == 0) {
+                                                      level = user.writingLevel;
+                                                    }
+                                                    if (gameIndex == 1) {
+                                                      level = user.readingLevel;
+                                                    }
+                                                    if (gameIndex == 2) {
+                                                      level = user.quizLevel;
+                                                    }
+                                                    return level;
+                                                  }
 
-                                              return Container(
-                                                margin:
-                                                    EdgeInsets.only(bottom: 5),
-                                                child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Container(
-                                                          width: 50,
-                                                          height: 50,
-                                                          decoration: BoxDecoration(
-                                                              color:
-                                                                  Colors.blue,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12)),
-                                                          child: Center(
-                                                            child: Text(
-                                                                "${userIndex + 1}",
-                                                                style:
-                                                                    smallTitleWhite(
+                                                  return Container(
+                                                    margin: EdgeInsets.only(
+                                                        bottom: 5),
+                                                    child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Container(
+                                                              width: 50,
+                                                              height: 50,
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors
+                                                                      .blue,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              12)),
+                                                              child: Center(
+                                                                child: Text(
+                                                                    "${userIndex + 1}",
+                                                                    style: smallTitleWhite(
                                                                         true)),
-                                                          )),
-                                                      SizedBox(width: 20),
-                                                      Expanded(
-                                                        child: Text(
-                                                          user.userName,
-                                                          style:
-                                                              smallTitleBlack(
+                                                              )),
+                                                          SizedBox(width: 20),
+                                                          Expanded(
+                                                            child: Text(
+                                                              user.userName,
+                                                              style: smallTitleBlack(
                                                                       false)
                                                                   .copyWith(
                                                                       fontSize:
                                                                           16),
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: 10),
-                                                      Container(
-                                                          width: 50,
-                                                          child: Text(
-                                                              "Lvl. ${gameLevel()}",
-                                                              style: bodyBlack
-                                                                  .copyWith(
+                                                            ),
+                                                          ),
+                                                          SizedBox(width: 10),
+                                                          Container(
+                                                              width: 50,
+                                                              child: Text(
+                                                                  "Lvl. ${gameLevel()}",
+                                                                  style: bodyBlack.copyWith(
                                                                       color: Colors
                                                                           .black,
                                                                       fontSize:
                                                                           18))),
-                                                    ]),
-                                              );
-                                            }),
+                                                        ]),
+                                                  );
+                                                }),
                                       ),
                                     ],
                                   );
