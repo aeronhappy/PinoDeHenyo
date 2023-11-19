@@ -5,6 +5,7 @@ import 'package:pino_de_henyo/repository/injection_container.dart' as di;
 import 'package:pino_de_henyo/views/dashboard_page.dart';
 import 'package:pino_de_henyo/views/menu_page.dart';
 import 'package:pino_de_henyo/views/teacher_profile_page.dart';
+import 'package:pino_de_henyo/widgets/device_id.dart';
 import 'package:pino_de_henyo/widgets/music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,6 +50,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     super.initState();
     playMusic();
     WidgetsBinding.instance.addObserver(this);
+    saveDeviceInfo();
+  }
+
+  saveDeviceInfo() async {
+    var sharedPref = await SharedPreferences.getInstance();
+    String device = await getDeviceId() ?? "no device";
+    await sharedPref.setString("deviceInfo", device);
   }
 
   dispose() {

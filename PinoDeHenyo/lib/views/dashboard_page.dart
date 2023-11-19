@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pino_de_henyo/bloc/question_controller/question_controller_bloc.dart';
+import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
 import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
@@ -75,10 +76,20 @@ class _DashboardPageState extends State<DashboardPage> {
                           bool isRefresh = await Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => UserProfilePage(
-                                      title: 'My Profile',
-                                    )),
+                              builder: (context) {
+                                return MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider(
+                                      create: (context) =>
+                                          UserBloc(sharedPreferences: sl()),
+                                    ),
+                                  ],
+                                  child: UserProfilePage(title: 'My Profile'),
+                                );
+                              },
+                            ),
                           );
+                          Feedback.forTap(context);
 
                           if (isRefresh) {
                             getUserName();

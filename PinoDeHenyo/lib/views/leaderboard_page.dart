@@ -229,7 +229,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                                           Container(
                                                               width: 50,
                                                               child: Text(
-                                                                  "Lvl. ${gameLevel()}",
+                                                                  "Lvl. ${gameLevel() + 1}",
                                                                   style: bodyBlack.copyWith(
                                                                       color: Colors
                                                                           .black,

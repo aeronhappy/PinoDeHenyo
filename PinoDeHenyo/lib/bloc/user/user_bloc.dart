@@ -12,6 +12,17 @@ part 'user_state.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   final SharedPreferences sharedPreferences;
   UserBloc({required this.sharedPreferences}) : super(UserNameInitial()) {
+    on<GetMyUserName>((event, emit) async {
+      UserModel user = UserModel(
+          deviceId: await sharedPreferences.getString("deviceInfo") ?? "",
+          userName: await sharedPreferences.getString("userName") ?? "",
+          writingLevel: await sharedPreferences.getInt("WritingLevel") ?? 0,
+          readingLevel: await sharedPreferences.getInt("ReadingLevel") ?? 0,
+          quizLevel: await sharedPreferences.getInt("QuizLevel") ?? 0);
+
+      emit(LoadedMyProfile(profile: user));
+    });
+
     on<GetAllUserRankingByGame>((event, emit) async {
       List<UserModel> users = [];
 

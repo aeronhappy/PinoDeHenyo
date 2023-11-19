@@ -18,7 +18,14 @@ class QRResultPage extends StatefulWidget {
 }
 
 class _QRResultPageState extends State<QRResultPage> {
-  var user = allUsers[4];
+  UserModel? user;
+
+  @override
+  void initState() {
+    super.initState();
+    user = UserModel.fromJson(jsonDecode(widget.qrData));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
@@ -71,49 +78,57 @@ class _QRResultPageState extends State<QRResultPage> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white.withOpacity(.6)),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                user.userName,
-                                textAlign: TextAlign.center,
-                                style: largeTitleBlack(true)
-                                    .copyWith(color: Colors.red),
-                              ),
-                              Expanded(
-                                child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          "• Magbasa  (Level ${user.writingLevel})",
-                                          style: smallTitleBlack(false)),
-                                      SizedBox(height: 10),
-                                      Text(
-                                          "• Magsulat  (Level ${user.readingLevel})",
-                                          style: smallTitleBlack(false)),
-                                      SizedBox(height: 10),
-                                      Text(
-                                          "• Magsagot  (Level ${user.quizLevel})",
-                                          style: smallTitleBlack(false)),
-                                    ]),
-                              ),
-                            ],
-                          ),
+                          child: user != null
+                              ? Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      user!.userName,
+                                      textAlign: TextAlign.center,
+                                      style: largeTitleBlack(true)
+                                          .copyWith(color: Colors.red),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                                "• Magbasa  (Level ${user!.writingLevel + 1})",
+                                                style: smallTitleBlack(false)),
+                                            SizedBox(height: 10),
+                                            Text(
+                                                "• Magsulat  (Level ${user!.readingLevel + 1})",
+                                                style: smallTitleBlack(false)),
+                                            SizedBox(height: 10),
+                                            Text(
+                                                "• Magsagot  (Level ${user!.quizLevel + 1})",
+                                                style: smallTitleBlack(false)),
+                                          ]),
+                                    ),
+                                  ],
+                                )
+                              : Center(
+                                  child: Text("You scan a wrong barcode!")),
                         ),
                         SizedBox(height: 30),
                         Material(
                             color: Colors.red,
                             borderRadius: BorderRadius.circular(20),
                             child: InkWell(
-                                onTap: () {
-                                  var userJsonString = jsonEncode(user);
-                                  context.read<UserBloc>().add(AddUserInList(
-                                      userJsonString: userJsonString));
-                                },
+                                onTap: user == null
+                                    ? null
+                                    : () {
+                                        var userJsonString = jsonEncode(user);
+                                        context.read<UserBloc>().add(
+                                            AddUserInList(
+                                                userJsonString:
+                                                    userJsonString));
+                                      },
                                 child: Container(
                                   height: 55,
                                   width: double.infinity,

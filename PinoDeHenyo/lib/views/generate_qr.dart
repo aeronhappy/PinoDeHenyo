@@ -42,13 +42,21 @@ class _GenerateQrCodeState extends State<GenerateQrCode> {
           body: Center(
             child: user == null
                 ? CircularProgressIndicator()
-                : Container(
-                    padding: EdgeInsets.all(20),
-                    child: QrImageView(
-                      data: widget.data,
-                      version: QrVersions.auto,
-                      size: 300.0,
-                    ),
+                : Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(user!.deviceId),
+                      SizedBox(height: 10),
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        child: QrImageView(
+                          data: widget.data,
+                          version: QrVersions.auto,
+                          size: 300.0,
+                        ),
+                      ),
+                    ],
                   ),
           ),
         ),

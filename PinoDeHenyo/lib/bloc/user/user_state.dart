@@ -11,3 +11,8 @@ class LoadedAllUserNameByRanking extends UserState {
 }
 
 class SavedUser extends UserState {}
+
+class LoadedMyProfile extends UserState {
+  final UserModel profile;
+  LoadedMyProfile({required this.profile});
+}

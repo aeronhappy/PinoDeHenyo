@@ -58,6 +58,8 @@ dependencies:
   qr_flutter: ^4.1.0
   image_picker: ^1.0.4
   mobile_scanner: ^3.5.2
+  device_info_plus: ^9.1.0
+  # device_info_plus: ^3.2.3
   # google_ml_kit: ^0.16.3
   # hand_signature: ^3.0.1
   # camera: ^0.10.0

@@ -8,6 +8,7 @@ import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/leaderboard_page.dart';
 import 'package:pino_de_henyo/views/qr_scanner_page.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
+import 'package:pino_de_henyo/widgets/delete_popup.dart';
 import 'package:pino_de_henyo/widgets/greetings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -374,11 +375,13 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                           color: Colors.white.withOpacity(.7),
                           child: InkWell(
                               onTap: () async {
-                                var sharedPref =
-                                    await SharedPreferences.getInstance();
-                                await sharedPref.clear();
-                                Feedback.forTap(context);
-                                exit(0);
+                                deleteDialogPopUp(context, () async {
+                                  var sharedPref =
+                                      await SharedPreferences.getInstance();
+                                  await sharedPref.clear();
+                                  Feedback.forTap(context);
+                                  exit(0);
+                                }, "If you continue, all of your data as a teacher will be completely deleted.");
                               },
                               child: Container(
                                 width: double.infinity,

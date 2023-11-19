@@ -86,34 +86,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
                           }),
                         ),
                       ),
-                      SizedBox(height: 30),
-                      Material(
-                          child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return MultiBlocProvider(
-                                  providers: [
-                                    BlocProvider(
-                                      create: (context) =>
-                                          UserBloc(sharedPreferences: sl()),
-                                    ),
-                                  ],
-                                  child: QRResultPage(
-                                    title: 'QR Result',
-                                    qrData: "hey",
-                                  ),
-                                );
-                              },
-                            ),
-                          );
-                          Feedback.forTap(context);
-                        },
-                        child:
-                            Container(padding: EdgeInsets.all(30), color: red),
-                      ))
+                      SizedBox(height: 100),
                     ],
                   ),
                 ),
