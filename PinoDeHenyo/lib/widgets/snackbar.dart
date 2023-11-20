@@ -3,7 +3,7 @@ import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 
 saveUserSnackBar() {
   return SnackBar(
-      duration: Duration(milliseconds: 1500),
+      duration: Duration(milliseconds: 500),
       elevation: 0,
       shape: StadiumBorder(),
       behavior: SnackBarBehavior.floating,

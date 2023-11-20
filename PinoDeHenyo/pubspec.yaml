@@ -59,6 +59,7 @@ dependencies:
   image_picker: ^1.0.4
   mobile_scanner: ^3.5.2
   device_info_plus: ^9.1.0
+  painter: ^2.0.0
   # device_info_plus: ^3.2.3
   # google_ml_kit: ^0.16.3
   # hand_signature: ^3.0.1
@@ -77,19 +78,23 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/pino/pino_head.png"
+  image_path: "assets/pino/pino_withBg.png"
+  adaptive_icon_background: "#00000000"
+  fullscreen: true
 
 flutter_native_splash:
-  color: "#ffffff"
-  image: assets/pino/pino_head.png
-  color_dark: "#121212"
-  image_dark: assets/pino/pino_head.png
+  color: "#8BD3E6"
+  image: assets/pino/pino_school.png
+  color_dark: "#7ABACC"
+  image_dark: assets/pino/pino_school.png
+  android_gravity: center
 
   android_12:
-    image: assets/pino/pino_head.png
-    icon_background_color: "#ffffff"
-    image_dark: assets/pino/pino_head.png
-    icon_background_color_dark: "#121212"
+    image: assets/pino/pino_school.png
+    icon_background_color: "#8BD3E6"
+    image_dark: assets/pino/pino_school.png
+    icon_background_color_dark: "#7ABACC"
+    android_gravity: center
  
     
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
-import 'package:pino_de_henyo/designs/colors/app_colors.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/qr_result_page.dart';
@@ -70,18 +69,26 @@ class _QRScannerPageState extends State<QRScannerPage> {
                               for (final barcode in barcodes) {
                                 qrCode = barcode.rawValue ?? "no data";
                               }
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    maintainState: false,
-                                    builder: (context) => QRResultPage(
-                                          title: 'QR Result',
-                                          qrData: qrCode,
-                                        )),
-                              );
                               setState(() {
                                 isScanCompleted = true;
                               });
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return MultiBlocProvider(
+                                      providers: [
+                                        BlocProvider(
+                                          create: (context) =>
+                                              UserBloc(sharedPreferences: sl()),
+                                        ),
+                                      ],
+                                      child: QRResultPage(
+                                          qrData: qrCode, title: 'QR Result'),
+                                    );
+                                  },
+                                ),
+                              );
                             }
                           }),
                         ),

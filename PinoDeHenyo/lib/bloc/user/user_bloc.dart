@@ -57,7 +57,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
 
       UserModel user = UserModel.fromJson(jsonDecode(event.userJsonString));
-      users.removeWhere((item) => item.userName == user.userName);
+      users.removeWhere((item) => item.deviceId == user.deviceId);
       users.add(user);
       String userString = jsonEncode(users);
       sharedPreferences.setString('listOfUser', userString);

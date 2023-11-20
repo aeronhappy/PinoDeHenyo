@@ -55,7 +55,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                       child: Column(mainAxisSize: MainAxisSize.max, children: [
                     Container(
                       height: 45,
-                      width: double.infinity,
+                      width: MediaQuery.of(context).size.width * .9,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           color: Colors.white),
@@ -86,7 +86,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                   },
                                   child: Container(
                                       width: MediaQuery.of(context).size.width *
-                                          .30,
+                                          .296,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(50)),
@@ -97,7 +97,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                             ? smallTitleWhite(true)
                                                 .copyWith(fontSize: 14)
                                             : smallTitleBlack(false)
-                                                .copyWith(fontSize: 14),
+                                                .copyWith(fontSize: 13),
                                       ))),
                                 ));
                           }),
@@ -199,8 +199,8 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                                                 .spaceBetween,
                                                         children: [
                                                           Container(
-                                                              width: 50,
-                                                              height: 50,
+                                                              width: 45,
+                                                              height: 45,
                                                               decoration: BoxDecoration(
                                                                   color: Colors
                                                                       .blue,
@@ -227,14 +227,16 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                                           ),
                                                           SizedBox(width: 10),
                                                           Container(
-                                                              width: 50,
-                                                              child: Text(
-                                                                  "Lvl. ${gameLevel() + 1}",
-                                                                  style: bodyBlack.copyWith(
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontSize:
-                                                                          18))),
+                                                              width: 45,
+                                                              child: Center(
+                                                                child: Text(
+                                                                    "Lvl. ${gameLevel() + 1}",
+                                                                    style: bodyBlack.copyWith(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            18)),
+                                                              )),
                                                         ]),
                                                   );
                                                 }),

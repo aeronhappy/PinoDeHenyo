@@ -23,7 +23,11 @@ class _QRResultPageState extends State<QRResultPage> {
   @override
   void initState() {
     super.initState();
-    user = UserModel.fromJson(jsonDecode(widget.qrData));
+    try {
+      user = UserModel.fromJson(jsonDecode(widget.qrData));
+    } on FormatException catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -37,6 +41,7 @@ class _QRResultPageState extends State<QRResultPage> {
                   .showSnackBar(saveUserSnackBar())
                   .closed
                   .then((value) {
+                Navigator.pop(context);
                 Navigator.pop(context);
               });
             }
@@ -113,11 +118,13 @@ class _QRResultPageState extends State<QRResultPage> {
                                   ],
                                 )
                               : Center(
-                                  child: Text("You scan a wrong barcode!")),
+                                  child: Text("You scan a wrong qr code!")),
                         ),
                         SizedBox(height: 30),
                         Material(
-                            color: Colors.red,
+                            color: user == null
+                                ? Colors.red.withOpacity(.2)
+                                : Colors.red,
                             borderRadius: BorderRadius.circular(20),
                             child: InkWell(
                                 onTap: user == null
