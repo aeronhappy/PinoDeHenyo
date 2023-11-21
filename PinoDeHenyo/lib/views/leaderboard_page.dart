@@ -123,7 +123,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                           itemBuilder: (context, gameIndex) {
                             return BlocBuilder<UserBloc, UserState>(
                               builder: (context, state) {
-                                if (state is LoadedAllUserNameByRanking) {
+                                if (state is LoadedAllUsers) {
                                   return Column(
                                     children: [
                                       Container(

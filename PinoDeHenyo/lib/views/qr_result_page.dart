@@ -36,7 +36,7 @@ class _QRResultPageState extends State<QRResultPage> {
       listeners: [
         BlocListener<UserBloc, UserState>(
           listener: (context, state) {
-            if (state is SavedUser) {
+            if (state is UserSaved) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(saveUserSnackBar())
                   .closed

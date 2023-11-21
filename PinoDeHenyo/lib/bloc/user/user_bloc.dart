@@ -23,6 +23,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(LoadedMyProfile(profile: user));
     });
 
+    on<GetAllUsers>((event, emit) async {
+      List<UserModel> users = [];
+
+      final jsonString = sharedPreferences.getString('listOfUser');
+      if (jsonString != null) {
+        final decoded = json.decode(jsonString);
+        users = await Future.value(
+            decoded.map<UserModel>((e) => UserModel.fromJson(e)).toList());
+      }
+
+      emit(LoadedAllUsers(users: users));
+    });
+
     on<GetAllUserRankingByGame>((event, emit) async {
       List<UserModel> users = [];
 
@@ -43,7 +56,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         users.sort((b, a) => a.quizLevel.compareTo(b.quizLevel));
       }
 
-      emit(LoadedAllUserNameByRanking(users: users));
+      emit(LoadedAllUsers(users: users));
     });
 
     on<AddUserInList>((event, emit) async {
@@ -61,7 +74,22 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       users.add(user);
       String userString = jsonEncode(users);
       sharedPreferences.setString('listOfUser', userString);
-      emit(SavedUser());
+      emit(UserSaved());
+    });
+
+    on<DeleteUserById>((event, emit) async {
+      List<UserModel> users = [];
+
+      final jsonString = sharedPreferences.getString('listOfUser');
+      if (jsonString != null) {
+        final decoded = json.decode(jsonString);
+        users = await Future.value(
+            decoded.map<UserModel>((e) => UserModel.fromJson(e)).toList());
+      }
+      users.removeWhere((item) => item.deviceId == event.userId);
+      String userString = jsonEncode(users);
+      sharedPreferences.setString('listOfUser', userString);
+      emit(LoadedAllUsers(users: users));
     });
   }
 }

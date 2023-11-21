@@ -6,6 +6,7 @@ import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/leaderboard_page.dart';
+import 'package:pino_de_henyo/views/list_of_student_page.dart';
 import 'package:pino_de_henyo/views/qr_scanner_page.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
 import 'package:pino_de_henyo/widgets/delete_popup.dart';
@@ -230,6 +231,60 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                         ],
                       ),
                       SizedBox(height: 50),
+                      Material(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white.withOpacity(.7),
+                          child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return MultiBlocProvider(
+                                        providers: [
+                                          BlocProvider(
+                                            create: (context) => UserBloc(
+                                                sharedPreferences: sl()),
+                                          ),
+                                        ],
+                                        child: ListOfStudentPage(
+                                          title: 'My Students',
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                );
+
+                                Feedback.forTap(context);
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                padding: EdgeInsets.all(20),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(children: [
+                                      Icon(
+                                        Icons.people_alt_rounded,
+                                        color: Colors.black,
+                                        size: 30,
+                                      ),
+                                      SizedBox(width: 15),
+                                      Hero(
+                                        tag: "My Students-tag",
+                                        child: Text(
+                                          'My Students',
+                                          style: smallTitleBlack(false),
+                                        ),
+                                      )
+                                    ]),
+                                    Icon(Icons.arrow_forward_ios),
+                                  ],
+                                ),
+                              ))),
+                      SizedBox(height: 10),
                       Material(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white.withOpacity(.7),

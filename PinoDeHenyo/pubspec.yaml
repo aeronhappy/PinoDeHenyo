@@ -84,15 +84,15 @@ flutter_launcher_icons:
 
 flutter_native_splash:
   color: "#8BD3E6"
-  image: assets/pino/pino_school.png
+  image: assets/pino/pino_withBg.png
   color_dark: "#7ABACC"
-  image_dark: assets/pino/pino_school.png
+  image_dark: assets/pino/pino_withBg.png
   android_gravity: center
 
   android_12:
-    image: assets/pino/pino_school.png
+    image: assets/pino/pino_withBg.png
     icon_background_color: "#8BD3E6"
-    image_dark: assets/pino/pino_school.png
+    image_dark: assets/pino/pino_withBg.png
     icon_background_color_dark: "#7ABACC"
     android_gravity: center
  
