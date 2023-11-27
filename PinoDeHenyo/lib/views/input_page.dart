@@ -23,7 +23,7 @@ class _InputPageState extends State<InputPage> {
   var text = [
     'Magandang araw! Ako nga pala si Pino.\nMaari ko bang malaman ang iyong pangalan?',
     'Narito ako upang ipaalam sa iyo ang kahulugan ng salitang \'Mother Tongue\'. Ito ay salitang Ingles na tumutukoy sa unang wika o katutubong wika. Wikang natutunan ng isang tao mula sa pagkabata.',
-    'Sa Tagalog, ito ay maaaring isalin bilang \'inang-wika\' o \'katutubong wika\'.Halika\'t samahan mo ko at pag-aralan natin ang mga wikang Filipino.'
+    'Sa Tagalog, ito ay maaaring isalin bilang \'inang-wika\' o \'katutubong wika\'. Halika\'t samahan mo ko at pag-aralan natin ang mga wikang Filipino.'
   ];
   String userName = '';
   bool hasName = false;
@@ -205,6 +205,7 @@ class _InputPageState extends State<InputPage> {
                     height: 60,
                     tag: 'next-tag',
                     onPressed: () async {
+                      flutterTts.stop();
                       pageController.nextPage(
                           duration: Duration(milliseconds: 500),
                           curve: Curves.decelerate);

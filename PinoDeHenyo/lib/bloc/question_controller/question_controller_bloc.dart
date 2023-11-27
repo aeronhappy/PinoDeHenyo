@@ -170,10 +170,8 @@ class QuestionControllerBloc
         for (var item in intProductList) {
           newList.add(lessonCategoryList[item]);
         }
-        emit(LoadedReadingQuestion(lessonList: newList));
-
-        add(GetQuizChoices(answer: newList[myLevel].title));
-        return;
+        // emit(LoadedQuizQuestion(lessonList: newList));
+        // add(GetQuizChoices(answer: newList[myLevel].title));
       }
 
       List<int> intProductList = savedStrList.map((i) => int.parse(i)).toList();

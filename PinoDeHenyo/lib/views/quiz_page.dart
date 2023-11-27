@@ -20,6 +20,12 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   PageController pageController = PageController();
+  int mylevel = 0;
+  int level = 0;
+  String myAnswer = '';
+  List<LessonCategoryModel> newQuestion = [];
+  List<String> choices = [];
+  int selectedAnswer = 5;
 
   bool equalsIgnoreCase(String? string1, String? string2) {
     return string1?.toLowerCase() == string2?.toLowerCase();
@@ -35,21 +41,13 @@ class _QuizPageState extends State<QuizPage> {
     return newString;
   }
 
-  int selectedAnswer = 5;
-
   @override
   void initState() {
-    super.initState();
-
-    context.read<QuestionControllerBloc>().add(GetQuizLevel());
     context.read<QuestionControllerBloc>().add(GetQuizQuestion());
+    context.read<QuestionControllerBloc>().add(GetQuizLevel());
+    super.initState();
   }
 
-  int mylevel = 0;
-  int level = 0;
-  String myAnswer = '';
-  List<LessonCategoryModel> newQuestion = [];
-  List<String> choices = [];
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
