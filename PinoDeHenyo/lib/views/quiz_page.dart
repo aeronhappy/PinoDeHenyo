@@ -6,6 +6,7 @@ import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/model/lesson_category_model.dart';
 import 'package:pino_de_henyo/widgets/correct_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/level_pop_up.dart';
+import 'package:pino_de_henyo/widgets/string_translator.dart';
 import 'package:pino_de_henyo/widgets/wrong_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/custom_back_button.dart';
 import 'package:pino_de_henyo/widgets/music.dart';
@@ -26,20 +27,6 @@ class _QuizPageState extends State<QuizPage> {
   List<LessonCategoryModel> newQuestion = [];
   List<String> choices = [];
   int selectedAnswer = 5;
-
-  bool equalsIgnoreCase(String? string1, String? string2) {
-    return string1?.toLowerCase() == string2?.toLowerCase();
-  }
-
-  String changeString(String original, String needToChange) {
-    String newString = original.replaceAll(needToChange, '_______');
-    return newString;
-  }
-
-  String changeStringforPino(String original, String needToChange) {
-    String newString = original.replaceAll(needToChange, 'blank.');
-    return newString;
-  }
 
   @override
   void initState() {
@@ -85,6 +72,9 @@ class _QuizPageState extends State<QuizPage> {
                 level = state.level;
               });
               pageController.jumpToPage(state.level);
+              context
+                  .read<QuestionControllerBloc>()
+                  .add(GetQuizChoices(answer: newQuestion[level].title));
             }
             if (state is CorrectAnswer) {
               correctAnswerDialog(context);
@@ -152,6 +142,9 @@ class _QuizPageState extends State<QuizPage> {
                                   physics: const NeverScrollableScrollPhysics(),
                                   controller: pageController,
                                   onPageChanged: (index) {
+                                    setState(() {
+                                      level = index;
+                                    });
                                     if (mylevel < index) {
                                       context
                                           .read<QuestionControllerBloc>()
@@ -164,6 +157,9 @@ class _QuizPageState extends State<QuizPage> {
                                   itemCount: newQuestion.length,
                                   itemBuilder: (context, index) {
                                     return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Stack(
                                           children: [
@@ -196,8 +192,12 @@ class _QuizPageState extends State<QuizPage> {
                                                   child: FloatingActionButton(
                                                     onPressed: () {
                                                       textToSpeech(
-                                                          newQuestion[index]
-                                                              .title);
+                                                          changeStringforPino(
+                                                              newQuestion[index]
+                                                                  .description,
+                                                              newQuestion[index]
+                                                                  .title
+                                                                  .toLowerCase()));
                                                     },
                                                     elevation: 5,
                                                     backgroundColor: green,
@@ -208,7 +208,6 @@ class _QuizPageState extends State<QuizPage> {
                                                 ))
                                           ],
                                         ),
-                                        const SizedBox(height: 20),
                                         Text(
                                           changeString(
                                               newQuestion[index].description,
@@ -218,13 +217,15 @@ class _QuizPageState extends State<QuizPage> {
                                           style:
                                               googleFonts(16, Colors.black54),
                                         ),
-                                        SizedBox(height: 20),
-                                        Expanded(
+                                        SizedBox(
+                                            height: 120,
                                             child: GridView.builder(
+                                                physics:
+                                                    NeverScrollableScrollPhysics(),
                                                 gridDelegate:
                                                     const SliverGridDelegateWithMaxCrossAxisExtent(
                                                         maxCrossAxisExtent: 180,
-                                                        childAspectRatio: 2.5,
+                                                        childAspectRatio: 3.5,
                                                         crossAxisSpacing: 10,
                                                         mainAxisSpacing: 10),
                                                 itemCount: choices.length,
@@ -247,7 +248,7 @@ class _QuizPageState extends State<QuizPage> {
                                                             const EdgeInsets
                                                                 .all(2.0),
                                                         child: Material(
-                                                          elevation: 10,
+                                                          elevation: 2,
                                                           shape:
                                                               StadiumBorder(),
                                                           child: Container(
@@ -265,14 +266,13 @@ class _QuizPageState extends State<QuizPage> {
                                                                           index],
                                                                       style: googleFonts(
                                                                           selectedAnswer == index
-                                                                              ? 22
+                                                                              ? 20
                                                                               : 18,
                                                                           Colors
                                                                               .black)))),
                                                         ),
                                                       ));
                                                 })),
-                                        const SizedBox(height: 10),
                                         InkWell(
                                           onTap: selectedAnswer == 5
                                               ? null
@@ -299,8 +299,9 @@ class _QuizPageState extends State<QuizPage> {
                                                 selectedAnswer == 5 ? .4 : 1,
                                             child: Container(
                                               height: 50,
-                                              decoration: ShapeDecoration(
-                                                  shape: const StadiumBorder(),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
                                                   color: Colors.blue),
                                               child: Center(
                                                   child: Icon(

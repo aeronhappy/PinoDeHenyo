@@ -93,7 +93,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomBackButton(text: 'My Profile'),
+                    CustomBackButton(text: widget.title),
                     SizedBox(height: 50),
                     userModel == null
                         ? Center(child: CircularProgressIndicator())
@@ -593,92 +593,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                               Text(
                                                 'Change positon',
                                                 style: smallTitleBlack(false),
-                                              )
-                                            ]),
-                                            Icon(Icons.arrow_forward_ios),
-                                          ],
-                                        ),
-                                      ))),
-                              SizedBox(height: 10),
-                              Material(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white.withOpacity(.7),
-                                  child: InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              maintainState: false,
-                                              builder: (context) =>
-                                                  ExampleWritePage()),
-                                        );
-
-                                        Feedback.forTap(context);
-                                      },
-                                      child: Container(
-                                        width: double.infinity,
-                                        padding: EdgeInsets.all(20),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(children: [
-                                              Icon(
-                                                Icons.settings,
-                                                color: Colors.black,
-                                                size: 30,
-                                              ),
-                                              SizedBox(width: 15),
-                                              Hero(
-                                                tag: "Settings-tag",
-                                                child: Text(
-                                                  'Signature',
-                                                  style: smallTitleBlack(false),
-                                                ),
-                                              )
-                                            ]),
-                                            Icon(Icons.arrow_forward_ios),
-                                          ],
-                                        ),
-                                      ))),
-                              SizedBox(height: 10),
-                              Material(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white.withOpacity(.7),
-                                  child: InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              maintainState: false,
-                                              builder: (context) =>
-                                                  ExaampleTextRecog()),
-                                        );
-
-                                        Feedback.forTap(context);
-                                      },
-                                      child: Container(
-                                        width: double.infinity,
-                                        padding: EdgeInsets.all(20),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(children: [
-                                              Icon(
-                                                Icons.settings,
-                                                color: Colors.black,
-                                                size: 30,
-                                              ),
-                                              SizedBox(width: 15),
-                                              Hero(
-                                                tag: "Settings-tag",
-                                                child: Text(
-                                                  'Text Recogniton',
-                                                  style: smallTitleBlack(false),
-                                                ),
                                               )
                                             ]),
                                             Icon(Icons.arrow_forward_ios),

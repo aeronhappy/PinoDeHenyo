@@ -119,7 +119,6 @@ List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
     color: null,
   ),
   ///////
-
   LessonCategoryModel(
     id: 'HAYOP',
     title: 'Kalabaw',
@@ -158,7 +157,7 @@ List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
   ),
   LessonCategoryModel(
     id: 'HAYOP',
-    title: 'ahas',
+    title: 'Ahas',
     description:
         'Ang ahas ay ang mahaba at walang hitang mga reptilyang karnibora at isa sa delikadong hayop.',
     example: 'Si Mark ay maynakitang mahabang ahas sa daan.',

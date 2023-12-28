@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
+import 'package:pino_de_henyo/widgets/music.dart';
 
 class CustomBackButton extends StatelessWidget {
   final String text;
@@ -13,6 +14,7 @@ class CustomBackButton extends StatelessWidget {
         onTap: () {
           Feedback.forTap(context);
           Navigator.pop(context, true);
+          flutterTts.stop();
         },
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,

@@ -39,6 +39,10 @@ class _DashboardPageState extends State<DashboardPage> {
     });
   }
 
+  String splitName(String userName) {
+    return "${userName.split(" ")[0]}!";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -84,7 +88,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                           UserBloc(sharedPreferences: sl()),
                                     ),
                                   ],
-                                  child: UserProfilePage(title: 'My Profile'),
+                                  child: UserProfilePage(title: 'Profile'),
                                 );
                               },
                             ),
@@ -102,7 +106,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               border: Border.all(color: Colors.black, width: 2),
                               borderRadius: BorderRadius.circular(50)),
                           child: Hero(
-                            tag: 'My Profile-tag',
+                            tag: 'Profile-tag',
                             child: Text(
                               'My Profile',
                               style:
@@ -144,9 +148,16 @@ class _DashboardPageState extends State<DashboardPage> {
                                         fontSize: 18, letterSpacing: -1),
                                   ),
                                   Text(
-                                    '${userName.split(" ")[0]}!',
+                                    splitName(userName),
                                     style: largeTitleBlack(true).copyWith(
-                                        color: Colors.red.shade400, height: 1),
+                                        color: Colors.red.shade400,
+                                        height: 1,
+                                        fontSize: splitName(userName)
+                                                    .characters
+                                                    .length >=
+                                                9
+                                            ? 22
+                                            : 30),
                                   ),
                                 ],
                               ),

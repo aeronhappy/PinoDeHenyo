@@ -125,10 +125,14 @@ class _CategoryPageState extends State<CategoryPage> {
                                         borderRadius: BorderRadius.circular(12),
                                         child: Container(
                                           decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color:
+                                                      Colors.primaries[index],
+                                                  width: 2),
                                               borderRadius:
                                                   BorderRadius.circular(12),
                                               color: Colors.primaries[index]
-                                                  .withOpacity(.8)),
+                                                  .withOpacity(.65)),
                                           child: Center(
                                             child: Hero(
                                               tag:
@@ -152,109 +156,6 @@ class _CategoryPageState extends State<CategoryPage> {
                 ],
               ),
             ),
-            // body: Container(
-            //   color: red,
-            //   child: Column(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       CustomBackButton(text: widget.title),
-            //       Padding(
-            //         padding: const EdgeInsets.all(20.0),
-            //         child: Column(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             Container(
-            //               child: Text(
-            //                 'Pumili ng kategorya.',
-            //                 style: bodyBlack.copyWith(
-            //                     fontSize: 30,
-            //                     color: Colors.black,
-            //                     fontWeight: FontWeight.bold,
-            //                     letterSpacing: -1),
-            //               ),
-            //             ),
-            //             BlocBuilder<QuestionControllerBloc,
-            //                 QuestionControllerState>(
-            //               builder: (context, state) {
-            //                 if (state is LoadedCategory) {
-            //                   var category = state.category;
-
-            //                   return Expanded(
-            //                     child: GridView.builder(
-            //                         gridDelegate:
-            //                             const SliverGridDelegateWithMaxCrossAxisExtent(
-            //                                 maxCrossAxisExtent: 150,
-            //                                 childAspectRatio: 2.5,
-            //                                 crossAxisSpacing: 10,
-            //                                 mainAxisSpacing: 10),
-            //                         itemCount: category.length + 4,
-            //                         itemBuilder: (BuildContext ctx, i) {
-            //                           return InkWell(
-            //                             borderRadius: BorderRadius.circular(12),
-            //                             onTap: i > category.length - 1
-            //                                 ? null
-            //                                 : () {
-            //                                     Navigator.push(
-            //                                       context,
-            //                                       MaterialPageRoute(
-            //                                         builder: (context) {
-            //                                           return MultiBlocProvider(
-            //                                             providers: [
-            //                                               BlocProvider(
-            //                                                 create: (context) =>
-            //                                                     QuestionControllerBloc(
-            //                                                         sharedPreferences:
-            //                                                             sl()),
-            //                                               ),
-            //                                             ],
-            //                                             child: LessonPage(
-            //                                                 category: state
-            //                                                     .category[i]),
-            //                                           );
-            //                                         },
-            //                                       ),
-            //                                     );
-            //                                   },
-            //                             child: Material(
-            //                               elevation: 3,
-            //                               borderRadius: BorderRadius.circular(12),
-            //                               child: Container(
-            //                                 padding: EdgeInsets.all(20),
-            //                                 decoration: BoxDecoration(
-            //                                     color: Colors.primaries[i %
-            //                                             Colors.primaries.length]
-            //                                         .withOpacity(.5),
-            //                                     borderRadius:
-            //                                         BorderRadius.circular(12)),
-            //                                 child: Center(
-            //                                   child: Text(
-            //                                     i > category.length - 1
-            //                                         ? '$i'
-            //                                         : state.category[i],
-            //                                     textAlign: TextAlign.center,
-            //                                     style: largeTitleWhite(true)
-            //                                         .copyWith(
-            //                                       fontSize: 20,
-            //                                     ),
-            //                                   ),
-            //                                 ),
-            //                               ),
-            //                             ),
-            //                           );
-            //                         }),
-            //                   );
-            //                 }
-            //                 return Container();
-            //               },
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
           ),
         ),
       ],

@@ -141,6 +141,9 @@ class _ReadingPageState extends State<ReadingPage> {
                               physics: const NeverScrollableScrollPhysics(),
                               controller: pageController,
                               onPageChanged: (index) {
+                                setState(() {
+                                  level = index;
+                                });
                                 if (mylevel < index) {
                                   context
                                       .read<QuestionControllerBloc>()
