@@ -8,8 +8,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/model/user_profile_model.dart';
-import 'package:pino_de_henyo/views/example_text_recog_page.dart';
-import 'package:pino_de_henyo/views/example_write_page.dart';
 import 'package:pino_de_henyo/views/generate_qr.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
 import 'package:pino_de_henyo/widgets/custom_back_button.dart';
