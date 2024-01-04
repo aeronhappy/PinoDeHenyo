@@ -241,7 +241,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                                       sharedPreferences: sl()),
                                             ),
                                           ],
-                                          child: WritingPage(
+                                          child: QuizPage(
                                             title: 'Magsulat',
                                           ),
                                         );
@@ -267,7 +267,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                                       sharedPreferences: sl()),
                                             ),
                                           ],
-                                          child: QuizPage(
+                                          child: WritingPage(
                                             title: 'Magsagot',
                                           ),
                                         );

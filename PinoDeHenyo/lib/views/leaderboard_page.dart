@@ -177,13 +177,13 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                                   int gameLevel() {
                                                     int level = 0;
                                                     if (gameIndex == 0) {
-                                                      level = user.writingLevel;
+                                                      level = user.quizLevel;
                                                     }
                                                     if (gameIndex == 1) {
                                                       level = user.readingLevel;
                                                     }
                                                     if (gameIndex == 2) {
-                                                      level = user.quizLevel;
+                                                      level = user.writingLevel;
                                                     }
                                                     return level;
                                                   }

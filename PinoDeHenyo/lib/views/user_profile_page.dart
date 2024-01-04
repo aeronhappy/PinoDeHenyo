@@ -401,7 +401,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                                             fontSize: 16)),
                                                 SizedBox(height: 5),
                                                 Text(
-                                                    "${userModel!.writingLevel + 1}",
+                                                    "${userModel!.quizLevel + 1}",
                                                     style: largeTitleWhite(true)
                                                         .copyWith(
                                                             height: 1,
@@ -433,7 +433,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                                             fontSize: 16)),
                                                 SizedBox(height: 5),
                                                 Text(
-                                                    "${userModel!.quizLevel + 1}",
+                                                    "${userModel!.writingLevel + 1}",
                                                     style: largeTitleWhite(true)
                                                         .copyWith(
                                                             height: 1,

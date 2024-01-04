@@ -19,6 +19,57 @@ class LessonCategoryModel {
 }
 
 List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
+  //hugis
+  LessonCategoryModel(
+    id: 'HUGIS',
+    title: 'Bilog',
+    description:
+        'Ang hugis bilog ay madalas na itinuturing na simbolo ng kabuuan, walang hanggan, o kawalan ng simula\'t wakas dahil sa kanyang walang patapos na anyo.',
+    example:
+        'Nakakatuwa ang ang hugis ng buwan ngayon at ito ay bilog na bilog.',
+    image: 'assets/lesson/bilog.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'HUGIS',
+    title: 'Parisukat',
+    description:
+        'Ang parisukat ay isang hugis na may parehong haba at parehong anggulo sa bawat sulok. Madalas itong tumutukoy sa katatagan, kaayusan, at balanse. ',
+    example:
+        'Ang aking bagong laruan na binili ng aking ina ay hugis parisukat.',
+    image: 'assets/lesson/parisukat.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'HUGIS',
+    title: 'Parihaba',
+    description:
+        'Ang parihaba, o rectangle sa Ingles, ay isang hugis na may magkakaparehong magkasalungat na gilid at parehong magkakaparehong anggulo sa kanyang sulok.',
+    example: 'Ang hugis ng ating watawat ay gaya ng hugis ng parihaba',
+    image: 'assets/lesson/parihaba.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'HUGIS',
+    title: 'Tatsulok',
+    description:
+        'Tatsulok ang hugis na may tatlong gilid at tatlong sulok. Ito\'y parang puno na may tatlong sanga o isang piraso ng pizza na hinati sa tatlong pantay na piraso.',
+    example: 'Si Alison ay bumili ng ice cream na hugis tatsulok ang apa neto.',
+    image: 'assets/lesson/tatsulok.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'HUGIS',
+    title: 'Oblong',
+    description:
+        'Ang oblong ay isang hugis na mas mahaba kaysa sa bilog at may parehong magkakasalungat na magkabilang gilid.',
+    example:
+        'Paborito ni Jc ang itlog dahil daw eto ay oblong na kanyang paboritong hugis.',
+    image: 'assets/lesson/oblong.png',
+    color: null,
+  ),
+
+//Prutas
   LessonCategoryModel(
     id: 'PRUTAS',
     title: 'Mangga',
@@ -67,7 +118,8 @@ List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
     image: 'assets/lesson/pakwan.png',
     color: null,
   ),
-  ////////////////////////
+
+  ////////////////////////gulay
   LessonCategoryModel(
     id: 'GULAY',
     title: 'Kamatis',
@@ -118,7 +170,8 @@ List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
     image: 'assets/lesson/sayote.png',
     color: null,
   ),
-  ///////
+
+  ///////hayop
   LessonCategoryModel(
     id: 'HAYOP',
     title: 'Kalabaw',
@@ -165,7 +218,7 @@ List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
     color: null,
   ),
 
-  /////
+  /////anyong tubig
 
   LessonCategoryModel(
     id: 'ANYONG TUBIG',

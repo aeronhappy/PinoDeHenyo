@@ -103,7 +103,7 @@ class _QRResultPageState extends State<QRResultPage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                                "• Magbasa  (Level ${user!.writingLevel + 1})",
+                                                "• Magbasa  (Level ${user!.quizLevel + 1})",
                                                 style: smallTitleBlack(false)),
                                             SizedBox(height: 10),
                                             Text(
@@ -111,7 +111,7 @@ class _QRResultPageState extends State<QRResultPage> {
                                                 style: smallTitleBlack(false)),
                                             SizedBox(height: 10),
                                             Text(
-                                                "• Magsagot  (Level ${user!.quizLevel + 1})",
+                                                "• Magsagot  (Level ${user!.writingLevel + 1})",
                                                 style: smallTitleBlack(false)),
                                           ]),
                                     ),

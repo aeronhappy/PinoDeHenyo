@@ -47,13 +47,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
 
       if (event.gameName == gameName[0]) {
-        users.sort((b, a) => a.writingLevel.compareTo(b.writingLevel));
+        users.sort((b, a) => a.quizLevel.compareTo(b.quizLevel));
       }
       if (event.gameName == gameName[1]) {
         users.sort((b, a) => a.readingLevel.compareTo(b.readingLevel));
       }
       if (event.gameName == gameName[2]) {
-        users.sort((b, a) => a.quizLevel.compareTo(b.quizLevel));
+        users.sort((b, a) => a.writingLevel.compareTo(b.writingLevel));
       }
 
       emit(LoadedAllUsers(users: users));
