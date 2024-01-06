@@ -137,11 +137,9 @@ class _CategoryPageState extends State<CategoryPage> {
                                             child: Hero(
                                               tag:
                                                   "${state.category[index]}-tag",
-                                              child: Text(
-                                                state.category[index],
-                                                textAlign: TextAlign.center,
-                                                style: smallTitleWhite(true),
-                                              ),
+                                              child: Text(state.category[index],
+                                                  textAlign: TextAlign.center,
+                                                  style: smallTitleWhite(true)),
                                             ),
                                           ),
                                         ),

@@ -119,6 +119,94 @@ List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
     color: null,
   ),
 
+  //////kulay
+  LessonCategoryModel(
+    id: 'KULAY',
+    title: 'Pula',
+    description:
+        'Ang kulay pula ay madalas na nauugnay sa damdamin tulad ng pag-ibig, galit, o kaya naman sa enerhiya at lakas.',
+    example: 'Ang rosas na aking nakita sa bakuran ay pulang-pula.',
+    image: 'assets/lesson/pula.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'KULAY',
+    title: 'Berde',
+    description:
+        'Ang berde ay madalas na nauugma sa mga halaman, damo, at iba pang aspeto ng kalikasan. Ito ay may positibong konotasyon at madalas na kinakatawan ang kalusugan, kalikasan, at pag-asa. ',
+    example:
+        'Ang ganda naman sa kapaligiran na ito, ang ganda ng mga puno na kukay berde.',
+    image: 'assets/lesson/berde.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'KULAY',
+    title: 'Dilaw',
+    description: 'Ang kulay dilaw ay tumutukoy pagiging positibo at masiyahin.',
+    example:
+        'Nag kulay ako ng araw kanina at pinakulayan ito sakin ng aking guro na kulay dilaw',
+    image: 'assets/lesson/dilaw.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'KULAY',
+    title: 'Asul',
+    description:
+        'Ang kulay na ito ay para sa Pakikipagkapwa, Mapagkakatiwalaan, Kalmado at Pagkalumbay. -Ang kulay asul ang siyang kulay na ginagamit ng pangkalahatan, marahil dahil sa marami itong iba\'t-ibang katangian.',
+    example:
+        'Nakaupo ako ngayon sa dagat kasama ang aking ina, tinitingnan namin ang ulap na kukay asul.',
+    image: 'assets/lesson/asul.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'KULAY',
+    title: 'Puti',
+    description:
+        'Ang kulay puti ay nangangahulugan ng pagiging kumpleto, puro at perpekto; kalinisan at kainosentehan.',
+    example:
+        'Bumili ako ng damit sa mall kase ako ay nagandahan dito ito ay puting puti na bagay sa akin',
+    image: 'assets/lesson/puti.png',
+    color: null,
+  ),
+
+  ///// tandang panapos
+  LessonCategoryModel(
+    id: 'TANDANG PANAPOS',
+    title: 'Tuldok',
+    description:
+        'Ginagamit sa katapusan ng pangungusap. Nagpapahiwatig ito ng wakas o pagtatapos ng isang pangungusap.',
+    example: 'Ang ganda ng sinag ng araw kaninang umaga (.)',
+    image: 'assets/lesson/tuldok.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'TANDANG PANAPOS',
+    title: 'Kuwit',
+    description:
+        'Ginagamit ito upang maghiwalay ng mga salita o sugnay sa loob ng pangungusap. Nagbibigay ito ng pansin sa mga bahagi ng pangungusap. ',
+    example: 'Ang ulam ko kaninang maga ay Itlog, Hotdog at tocino.',
+    image: 'assets/lesson/kuwit.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'TANDANG PANAPOS',
+    title: 'Tandang Pananong',
+    description:
+        'Ginagamit ito sa dulo ng pangungusap na nagtatanong. Nagpapahiwatig ito ng isang tanong.',
+    example: 'Ikaw ba yong nakita ko nung isa sa aming silid-aralan?',
+    image: 'assets/lesson/pananong.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'TANDANG PANAPOS',
+    title: 'Tandang Padamdam',
+    description:
+        'Ginagamit ito upang ipahayag ang damdamin o kaisipan na may kasamang tuwa, galit, o pagtataka.',
+    example: 'Maligayang kaarawan sa iyo kaibigan!',
+    image: 'assets/lesson/padamdam.png',
+    color: null,
+  ),
+
   ////////////////////////gulay
   LessonCategoryModel(
     id: 'GULAY',
@@ -129,7 +217,6 @@ List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
     image: 'assets/lesson/kamatis.png',
     color: null,
   ),
-
   LessonCategoryModel(
     id: 'GULAY',
     title: 'Talong',
@@ -218,8 +305,64 @@ List<LessonCategoryModel> lessonCategoryList = <LessonCategoryModel>[
     color: null,
   ),
 
-  /////anyong tubig
+////Pananong
+  LessonCategoryModel(
+    id: 'PANGHALIP PANANONG',
+    title: 'Ano',
+    description:
+        'Kadalasang ito ay itinuturing na panghalip na patanong dahil ginagamit ito upang magtanong sa kahulugan, kalikasan, o uri ng isang bagay.',
+    example: 'Ano ang ulam mo ngayong gabi?',
+    image: 'assets/lesson/ano.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'PANGHALIP PANANONG',
+    title: 'Sino',
+    description:
+        'Isa pang panghalip na patanong na nagtatanong sa pagkakakilanlan ng isang tao. ',
+    example: 'Sino ang nagsabi sayo na mahusay akong mag sayaw.',
+    image: 'assets/lesson/sino.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'PANGHALIP PANANONG',
+    title: 'Kailan',
+    description:
+        'Panghalip na patanong na nagtatanong sa oras o panahon ng isang pangyayari.',
+    example: 'Kailan kaya darating ang aking kaibigan?',
+    image: 'assets/lesson/kailan.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'PANGHALIP PANANONG',
+    title: 'Bakit',
+    description:
+        'Panghalip na patanong na nagtatanong sa dahilan o rason ng isang pangyayari.',
+    example: 'Bakit kaya ang husay ng ate kong kumanta?',
+    image: 'assets/lesson/bakit.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'PANGHALIP PANANONG',
+    title: 'Saan',
+    description:
+        'Panghalip na patanong na nagtatanong sa lugar na kinasasangkutan ng isang bagay o pangyayari.',
+    example: 'Saan kaya tayo kakain ngayong gabi?',
+    image: 'assets/lesson/saan.png',
+    color: null,
+  ),
+  LessonCategoryModel(
+    id: 'PANGHALIP PANANONG',
+    title: 'Paano',
+    description:
+        'Panghalip na patanong na nagtatanong kung paano naganap ang isang pangyayari.',
+    example:
+        'Paano niyo nasabi na ako ang nakita niyo sa paaralan nung araw na iyon?',
+    image: 'assets/lesson/paano.png',
+    color: null,
+  ),
 
+  /////anyong tubig
   LessonCategoryModel(
     id: 'ANYONG TUBIG',
     title: 'Batis',

@@ -43,7 +43,9 @@ class CustomBackButton extends StatelessWidget {
               Hero(
                 tag: '$text-tag',
                 transitionOnUserGestures: true,
-                child: Text(text, style: appBarWhite(true)),
+                child: Text(text,
+                    style: appBarWhite(true)
+                        .copyWith(fontSize: text.length <= 8 ? 22 : 16)),
               ),
             ],
           ),
