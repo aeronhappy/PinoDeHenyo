@@ -139,13 +139,13 @@ class _InputPageState extends State<InputPage> {
                                       decoration: InputDecoration(
                                           border: InputBorder.none,
                                           labelText:
-                                              "Ilagay ang pangalan dito.",
+                                              "Ilagay ang buong pangalan dito.",
                                           labelStyle: bodyBlack.copyWith(
                                               color: Colors.black45)),
                                       controller: textEditingController,
                                       onChanged: (value) {
                                         setState(() {
-                                          if (value.isEmpty) {
+                                          if (value.length <= 3) {
                                             hasName = false;
                                           } else {
                                             hasName = true;

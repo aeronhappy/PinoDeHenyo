@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
+import 'package:pino_de_henyo/model/teacher_model.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/leaderboard_page.dart';
 import 'package:pino_de_henyo/views/list_of_student_page.dart';
@@ -21,8 +22,7 @@ class TeacherProfilePage extends StatefulWidget {
 }
 
 class _TeacherProfilePageState extends State<TeacherProfilePage> {
-  String teacherName = '';
-  String teacherGender = '';
+  TeacherModel? myTeacher;
   bool isEditMode = false;
 
   TextEditingController textEditingController = TextEditingController();
@@ -35,10 +35,10 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
 
   getTeacherData() async {
     var sharedPref = await SharedPreferences.getInstance();
+    int teacherId = sharedPref.getInt('teacherId') ?? 0;
+    int index = teachers.indexWhere((element) => element.id == teacherId);
     setState(() {
-      teacherGender = sharedPref.getString('teacherGender') ?? '';
-      teacherName = sharedPref.getString('teacherName') ?? '';
-      textEditingController.text = teacherName;
+      myTeacher = teachers[index];
     });
   }
 
@@ -195,7 +195,9 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                             ],
                                           )
                                         : Text(
-                                            "${teacherGender == "Ginoo" ? "Ginoong" : teacherGender} $teacherName",
+                                            myTeacher == null
+                                                ? ""
+                                                : "${myTeacher!.gender == "Ginoo" ? "Ginoong" : "Ginang"} ${myTeacher!.lastName}",
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.center,
@@ -207,27 +209,27 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                   ),
                                 ],
                               )),
-                          Positioned(
-                            top: 10,
-                            right: 10,
-                            child: isEditMode
-                                ? Container()
-                                : Material(
-                                    borderRadius: BorderRadius.circular(100),
-                                    child: InkWell(
-                                        onTap: (() {
-                                          setState(() {
-                                            isEditMode = true;
-                                          });
-                                        }),
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        child: Container(
-                                          height: 35,
-                                          width: 35,
-                                          child: Icon(Icons.edit),
-                                        ))),
-                          )
+                          // Positioned(
+                          //   top: 10,
+                          //   right: 10,
+                          //   child: isEditMode
+                          //       ? Container()
+                          //       : Material(
+                          //           borderRadius: BorderRadius.circular(100),
+                          //           child: InkWell(
+                          //               onTap: (() {
+                          //                 setState(() {
+                          //                   isEditMode = true;
+                          //                 });
+                          //               }),
+                          //               borderRadius:
+                          //                   BorderRadius.circular(100),
+                          //               child: Container(
+                          //                 height: 35,
+                          //                 width: 35,
+                          //                 child: Icon(Icons.edit),
+                          //               ))),
+                          // )
                         ],
                       ),
                       SizedBox(height: 50),
