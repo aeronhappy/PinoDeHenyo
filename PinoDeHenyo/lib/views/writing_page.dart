@@ -10,6 +10,7 @@ import 'package:pino_de_henyo/widgets/custom_back_button.dart';
 import 'package:pino_de_henyo/widgets/music.dart';
 import 'package:pino_de_henyo/widgets/string_translator.dart';
 import 'package:pino_de_henyo/widgets/wrong_answer_popup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WritingPage extends StatefulWidget {
   final String title;
@@ -21,6 +22,31 @@ class WritingPage extends StatefulWidget {
 
 class _WritingPageState extends State<WritingPage> {
   PageController pageController = PageController();
+
+  bool isPinoReading = false;
+  textToSpeechWithPino(String text) async {
+    setState(() {
+      isPinoReading = true;
+    });
+    var sharedPref = await SharedPreferences.getInstance();
+    var pinoValue = sharedPref.getDouble('PinoVolume') ?? .5;
+    var bgIndex = sharedPref.getInt('Music') ?? 0;
+
+    await bgAudioPlayer.loop(bgList[bgIndex], volume: .05);
+    await flutterTts
+        .setVoice({"name": "fil-ph-x-fid-local", "locale": "fil-PH"});
+    await flutterTts.setSpeechRate(0.5);
+    await flutterTts.setVolume(pinoValue);
+    await flutterTts.setPitch(1.5);
+    await flutterTts.speak(text);
+
+    await flutterTts.awaitSpeakCompletion(true).whenComplete(() {
+      playMusic();
+      setState(() {
+        isPinoReading = false;
+      });
+    });
+  }
 
   bool equalsIgnoreCase(String? string1, String? string2) {
     return string1?.toLowerCase() == string2?.toLowerCase();
@@ -190,7 +216,7 @@ class _WritingPageState extends State<WritingPage> {
                                             padding: const EdgeInsets.all(5),
                                             child: FloatingActionButton(
                                               onPressed: () {
-                                                textToSpeech(
+                                                textToSpeechWithPino(
                                                     changeStringforPino(
                                                         newQuestion[index]
                                                             .description,
@@ -411,7 +437,18 @@ class _WritingPageState extends State<WritingPage> {
                       )
                     ]),
               ),
-            )))
+            ))),
+        AnimatedPositioned(
+            duration: Duration(milliseconds: 100),
+            right: -50,
+            bottom: isPinoReading ? -10 : -250,
+            child: Container(
+              height: 250,
+              width: 250,
+              child: Image.asset(
+                "assets/pino/pino_medium.png",
+              ),
+            )),
       ],
     );
   }

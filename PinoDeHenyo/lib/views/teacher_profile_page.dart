@@ -426,44 +426,6 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                   ],
                                 ),
                               ))),
-                      SizedBox(height: 10),
-                      Material(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white.withOpacity(.7),
-                          child: InkWell(
-                              onTap: () async {
-                                deleteDialogPopUp(context, () async {
-                                  var sharedPref =
-                                      await SharedPreferences.getInstance();
-                                  await sharedPref.clear();
-                                  Feedback.forTap(context);
-                                  exit(0);
-                                }, "If you continue, all of your data as a teacher will be completely deleted.");
-                              },
-                              child: Container(
-                                width: double.infinity,
-                                padding: EdgeInsets.all(20),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(children: [
-                                      Icon(
-                                        Icons.manage_accounts_rounded,
-                                        color: Colors.black,
-                                        size: 30,
-                                      ),
-                                      SizedBox(width: 15),
-                                      Text(
-                                        'Change positon',
-                                        style: smallTitleBlack(false),
-                                      )
-                                    ]),
-                                    Icon(Icons.arrow_forward_ios),
-                                  ],
-                                ),
-                              ))),
                     ],
                   )
                 ],

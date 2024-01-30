@@ -11,7 +11,6 @@ import 'package:pino_de_henyo/model/user_profile_model.dart';
 import 'package:pino_de_henyo/views/generate_qr.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
 import 'package:pino_de_henyo/widgets/custom_back_button.dart';
-import 'package:pino_de_henyo/widgets/delete_popup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProfilePage extends StatefulWidget {
@@ -552,45 +551,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                                   'Settings',
                                                   style: smallTitleBlack(false),
                                                 ),
-                                              )
-                                            ]),
-                                            Icon(Icons.arrow_forward_ios),
-                                          ],
-                                        ),
-                                      ))),
-                              SizedBox(height: 10),
-                              Material(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white.withOpacity(.7),
-                                  child: InkWell(
-                                      onTap: () {
-                                        deleteDialogPopUp(context, () async {
-                                          var sharedPref =
-                                              await SharedPreferences
-                                                  .getInstance();
-                                          await sharedPref.clear();
-                                          Feedback.forTap(context);
-                                          exit(0);
-                                        }, "If you continue, all of your data as a student will be completely deleted.");
-                                      },
-                                      child: Container(
-                                        width: double.infinity,
-                                        padding: EdgeInsets.all(20),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(children: [
-                                              Icon(
-                                                Icons.manage_accounts_rounded,
-                                                color: Colors.black,
-                                                size: 30,
-                                              ),
-                                              SizedBox(width: 15),
-                                              Text(
-                                                'Change positon',
-                                                style: smallTitleBlack(false),
                                               )
                                             ]),
                                             Icon(Icons.arrow_forward_ios),

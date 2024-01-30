@@ -10,6 +10,7 @@ import 'package:pino_de_henyo/widgets/string_translator.dart';
 import 'package:pino_de_henyo/widgets/wrong_answer_popup.dart';
 import 'package:pino_de_henyo/widgets/custom_back_button.dart';
 import 'package:pino_de_henyo/widgets/music.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizPage extends StatefulWidget {
   final String title;
@@ -27,6 +28,31 @@ class _QuizPageState extends State<QuizPage> {
   List<LessonCategoryModel> newQuestion = [];
   List<String> choices = [];
   int selectedAnswer = 5;
+
+  bool isPinoReading = false;
+  textToSpeechWithPino(String text) async {
+    setState(() {
+      isPinoReading = true;
+    });
+    var sharedPref = await SharedPreferences.getInstance();
+    var pinoValue = sharedPref.getDouble('PinoVolume') ?? .5;
+    var bgIndex = sharedPref.getInt('Music') ?? 0;
+
+    await bgAudioPlayer.loop(bgList[bgIndex], volume: .05);
+    await flutterTts
+        .setVoice({"name": "fil-ph-x-fid-local", "locale": "fil-PH"});
+    await flutterTts.setSpeechRate(0.5);
+    await flutterTts.setVolume(pinoValue);
+    await flutterTts.setPitch(1.5);
+    await flutterTts.speak(text);
+
+    await flutterTts.awaitSpeakCompletion(true).whenComplete(() {
+      playMusic();
+      setState(() {
+        isPinoReading = false;
+      });
+    });
+  }
 
   @override
   void initState() {
@@ -191,7 +217,7 @@ class _QuizPageState extends State<QuizPage> {
                                                       const EdgeInsets.all(5),
                                                   child: FloatingActionButton(
                                                     onPressed: () {
-                                                      textToSpeech(
+                                                      textToSpeechWithPino(
                                                           changeStringforPino(
                                                               newQuestion[index]
                                                                   .description,
@@ -315,7 +341,18 @@ class _QuizPageState extends State<QuizPage> {
                                     );
                                   }),
                             )
-                          ])))))
+                          ]))))),
+      AnimatedPositioned(
+          duration: Duration(milliseconds: 100),
+          right: -50,
+          bottom: isPinoReading ? -10 : -250,
+          child: Container(
+            height: 250,
+            width: 250,
+            child: Image.asset(
+              "assets/pino/pino_medium.png",
+            ),
+          )),
     ]);
   }
 }
