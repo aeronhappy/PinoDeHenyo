@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
@@ -10,7 +8,6 @@ import 'package:pino_de_henyo/views/leaderboard_page.dart';
 import 'package:pino_de_henyo/views/list_of_student_page.dart';
 import 'package:pino_de_henyo/views/qr_scanner_page.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
-import 'package:pino_de_henyo/widgets/delete_popup.dart';
 import 'package:pino_de_henyo/widgets/greetings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

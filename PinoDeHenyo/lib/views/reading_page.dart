@@ -28,7 +28,6 @@ class _ReadingPageState extends State<ReadingPage> {
   PageController pageController = PageController();
 
   bool isListening = false;
-
   String answerText = '';
   int mylevel = 0;
   int level = 0;
