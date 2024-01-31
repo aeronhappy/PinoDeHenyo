@@ -56,7 +56,7 @@ class _QRResultPageState extends State<QRResultPage> {
             bottom: 0,
             top: 0,
             child: Image.asset(
-              'assets/pino/sky_bg.png',
+              'assets/pino/14.png',
               fit: BoxFit.fitHeight,
             ),
           ),

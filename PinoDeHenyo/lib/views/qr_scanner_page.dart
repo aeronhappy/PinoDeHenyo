@@ -27,7 +27,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
           bottom: 0,
           top: 0,
           child: Image.asset(
-            'assets/pino/sky_bg.png',
+            'assets/pino/14.png',
             fit: BoxFit.fitHeight,
           ),
         ),
@@ -49,7 +49,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
                     children: [
                       Text(
                         "Place the code in the area!",
-                        style: smallTitleBlack(false),
+                        style: smallTitleWhite(false),
                       ),
                       Text("Scanning will be started automatically.",
                           style: bodyBlack),
@@ -60,7 +60,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
                           width: 300,
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                              border: Border.all(width: 5, color: Colors.blue),
+                              border: Border.all(width: 5, color: Colors.white),
                               borderRadius: BorderRadius.circular(20)),
                           child: MobileScanner(onDetect: (capture) {
                             if (!isScanCompleted) {

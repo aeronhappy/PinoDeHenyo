@@ -33,7 +33,7 @@ class _GenerateQrCodeState extends State<GenerateQrCode> {
           bottom: 0,
           top: 0,
           child: Image.asset(
-            'assets/pino/sky_bg.png',
+            'assets/pino/15.png',
             fit: BoxFit.fitHeight,
           ),
         ),

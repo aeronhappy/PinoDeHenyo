@@ -151,7 +151,7 @@ class _LessonInfoPageState extends State<LessonInfoPage> {
               height: 250,
               width: 250,
               child: Image.asset(
-                "assets/pino/pino_medium.png",
+                "assets/pino/15.png",
               ),
             )),
       ],

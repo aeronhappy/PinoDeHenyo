@@ -56,7 +56,7 @@ class _TeacherInputPageState extends State<TeacherInputPage> {
             bottom: 0,
             top: 0,
             child: Image.asset(
-              'assets/pino/sky_bg.png',
+              'assets/pino/14.png',
               fit: BoxFit.fitHeight,
             ),
           ),

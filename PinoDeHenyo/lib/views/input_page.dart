@@ -50,7 +50,7 @@ class _InputPageState extends State<InputPage> {
           bottom: 0,
           top: 0,
           child: Image.asset(
-            'assets/pino/sky_bg.png',
+            'assets/pino/15.png',
             fit: BoxFit.fitHeight,
           ),
         ),
@@ -87,7 +87,7 @@ class _InputPageState extends State<InputPage> {
                   padding: EdgeInsets.all(20),
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
-                      color: Colors.green.shade900.withOpacity(1),
+                      color: Colors.blue.shade900.withOpacity(1),
                       borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -201,7 +201,7 @@ class _InputPageState extends State<InputPage> {
                 child: ThreeDButton(
                     text: 'Next',
                     icon: null,
-                    color: Colors.green,
+                    color: Colors.blue,
                     height: 60,
                     tag: 'next-tag',
                     onPressed: () async {
