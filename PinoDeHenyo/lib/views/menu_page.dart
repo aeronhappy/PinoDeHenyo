@@ -1,6 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pino_de_henyo/bloc/teacher/teacher_bloc.dart';
+import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
+import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/input_page.dart';
 import 'package:pino_de_henyo/views/teacher_input_page.dart';
 import 'package:pino_de_henyo/widgets/3d_button.dart';
@@ -109,7 +113,19 @@ class _MenuPageState extends State<MenuPage> {
                                 MaterialPageRoute(
                                   maintainState: false,
                                   builder: (context) {
-                                    return TeacherInputPage();
+                                    return MultiBlocProvider(
+                                      providers: [
+                                        BlocProvider(
+                                          create: (context) => TeacherBloc(
+                                              sharedPreferences: sl()),
+                                        ),
+                                        BlocProvider(
+                                          create: (context) =>
+                                              UserBloc(sharedPreferences: sl()),
+                                        ),
+                                      ],
+                                      child: TeacherInputPage(),
+                                    );
                                   },
                                 ),
                               );

@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pino_de_henyo/bloc/question_controller/question_controller_bloc.dart';
+import 'package:pino_de_henyo/bloc/teacher/teacher_bloc.dart';
 import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pino_de_henyo/services/contract/i_network_info_services.dart';
@@ -19,4 +20,5 @@ Future<void> init() async {
   //Bloc Registration
   sl.registerFactory(() => QuestionControllerBloc(sharedPreferences: sl()));
   sl.registerFactory(() => UserBloc(sharedPreferences: sl()));
+  sl.registerFactory(() => TeacherBloc(sharedPreferences: sl()));
 }

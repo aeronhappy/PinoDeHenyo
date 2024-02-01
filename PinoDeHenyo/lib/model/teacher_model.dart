@@ -14,6 +14,28 @@ class TeacherModel {
     required this.userName,
     required this.password,
   });
+
+  factory TeacherModel.fromJson(Map<String, dynamic> json) {
+    return TeacherModel(
+      id: json['id'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      gender: json['gender'],
+      userName: json['userName'],
+      password: json['password'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': this.id,
+      'firstName': this.firstName,
+      'lastName': this.lastName,
+      'gender': this.gender,
+      'userName': this.userName,
+      'password': this.password,
+    };
+  }
 }
 
 List<TeacherModel> teachers = [
