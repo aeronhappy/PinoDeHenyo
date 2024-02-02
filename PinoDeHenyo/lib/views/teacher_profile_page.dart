@@ -8,10 +8,10 @@ import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/add_teacher_account_page.dart';
 import 'package:pino_de_henyo/views/leaderboard_page.dart';
 import 'package:pino_de_henyo/views/list_of_student_page.dart';
+import 'package:pino_de_henyo/views/menu_page.dart';
 import 'package:pino_de_henyo/views/qr_scanner_page.dart';
 import 'package:pino_de_henyo/views/settings_page.dart';
 import 'package:pino_de_henyo/views/teacher_info_page.dart';
-import 'package:pino_de_henyo/views/teacher_input_page.dart';
 import 'package:pino_de_henyo/widgets/greetings.dart';
 
 class TeacherProfilePage extends StatefulWidget {
@@ -86,7 +86,7 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                       child: Text(
                                         myTeacher == null
                                             ? ""
-                                            : "${myTeacher!.gender == "Ginoo" ? "Ginoong" : "Ginang"} ${myTeacher!.lastName}",
+                                            : "${myTeacher!.gender ? "Ginoong" : "Ginang"} ${myTeacher!.lastName}",
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.center,
@@ -439,7 +439,7 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                                       sharedPreferences: sl()),
                                                 ),
                                               ],
-                                              child: TeacherInputPage(),
+                                              child: MenuPage(),
                                             )),
                                   );
 

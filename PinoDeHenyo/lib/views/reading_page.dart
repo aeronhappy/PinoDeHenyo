@@ -213,11 +213,14 @@ class _ReadingPageState extends State<ReadingPage> {
                                                   padding:
                                                       const EdgeInsets.all(5),
                                                   child: FloatingActionButton(
-                                                    onPressed: () {
-                                                      textToSpeechWithPino(
-                                                          newQuestion[index]
-                                                              .title);
-                                                    },
+                                                    onPressed: isPinoReading
+                                                        ? null
+                                                        : () {
+                                                            textToSpeechWithPino(
+                                                                newQuestion[
+                                                                        index]
+                                                                    .title);
+                                                          },
                                                     elevation: 5,
                                                     backgroundColor: green,
                                                     splashColor: green,

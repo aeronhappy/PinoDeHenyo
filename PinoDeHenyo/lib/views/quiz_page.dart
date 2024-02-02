@@ -216,15 +216,19 @@ class _QuizPageState extends State<QuizPage> {
                                                   padding:
                                                       const EdgeInsets.all(5),
                                                   child: FloatingActionButton(
-                                                    onPressed: () {
-                                                      textToSpeechWithPino(
-                                                          changeStringforPino(
-                                                              newQuestion[index]
-                                                                  .description,
-                                                              newQuestion[index]
-                                                                  .title
-                                                                  .toLowerCase()));
-                                                    },
+                                                    onPressed: isPinoReading
+                                                        ? null
+                                                        : () {
+                                                            textToSpeechWithPino(
+                                                                changeStringforPino(
+                                                                    newQuestion[
+                                                                            index]
+                                                                        .description,
+                                                                    newQuestion[
+                                                                            index]
+                                                                        .title
+                                                                        .toLowerCase()));
+                                                          },
                                                     elevation: 5,
                                                     backgroundColor: green,
                                                     splashColor: green,

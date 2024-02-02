@@ -89,10 +89,12 @@ class _LessonInfoPageState extends State<LessonInfoPage> {
                             width: 50,
                             padding: const EdgeInsets.all(5),
                             child: FloatingActionButton(
-                              onPressed: () {
-                                textToSpeechWithPino(
-                                    "${widget.item.title} \n ${widget.item.description} \n halimbawa. ${widget.item.example}");
-                              },
+                              onPressed: isPinoReading
+                                  ? null
+                                  : () {
+                                      textToSpeechWithPino(
+                                          "${widget.item.title} \n ${widget.item.description} \n halimbawa. ${widget.item.example}");
+                                    },
                               elevation: 5,
                               backgroundColor: green,
                               splashColor: green,
@@ -104,6 +106,7 @@ class _LessonInfoPageState extends State<LessonInfoPage> {
                           left: 10,
                           child: InkWell(
                             onTap: () {
+                              flutterTts.stop();
                               Feedback.forTap(context);
                               Navigator.pop(context);
                             },
@@ -151,7 +154,7 @@ class _LessonInfoPageState extends State<LessonInfoPage> {
               height: 250,
               width: 250,
               child: Image.asset(
-                "assets/pino/15.png",
+                "assets/pino/pino_medium.png",
               ),
             )),
       ],

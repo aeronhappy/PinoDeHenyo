@@ -12,9 +12,9 @@ class CustomBackButton extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: () {
+          flutterTts.stop();
           Feedback.forTap(context);
           Navigator.pop(context, true);
-          flutterTts.stop();
         },
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,

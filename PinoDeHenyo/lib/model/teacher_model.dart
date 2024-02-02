@@ -2,7 +2,7 @@ class TeacherModel {
   final int id;
   final String firstName;
   final String lastName;
-  final String gender;
+  final bool gender;
   final String userName;
   final String password;
 
@@ -20,7 +20,7 @@ class TeacherModel {
       id: json['id'],
       firstName: json['firstName'],
       lastName: json['lastName'],
-      gender: json['gender'],
+      gender: json['gender'] as bool,
       userName: json['userName'],
       password: json['password'],
     );
@@ -43,14 +43,14 @@ List<TeacherModel> teachers = [
       id: 1,
       firstName: "Aeron Darelle",
       lastName: "Maligaya",
-      gender: "Ginoo",
+      gender: true,
       userName: "aeronhappy",
       password: "aeronaeron123"),
   TeacherModel(
       id: 2,
       firstName: "Hanna",
       lastName: "Caila",
-      gender: "Ginang",
+      gender: false,
       userName: "hannacaila",
       password: "hannahanna123"),
 ];

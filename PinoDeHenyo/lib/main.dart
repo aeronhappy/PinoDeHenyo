@@ -8,7 +8,6 @@ import 'package:pino_de_henyo/repository/injection_container.dart' as di;
 import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/dashboard_page.dart';
 import 'package:pino_de_henyo/views/menu_page.dart';
-import 'package:pino_de_henyo/views/teacher_input_page.dart';
 import 'package:pino_de_henyo/views/teacher_profile_page.dart';
 import 'package:pino_de_henyo/widgets/device_id.dart';
 import 'package:pino_de_henyo/widgets/music.dart';
@@ -86,7 +85,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: widget.hasTeacher
+      home: widget.isStarted
           ? widget.position == "teacher"
               ? MultiBlocProvider(
                   providers: [

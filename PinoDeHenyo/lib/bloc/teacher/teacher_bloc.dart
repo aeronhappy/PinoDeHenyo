@@ -122,6 +122,8 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
 
     on<LogoutTeacherAccount>((event, emit) async {
       sharedPreferences.remove("teacherId");
+      sharedPreferences.remove("doneOnboarding");
+
       emit(LogoutAccount());
     });
   }

@@ -215,15 +215,17 @@ class _WritingPageState extends State<WritingPage> {
                                             width: 50,
                                             padding: const EdgeInsets.all(5),
                                             child: FloatingActionButton(
-                                              onPressed: () {
-                                                textToSpeechWithPino(
-                                                    changeStringforPino(
-                                                        newQuestion[index]
-                                                            .description,
-                                                        newQuestion[index]
-                                                            .title
-                                                            .toLowerCase()));
-                                              },
+                                              onPressed: isPinoReading
+                                                  ? null
+                                                  : () {
+                                                      textToSpeechWithPino(
+                                                          changeStringforPino(
+                                                              newQuestion[index]
+                                                                  .description,
+                                                              newQuestion[index]
+                                                                  .title
+                                                                  .toLowerCase()));
+                                                    },
                                               elevation: 5,
                                               backgroundColor: green,
                                               splashColor: green,

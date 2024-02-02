@@ -16,11 +16,11 @@ class TeacherInfoPage extends StatefulWidget {
 class _TeacherInfoPageState extends State<TeacherInfoPage> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   int id = 0;
   bool obsecure = true;
+  bool gender = true;
 
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _TeacherInfoPageState extends State<TeacherInfoPage> {
             id = state.teacherModel.id;
             firstNameController.text = state.teacherModel.firstName;
             lastNameController.text = state.teacherModel.lastName;
-            genderController.text = state.teacherModel.gender;
+            gender = state.teacherModel.gender;
             userNameController.text = state.teacherModel.userName;
             passwordController.text = state.teacherModel.password;
           });
@@ -70,67 +70,76 @@ class _TeacherInfoPageState extends State<TeacherInfoPage> {
                   children: [
                     CustomBackButton(text: widget.title),
                     SizedBox(height: 30),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Row(
                       children: [
-                        Text(
-                          "First Name",
-                          style: smallTitleWhite(true),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border:
-                                  Border.all(color: Colors.black54, width: 2)),
-                          child: TextField(
-                            cursorColor: Colors.black,
-                            style: bodyBlack,
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                labelText: "Ilagay ang unang pangalan dito.",
-                                labelStyle:
-                                    bodyBlack.copyWith(color: Colors.black45)),
-                            controller: firstNameController,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
+                        Expanded(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "First Name",
+                                style: smallTitleWhite(true),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                        color: Colors.black54, width: 2)),
+                                child: TextField(
+                                  cursorColor: Colors.black,
+                                  style: bodyBlack,
+                                  textAlign: TextAlign.center,
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      labelText:
+                                          "Ilagay ang unang pangalan dito.",
+                                      labelStyle: bodyBlack.copyWith(
+                                          color: Colors.black45)),
+                                  controller: firstNameController,
+                                  onChanged: (value) {
+                                    setState(() {});
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Last Name",
-                          style: smallTitleWhite(true),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border:
-                                  Border.all(color: Colors.black54, width: 2)),
-                          child: TextField(
-                            cursorColor: Colors.black,
-                            style: bodyBlack,
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                labelText: "Ilagay ang Apelido.",
-                                labelStyle:
-                                    bodyBlack.copyWith(color: Colors.black45)),
-                            controller: lastNameController,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Last Name",
+                                style: smallTitleWhite(true),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                        color: Colors.black54, width: 2)),
+                                child: TextField(
+                                  cursorColor: Colors.black,
+                                  style: bodyBlack,
+                                  textAlign: TextAlign.center,
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      labelText: "Ilagay ang Apelido.",
+                                      labelStyle: bodyBlack.copyWith(
+                                          color: Colors.black45)),
+                                  controller: lastNameController,
+                                  onChanged: (value) {
+                                    setState(() {});
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -144,31 +153,47 @@ class _TeacherInfoPageState extends State<TeacherInfoPage> {
                           "Gender",
                           style: smallTitleWhite(true),
                         ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              border:
-                                  Border.all(color: Colors.black54, width: 2)),
-                          child: TextField(
-                            cursorColor: Colors.black,
-                            style: bodyBlack,
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                labelText: "Ilagay ang kasarian",
-                                labelStyle:
-                                    bodyBlack.copyWith(color: Colors.black45)),
-                            controller: genderController,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Row(
+                              children: [
+                                Checkbox(
+                                  value: gender,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      gender = value!;
+                                    });
+                                  },
+                                ),
+                                Text(
+                                  "LALAKE",
+                                  style: googleFonts(22, Colors.white),
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Checkbox(
+                                  value: !gender,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      gender = !value!;
+                                    });
+                                  },
+                                ),
+                                Text(
+                                  "BABAE",
+                                  style: googleFonts(22, Colors.white),
+                                )
+                              ],
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -270,7 +295,6 @@ class _TeacherInfoPageState extends State<TeacherInfoPage> {
                       borderRadius: BorderRadius.circular(20),
                       color: firstNameController.text.isEmpty ||
                               lastNameController.text.isEmpty ||
-                              genderController.text.isEmpty ||
                               userNameController.text.isEmpty ||
                               passwordController.text.isEmpty
                           ? Colors.green.shade200
@@ -279,7 +303,6 @@ class _TeacherInfoPageState extends State<TeacherInfoPage> {
                         borderRadius: BorderRadius.circular(20),
                         onTap: firstNameController.text.isEmpty ||
                                 lastNameController.text.isEmpty ||
-                                genderController.text.isEmpty ||
                                 userNameController.text.isEmpty ||
                                 passwordController.text.isEmpty
                             ? null
@@ -290,7 +313,7 @@ class _TeacherInfoPageState extends State<TeacherInfoPage> {
                                             id: id,
                                             firstName: firstNameController.text,
                                             lastName: lastNameController.text,
-                                            gender: genderController.text,
+                                            gender: gender,
                                             userName: userNameController.text,
                                             password:
                                                 passwordController.text)));
