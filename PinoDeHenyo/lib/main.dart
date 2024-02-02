@@ -8,6 +8,7 @@ import 'package:pino_de_henyo/repository/injection_container.dart' as di;
 import 'package:pino_de_henyo/repository/injection_container.dart';
 import 'package:pino_de_henyo/views/dashboard_page.dart';
 import 'package:pino_de_henyo/views/menu_page.dart';
+import 'package:pino_de_henyo/views/teacher_input_page.dart';
 import 'package:pino_de_henyo/views/teacher_profile_page.dart';
 import 'package:pino_de_henyo/widgets/device_id.dart';
 import 'package:pino_de_henyo/widgets/music.dart';
@@ -25,14 +26,23 @@ void main() async {
 
   bool isStarted = await sharedPref.getBool('doneOnboarding') ?? false;
   String position = await sharedPref.getString('position') ?? "";
-
-  runApp(MyApp(isStarted: isStarted, position: position));
+  int teacherId = await sharedPref.getInt("teacherId") ?? -1;
+  runApp(MyApp(
+    isStarted: isStarted,
+    position: position,
+    hasTeacher: teacherId == -1 ? false : true,
+  ));
 }
 
 class MyApp extends StatefulWidget {
   final bool isStarted;
   final String position;
-  const MyApp({super.key, required this.isStarted, required this.position});
+  final bool hasTeacher;
+  const MyApp(
+      {super.key,
+      required this.isStarted,
+      required this.position,
+      required this.hasTeacher});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -76,7 +86,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: widget.isStarted
+      home: widget.hasTeacher
           ? widget.position == "teacher"
               ? MultiBlocProvider(
                   providers: [

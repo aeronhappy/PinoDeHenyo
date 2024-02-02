@@ -19,7 +19,7 @@ class TeacherInputPage extends StatefulWidget {
 class _TeacherInputPageState extends State<TeacherInputPage> {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  bool obsecure = true;
   bool isDone = false;
 
   @override
@@ -142,76 +142,98 @@ class _TeacherInputPageState extends State<TeacherInputPage> {
                                               color: Colors.black45)),
                                       controller: userNameController,
                                       onChanged: (value) {
-                                        setState(() {
-                                          if (userNameController
-                                                  .text.isNotEmpty &&
-                                              passwordController
-                                                  .text.isNotEmpty) {
-                                            isDone = true;
-                                          } else {
-                                            isDone = false;
-                                          }
-                                        });
+                                        setState(() {});
                                       },
                                     ),
                                   ),
                                   SizedBox(height: 10),
-                                  Container(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                            color: Colors.black54, width: 2)),
-                                    child: TextField(
-                                      cursorColor: Colors.black,
-                                      style: bodyBlack,
-                                      textAlign: TextAlign.center,
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          labelText:
-                                              "Ilagay ang password dito.",
-                                          labelStyle: bodyBlack.copyWith(
-                                              color: Colors.black45)),
-                                      controller: passwordController,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          if (userNameController
-                                                  .text.isNotEmpty &&
-                                              passwordController
-                                                  .text.isNotEmpty) {
-                                            isDone = true;
-                                          } else {
-                                            isDone = false;
-                                          }
-                                        });
-                                      },
-                                    ),
+                                  Stack(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            border: Border.all(
+                                                color: Colors.black54,
+                                                width: 2)),
+                                        child: TextField(
+                                          cursorColor: Colors.black,
+                                          style: bodyBlack,
+                                          obscureText: obsecure,
+                                          textAlign: TextAlign.center,
+                                          decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              labelText:
+                                                  "Ilagay ang password dito.",
+                                              labelStyle: bodyBlack.copyWith(
+                                                  color: Colors.black45)),
+                                          controller: passwordController,
+                                          onChanged: (value) {
+                                            setState(() {});
+                                          },
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 15,
+                                        right: 10,
+                                        bottom: 15,
+                                        child: Material(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          color: Colors.purple.shade100,
+                                          child: InkWell(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            highlightColor: Colors.purple,
+                                            onTap: () {
+                                              setState(() {
+                                                obsecure = !obsecure;
+                                              });
+                                            },
+                                            child: SizedBox(
+                                                height: 45,
+                                                width: 45,
+                                                child: Center(
+                                                    child: Icon(obsecure
+                                                        ? Icons.visibility
+                                                        : Icons
+                                                            .visibility_off))),
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ],
                               ),
                             ],
                           )),
-                          SizedBox(width: 50),
+                          SizedBox(width: 70),
                         ],
                       ),
                     ),
                     Positioned(
                       bottom: 0,
-                      right: -110,
+                      right: -20,
                       child: Hero(
                           tag: 'pino_input-tags',
                           child: Image.asset(
                             "assets/pino/pino_large.png",
                             height: 300,
+                            width: 120,
+                            fit: BoxFit.fitHeight,
                           )),
                     ),
                   ]),
                   SizedBox(height: 20),
                   AnimatedOpacity(
                     duration: Duration(milliseconds: 100),
-                    opacity: isDone ? 1 : .3,
+                    opacity: userNameController.text.isEmpty ||
+                            passwordController.text.isEmpty
+                        ? .3
+                        : 1,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: ThreeDButton(
@@ -220,14 +242,15 @@ class _TeacherInputPageState extends State<TeacherInputPage> {
                           color: Colors.green,
                           height: 60,
                           tag: 'next-tag',
-                          onPressed: isDone
-                              ? () {
+                          onPressed: userNameController.text.isEmpty ||
+                                  passwordController.text.isEmpty
+                              ? null
+                              : () {
                                   context.read<TeacherBloc>().add(
                                       LoginTeacherAccount(
                                           userName: userNameController.text,
                                           password: passwordController.text));
-                                }
-                              : null),
+                                }),
                     ),
                   )
                 ])

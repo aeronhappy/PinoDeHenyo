@@ -3,47 +3,38 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pino_de_henyo/bloc/teacher/teacher_bloc.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/model/teacher_model.dart';
+import 'package:pino_de_henyo/views/teacher_input_page.dart';
 import 'package:pino_de_henyo/widgets/custom_back_button.dart';
 
-class TeacherInfoPage extends StatefulWidget {
+class AddTeacherAccountPage extends StatefulWidget {
   final String title;
-  const TeacherInfoPage({super.key, required this.title});
+  const AddTeacherAccountPage({super.key, required this.title});
 
   @override
-  State<TeacherInfoPage> createState() => _TeacherInfoPageState();
+  State<AddTeacherAccountPage> createState() => _AddTeacherAccountPageState();
 }
 
-class _TeacherInfoPageState extends State<TeacherInfoPage> {
+class _AddTeacherAccountPageState extends State<AddTeacherAccountPage> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController genderController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  int id = 0;
   bool obsecure = true;
-
-  @override
-  void initState() {
-    super.initState();
-    context.read<TeacherBloc>().add(GetMyAccount());
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocListener<TeacherBloc, TeacherState>(
       listener: (context, state) {
-        if (state is LoadedMyAccount) {
-          setState(() {
-            id = state.teacherModel.id;
-            firstNameController.text = state.teacherModel.firstName;
-            lastNameController.text = state.teacherModel.lastName;
-            genderController.text = state.teacherModel.gender;
-            userNameController.text = state.teacherModel.userName;
-            passwordController.text = state.teacherModel.password;
-          });
+        if (state is SuccessfullyCreated) {
+          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+          ScaffoldMessenger.of(context)
+              .showSnackBar(snackbarSuccess("Successfully created."));
+          Navigator.pop(context);
         }
-        if (state is TeacherInfoChanged) {
-          Navigator.pop(context, true);
+        if (state is FailedCreateAccount) {
+          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(
+              snackbarFailed("Failed create account. Username not available."));
         }
       },
       child: Stack(children: [
@@ -285,9 +276,9 @@ class _TeacherInfoPageState extends State<TeacherInfoPage> {
                             ? null
                             : () {
                                 context.read<TeacherBloc>().add(
-                                    ChangeTeacherInfo(
+                                    CreateTeacherAccount(
                                         teacherModel: TeacherModel(
-                                            id: id,
+                                            id: 1,
                                             firstName: firstNameController.text,
                                             lastName: lastNameController.text,
                                             gender: genderController.text,
@@ -299,7 +290,7 @@ class _TeacherInfoPageState extends State<TeacherInfoPage> {
                           height: 60,
                           child: Center(
                             child: Text(
-                              "Save",
+                              "Add Account",
                               style: smallTitleWhite(false),
                             ),
                           ),

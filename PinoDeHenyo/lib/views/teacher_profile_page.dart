@@ -5,6 +5,7 @@ import 'package:pino_de_henyo/bloc/user/user_bloc.dart';
 import 'package:pino_de_henyo/designs/fonts/text_style.dart';
 import 'package:pino_de_henyo/model/teacher_model.dart';
 import 'package:pino_de_henyo/repository/injection_container.dart';
+import 'package:pino_de_henyo/views/add_teacher_account_page.dart';
 import 'package:pino_de_henyo/views/leaderboard_page.dart';
 import 'package:pino_de_henyo/views/list_of_student_page.dart';
 import 'package:pino_de_henyo/views/qr_scanner_page.dart';
@@ -65,7 +66,7 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 50),
+                    SizedBox(height: 30),
                     Column(
                       children: [
                         Stack(
@@ -97,7 +98,7 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                 )),
                           ],
                         ),
-                        SizedBox(height: 39),
+                        SizedBox(height: 20),
                         Material(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white.withOpacity(.7),
@@ -296,8 +297,8 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white.withOpacity(.7),
                             child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
+                                onTap: () async {
+                                  var isChanged = await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         maintainState: false,
@@ -319,6 +320,12 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                               ),
                                             )),
                                   );
+
+                                  if (isChanged) {
+                                    context
+                                        .read<TeacherBloc>()
+                                        .add(GetMyAccount());
+                                  }
                                   Feedback.forTap(context);
                                 },
                                 child: Container(
@@ -358,7 +365,23 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                     context,
                                     MaterialPageRoute(
                                         maintainState: false,
-                                        builder: (context) => SettingsPage()),
+                                        builder: (context) => MultiBlocProvider(
+                                              providers: [
+                                                BlocProvider(
+                                                  create: (context) =>
+                                                      TeacherBloc(
+                                                          sharedPreferences:
+                                                              sl()),
+                                                ),
+                                                BlocProvider(
+                                                  create: (context) => UserBloc(
+                                                      sharedPreferences: sl()),
+                                                ),
+                                              ],
+                                              child: AddTeacherAccountPage(
+                                                title: 'Add Account',
+                                              ),
+                                            )),
                                   );
 
                                   Feedback.forTap(context);

@@ -16,6 +16,7 @@ void main() {
     await tester.pumpWidget(MyApp(
       isStarted: false,
       position: '',
+      hasTeacher: false,
     ));
 
     // Verify that our counter starts at 0.
