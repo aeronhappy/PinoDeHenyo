@@ -113,7 +113,11 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
       teachersAccount
           .removeWhere((element) => element.id == event.teacherModel.id);
       teachersAccount.add(event.teacherModel);
+      String teacherAccountString = jsonEncode(teachersAccount);
+      sharedPreferences.setString(
+          'listOfTeachersAccount', teacherAccountString);
       emit(TeacherInfoChanged());
+      emit(LoadedMyAccount(teacherModel: event.teacherModel));
     });
 
     on<LogoutTeacherAccount>((event, emit) async {

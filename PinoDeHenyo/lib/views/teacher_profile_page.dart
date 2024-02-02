@@ -297,7 +297,7 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                             color: Colors.white.withOpacity(.7),
                             child: InkWell(
                                 onTap: () {
-                                  Navigator.pushReplacement(
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         maintainState: false,
@@ -315,7 +315,8 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                                 ),
                                               ],
                                               child: TeacherInfoPage(
-                                                  teacherModel: myTeacher!),
+                                                title: 'Edit Information',
+                                              ),
                                             )),
                                   );
                                   Feedback.forTap(context);
@@ -336,7 +337,7 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
                                         ),
                                         SizedBox(width: 15),
                                         Hero(
-                                          tag: "Edit-tag",
+                                          tag: "Edit Information-tag",
                                           child: Text(
                                             'Edit Information',
                                             style: smallTitleBlack(false),
